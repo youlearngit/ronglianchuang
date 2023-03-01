@@ -1,0 +1,4 @@
+<!--subpack/error/error.wxml-->
+<i-success imgae="{{preffixUrl}}success.png" title="{{title}}" detail="{{detail}}" name="{{name}}"></i-success>
+<i-button btnname="{{btnname}}" bindtap="tobackindex"></i-button>
+

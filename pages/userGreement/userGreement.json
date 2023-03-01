@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "enablePullDownRefresh": false,
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "协议",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundTextStyle": "dark"
+}

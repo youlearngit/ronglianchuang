@@ -1,0 +1,147 @@
+/* pages/screenwed/screenwed.wxss */
+body{
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.mycountend {
+  width: 100%;
+  height: 100vh;
+  background: #BBBCBF;
+}
+
+.mybeiht {
+  width: 100%;
+  height: auto;
+  float: left;
+  background: #fff;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+}
+
+.mysxtj {
+  width: 90%;
+  margin-left: 5%;
+  line-height: 100rpx;
+  border-bottom: 2px solid #F9F9FB;
+}
+
+.mybesotj {
+  font-family: SourceHanSansSC-Medium;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+}
+.myhfmor{
+  font-size: 30rpx;
+  color: #75A4FD;
+  position: absolute;
+  right: 0;
+  margin-right: 5%;
+}
+.myonews{
+  width: 100%;
+  height: auto;
+  padding-left: 30rpx;
+  font-size: 31rpx;
+  margin-top: 30rpx;
+}
+.myfbsj{
+  width: 100%;
+}
+.mybuentu{
+  width: 8rpx;
+  height: 35rpx;
+  float: left;
+  background: #75A4FD;
+  margin-top: 5rpx;
+  margin-right: 30rpx;
+}
+.myb_dt{
+  width: auto;
+  height: 35rpx;
+  float: left;
+}
+.myenbus{
+  width: 90%;
+  float: left;
+  margin-left: 5%;
+  margin-top: 30rpx;
+  margin-bottom: 70rpx;
+}
+.minibbsj{
+  width: 40%;
+  line-height: 70rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+  float: left;
+  color: #BFC1CF;
+  border: 1rpx solid #EBECF0;
+  border-radius: 10rpx;
+}
+.myinage{
+  display: flex;
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  top: 206rpx;
+  left: 275rpx;
+}
+.myinage2{
+  display: flex;
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  top: 206rpx;
+  left: 630rpx;
+}
+
+.minicount{
+  color: #EBEFF8;
+  line-height: 70rpx;
+  float: left;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.myziczqh{
+  width: 100%;
+  margin-top: 30rpx;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 30rpx;
+}
+.mycplb{
+  width: 100%;
+  height: auto;
+  float: left;
+}
+.mybueeton{
+  width: 154rpx;
+  line-height: 60rpx;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  text-align: center;
+  float: left;
+  background: #F5F6F7;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #707FA9;
+  margin-top: 30rpx;
+}
+.active{
+  background: #4181FC;
+  color: #FFF;
+}
+.confirm{
+  width: 60%;
+  line-height: 85rpx;
+  border-radius: 50rpx;
+  font-size: 35rpx;
+  background: #A0C0FD;
+  color: #fff;
+  margin-left: 20%;
+  margin-top: 100rpx;
+  margin-bottom: 77rpx;
+  float: left;
+  border: none;
+}

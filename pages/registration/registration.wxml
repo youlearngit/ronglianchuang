@@ -1,0 +1,8 @@
+<!--pages/registration/registration.wxml-->
+<view class="enrollBox">
+  <view class="enrollBox_count">
+    <view class="enrollBox_count1">您需要完善个人信息后使用全部功能</view>
+    <button class="enrollBox_btn" bindtap="tapljzc">立即完善</button>
+    <view class="enrollBox_count2" bindtap="entueb">暂时不了，稍后完善</view>
+  </view>
+</view>

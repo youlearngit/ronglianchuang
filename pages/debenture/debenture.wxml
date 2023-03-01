@@ -1,0 +1,407 @@
+<!--pages/tradinghall/tradinghall.wxml-->
+<view class="box-entb">
+
+  <!-- 顶部 -->
+  <i-head img="{{preffixUrl}}trading_bg.png" title="{{title}}" titledetail="{{detail}}"></i-head>
+
+  <view class="zjbg">
+
+  </view>
+
+
+
+  <view class="tab">
+    <view wx:for="{{ tabs }}" wx:key="item" bindtap="switchTab" data-index="{{ index }}" class="{{ index == chooseIndex  ? 'activeBox' : ''}}" style="color: #5576BB;font-size: 30rpx;">{{item}}</view>
+    <hr class="mybutent {{ 0 == currentIndex  ? 'lineBox' : 'notLineBox'}}" />
+    <hr class="myonet {{ 1 == currentIndex  ? 'lineBox' : 'notLineBox'}}" />
+    <hr class="mylauit {{ 2 == currentIndex  ? 'lineBox' : 'notLineBox'}}" />
+  </view>
+
+
+
+  <view class="headline_inputBox">
+    <input type="text" placeholder="请输入关键字" class="input" bindconfirm="goSearch" bindinput="inputChange" value="{{keywords}}" disabled="false" bindtap="goSearch" />
+    <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image>
+    <view class="sx" bindtap="screen">
+      <image src="{{preffixUrl}}filtrate.png" mode="widthFix" class="filtrate"></image>
+      筛选
+    </view>
+  </view>
+
+
+  <view class="table" wx:if="{{chooseIndex==0}}">
+    <view class="th_head">
+      <view class="th_first">
+
+
+        <view class="head_title" catchtap="get_org_name_sort">来源<image class="soreImg" wx:if="{{org_name_sort=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+          <image wx:if="{{!org_name_sort || org_name_sort=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+        </view>
+
+        <view class="tb_title">
+          <view class="t1" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+
+
+            <view wx:if="{{item.ORG_SHORT_NAME}}">{{item.ORG_SHORT_NAME}}</view>
+            <view wx:else>{{item.ORG_NAME}}</view>
+
+            <view style="font-size: 25rpx;margin-right: 8rpx;color: #999;">{{item.USER_NAME}}</view>
+
+          </view>
+        </view>
+
+      </view>
+      <view class="th_secord">
+        <view class="thead">
+
+          <View class="th" catchtap="sortfbrq">发布日期<image class="soreImg" wx:if="{{fbrq=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!fbrq || fbrq=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortbtype">发行人性质<image class="soreImg" wx:if="{{btype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image class="soreImg" src="{{preffixUrl}}asc.png" wx:if="{{!btype || btype=='asc'}}"></image>
+          </View>
+
+
+          <View class="th" catchtap="sorttraded">债券名称<image class="soreImg" wx:if="{{traded =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!traded || traded=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortptype">发行规模<image class="soreImg" wx:if="{{ptype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!ptype || ptype=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortsyqx">发行期限<image class="soreImg" wx:if="{{syqx=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!syqx || syqx=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <View class="th" catchtap="sortsqlv">预测利率区间<image class="soreImg" wx:if="{{sqlv =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!sqlv || sqlv=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <View class="th" catchtap="sortAamount">主体评级<image class="soreImg" wx:if="{{sortamount=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!sortamount || sortamount=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getBOND_PROJECT_GRADE_SORT">债项评级<image class="soreImg" wx:if="{{BOND_PROJECT_GRADE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!BOND_PROJECT_GRADE_SORT || BOND_PROJECT_GRADE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+
+        </view>
+        <view class="tbody" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+          <View class="tb">{{item.CREATE_TIME}}</View>
+
+          <View class="tb">{{item.PUBLISHER_NATURE}}</View>
+          <View class="tb">{{item.BOND_NAME}}</View>
+          <View class="tb">{{item.PUBLISH_SCALE}}</View>
+          <View class="tb">{{item.PUBLISH_DEADLINE}}</View>
+          <View class="tb">{{item.FORECAST_RATE_RANGE}}%</View>
+          <View class="tb">{{item.MAIN_GRADE}}</View>
+
+          <View class="tb">{{item.BOND_PROJECT_GRADE}}</View>
+
+        </view>
+      </view>
+      <view style="text-align: center;font-size: 25rpx;color: #999;">{{loadtext}}</view>
+
+    </view>
+  </view>
+
+
+  <view class="table" wx:if="{{chooseIndex==1}}">
+    <view class="th_head">
+      <view class="th_first">
+
+        <view class="head_title" catchtap="get_org_name_sort">来源<image class="soreImg" wx:if="{{org_name_sort=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+          <image wx:if="{{!org_name_sort || org_name_sort=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+        </view>
+
+
+        <view class="tb_title">
+          <view class="t1" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+
+
+            <view wx:if="{{item.ORG_SHORT_NAME}}">{{item.ORG_SHORT_NAME}}</view>
+            <view wx:else>{{item.ORG_NAME}}</view>
+
+            <view style="font-size: 25rpx;margin-right: 8rpx;">{{item.USER_NAME}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class="th_secord">
+        <view class="thead_jr">
+
+          <View class="th" catchtap="sortfbrq">发布日期<image class="soreImg" wx:if="{{fbrq=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!fbrq || fbrq=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortbtype">券种<image class="soreImg" wx:if="{{btype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image class="soreImg" src="{{preffixUrl}}asc.png" wx:if="{{!btype || btype=='asc'}}"></image>
+          </View>
+
+
+          <View class="th" catchtap="sorttraded">发行人<image class="soreImg" wx:if="{{traded =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!traded || traded=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortptype">主体评级<image class="soreImg" wx:if="{{ptype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!ptype || ptype=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getBOND_PROJECT_GRADE_SORT">债项评级<image class="soreImg" wx:if="{{BOND_PROJECT_GRADE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!BOND_PROJECT_GRADE_SORT || BOND_PROJECT_GRADE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <View class="th" catchtap="sortsqlv">债券期限<image class="soreImg" wx:if="{{sqlv =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!sqlv || sqlv=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <View class="th" catchtap="getINTEREST_RATE_RANGE_SORT">利率区间<image class="soreImg" wx:if="{{INTEREST_RATE_RANGE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!INTEREST_RATE_RANGE_SORT || INTEREST_RATE_RANGE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getBOND_NAME_SORT">债券名称<image class="soreImg" wx:if="{{BOND_NAME_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!BOND_NAME_SORT || BOND_NAME_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+
+          <View class="th" catchtap="getISSUE_MODE_SORT">发行方式<image class="soreImg" wx:if="{{ISSUE_MODE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!ISSUE_MODE_SORT || ISSUE_MODE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getINSUE_SCALE_SORT">发行规模<image class="soreImg" wx:if="{{INSUE_SCALE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!INSUE_SCALE_SORT || INSUE_SCALE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+
+
+        </view>
+        <view class="tbody_jr" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+          <View class="tb">{{item.CREATE_TIME}}</View>
+
+          <View class="tb">{{item.BOND_TYPE}}</View>
+          <View class="tb">{{item.PUBLISHER}}</View>
+          <View class="tb">{{item.MAIN_GRADE}}</View>
+          <View class="tb">{{item.BOND_PROJECT_GRADE}}</View>
+          <View class="tb">{{item.BOND_TERM}}</View>
+          <View class="tb">{{item.INTEREST_RATE_RANGE}}</View>
+
+          <View class="tb">{{item.BOND_NAME}}</View>
+
+          <View class="tb">{{item.ISSUE_MODE}}</View>
+
+
+
+          <View class="tb">{{item.INSUE_SCALE}}亿</View>
+
+
+        </view>
+      </view>
+      <view style="text-align: center;font-size: 25rpx;color: #999;">{{loadtext}}</view>
+
+    </view>
+  </view>
+
+
+  <view class="table" wx:if="{{chooseIndex==2}}">
+    <view class="th_head">
+      <view class="th_first">
+
+        <view class="head_title" catchtap="get_org_name_sort">来源<image class="soreImg" wx:if="{{org_name_sort=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+          <image wx:if="{{!org_name_sort || org_name_sort=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+        </view>
+
+        <view class="tb_title">
+          <view class="t1" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+
+
+            <view wx:if="{{item.ORG_SHORT_NAME}}">{{item.ORG_SHORT_NAME}}</view>
+            <view wx:else>{{item.ORG_NAME}}</view>
+
+            <view style="font-size: 25rpx;margin-right: 8rpx;">{{item.USER_NAME}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class="th_secord">
+        <view class="thead">
+
+          <View class="th" catchtap="sortfbrq">发布日期<image class="soreImg" wx:if="{{fbrq=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!fbrq || fbrq=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <View class="th" catchtap="sortbtype">券种<image class="soreImg" wx:if="{{btype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image class="soreImg" src="{{preffixUrl}}asc.png" wx:if="{{!btype || btype=='asc'}}"></image>
+          </View>
+
+
+          <View class="th" catchtap="sorttraded">债券名称<image class="soreImg" wx:if="{{traded =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!traded || traded=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortptype">债券代码<image class="soreImg" wx:if="{{ptype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!ptype || ptype=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortsyqx">发行期限<image class="soreImg" wx:if="{{syqx=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!syqx || syqx=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <View class="th" catchtap="sortsqlv">发行规模<image class="soreImg" wx:if="{{sqlv =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!sqlv || sqlv=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+          <!-- <View class="th" catchtap="sortAamount">票面利率<image class="soreImg" wx:if="{{sortamount}}" src="{{preffixUrl}}sore.png"></image><image  wx:if="{{!sortamount}}" class="soreImg" src="{{preffixUrl}}asc.png"></image></View> -->
+
+          <View class="th" catchtap="getLISTED_MARKET_SORT">上市市场<image class="soreImg" wx:if="{{LISTED_MARKET_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!LISTED_MARKET_SORT || LISTED_MARKET_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getFORECAST_RANGE_SORT">预测区间<image class="soreImg" wx:if="{{FORECAST_RANGE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!FORECAST_RANGE_SORT || FORECAST_RANGE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+
+        </view>
+        <view class="tbody" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+          <View class="tb">{{item.CREATE_TIME}}</View>
+
+          <View class="tb">{{item.BOND_TYPE}}</View>
+          <View class="tb">{{item.BOND_NAME}}</View>
+          <View class="tb">{{item.BOND_CODE}}</View>
+          <View class="tb">{{item.PUBLISH_DEADLINE}}</View>
+          <View class="tb">{{item.PUBLISH_SCALE}}</View>
+          <!-- <View class="tb">{{item.PAR_RATE}}</View> -->
+
+          <View class="tb">{{item.LISTED_MARKET}}</View>
+
+          <View class="tb">{{item.FORECAST_RANGE}}</View>
+
+
+        </view>
+
+
+      </view>
+      <view style="text-align: center;font-size: 25rpx;color: #999;">{{loadtext}}</view>
+
+    </view>
+
+  </view>
+
+
+
+</view>
+<view class="{{show ? 'container page' : ''}}" data-weui-theme="{{theme}}">
+  <view class="mobile {{show ? 'active' : ''}}">
+    <view class="{{theme === 'dark' ? 'left dark-bg' : 'left'}}">
+      <view class="condition">
+        <image src="{{preffixUrl}}screen_bg.png" class="log_condit"></image>
+        <view class="condit_title">筛选条件</view>
+      </view>
+      <view class="source">
+        <view class="source_title">来源</view>
+        <image src="{{preffixUrl}}down.png" class="downImg"></image>
+      </view>
+      <!-- 搜索框 -->
+      <view class="search_input">
+        <input type="text" placeholder="请输入关键字" confirm-type="search" bindconfirm="search" value="{{keywords}}" bindinput="searchvalue" class="inputBox" />
+        <image src="{{preffixUrl}}search.png" mode="widthFix" class="sourcesearch"></image>
+
+        <!-- <view class="associ" wx:if="{{Isshow}}">
+    <view class="myitem">
+    <view class="item_list">超短期<text class="key">融资</text>券</view>
+    <view class="item_list">长期<text class="key">融资</text></view>
+    <view class="item_list">长期<text class="key">融资</text>券</view>
+    <view class="item_list">内部短期<text class="key">融资</text>券</view>
+    </view>
+    </view> -->
+
+
+      </view>
+      <view class="release">
+        <view class="source_title">发布时间</view>
+        <view class="datetime">
+          <view class="minibbsj">
+            <picker mode="date" class="timestyle" bindchange="bindStartDate">
+              <view class="weui-input">{{startTime}}</view>
+            </picker>
+          </view>
+          <view class="between">
+            <view class="betline"></view>
+          </view>
+          <view class="minibbsj">
+            <picker mode="date" class="timestyle" bindchange="bindEndDate">
+              <view class="weui-input">{{endTime}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="release">
+  <view class="source_title">业务类型</view>
+  <view class="items">
+  <view wx:for="{{busitype}}" class="busieess {{isSelect == item.id ? 'busactive' : ''}}" data-id="{{item.id}}" bindtap="Fbundselect" wx:key="index">{{item.name}}</view>
+  </view>
+  </view> -->
+      <!-- <view class="release">
+  <view class="source_title">交易方向</view>
+  <view class="items">
+  <view wx:for="{{direction}}" class="busieess direc {{disSelect == item.id ? 'busactive' : ''}}" data-id="{{item.id}}" bindtap="directionselect" wx:key="index">{{item.name}}</view>
+  </view>
+  </view> -->
+
+      <!-- <view class="release">
+  <view class="source_title">剩余期限</view>
+  <view class="items">
+  <view wx:for="{{datelist}}" class="busieess days {{daySelect == item.id ? 'busactive' : ''}}" data-id="{{item.id}}" bindtap="dateselect" wx:key="index">{{item.name}}</view>
+  </view>
+  </view> -->
+
+      <view class="release">
+        <view class="source_title">利率区间</view>
+        <view class="datetime">
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最低" value="{{mini_rate}}" bindinput="get_min_rate" />
+          </view>
+          <view class="between">
+            <view class="betline"></view>
+          </view>
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最高" value="{{high_rate}}" bindinput="get_high_rate" />
+          </view>
+        </view>
+      </view>
+      <view class="release">
+        <view class="source_title">金额区间</view>
+        <view class="datetime">
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最低" value="{{mini_amount}}" bindinput="get_min_amount" />
+          </view>
+          <view class="between">
+            <view class="betline"></view>
+          </view>
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最高" value="{{high_amount}}" bindinput="get_high_amount" />
+          </view>
+        </view>
+      </view>
+      <view class="btnview">
+        <view class="reset" bindtap="reset">重置</view>
+        <view class="determine" bindtap="confirm">确定</view>
+      </view>
+    </view>
+    <view class="right" bindtap="searchhide"></view>
+  </view>
+</view>

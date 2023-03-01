@@ -1,0 +1,148 @@
+/* pages/perfect/perfect.wxss */
+
+@import '/app.wxss';
+/* 引入全局样式 */
+page{
+  background-color: #F6F8FD;
+}
+.perjectbg {
+    width: 100%;
+}
+
+
+.enroll_box {
+  position: absolute;
+    top: 180rpx;
+    left: 50rpx;
+}
+.title_text{
+  color: #092C68;
+  font-weight: 600;
+}
+.enrollBox_subtitle{
+  margin-top: 10rpx;
+  color: #8598B5;
+  font-size: 24rpx;
+}
+
+.enrollBox_title {
+  color: #214178;
+  font-size: 45rpx;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bizreaderBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 26rpx;
+    color: #fff;
+    background: rgba(62, 65, 92, 0.27);
+    border-radius: 30rpx;
+    margin-left: 150rpx;
+    margin-top: 10rpx;
+}
+.enrollLogo{
+  position: absolute;
+  top: -130rpx; 
+  width: 300rpx;
+  height: 50rpx;
+} 
+
+.bizreaderBox .bizreader {
+    width: 30rpx;
+    /* vertical-align: middle; */
+}
+
+.bizreader_font {
+    margin-left: 12rpx;
+}
+
+.perfectBox {
+    width: 90%;
+    position: absolute;
+    top: 360rpx;
+    left: 35rpx;
+}
+
+.perfect_box {
+    margin-top: 30rpx;
+}
+
+.perfect_countbox {
+    font-family: SourceHanSansSC-Regular;
+    font-size: 32rpx;
+    color: #092C68;
+    letter-spacing: 0;
+    display: flex;
+}
+
+.perfect_text {
+    color: red;
+}
+
+.perfect_title {
+    margin-left: 10rpx;
+}
+
+.perfect_input {
+    width: 95%;
+    margin: auto;
+    margin-top: 10rpx;
+    opacity: 0.19;
+    font-size: 33rpx;
+    border-bottom: 1px solid #979797;
+    padding-bottom: 10rpx;
+}
+.perfect_bottom{
+    width: 70%;
+    background: #4181FC;
+    box-shadow: 0 3rpx 16rpx 0 rgba(85,148,255,0.50);
+    border-radius: 45rpx;
+    margin-top: 86rpx;
+    color: #fff;
+    margin-bottom: 80rpx;
+}
+.code {
+  /* position: absolute;
+  right: 0; */
+  min-width:200rpx;
+  text-align: right;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #092C68;
+  margin-left: 300rpx;
+}
+
+.associ{
+  width: 100%;
+  height: 344rpx;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 300rpx;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+  box-shadow: 0 2px 24px 0 rgba(156,187,255,0.56);
+  border-radius: 18rpx;
+  overflow-y: auto;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: 99;
+}
+.item_list{
+  width: 100%;
+  height: 86rpx;
+  float: right;
+  padding: 26rpx 0 20rpx 0;
+  box-sizing: border-box;
+  color: #1C294F;
+  font-size: 26rpx;
+  border-bottom: 1px solid #E5E6EA;
+  font-family: SourceHanSansSC-Regular;
+}

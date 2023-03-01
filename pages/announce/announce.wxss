@@ -1,0 +1,165 @@
+/* pages/announce/announce.wxss */
+.mytielub {
+  width: 100%;
+  background-color: #DFEAFE;
+}
+
+.myentubel {
+  width: 90%;
+  margin-left: 5%;
+  /* background: wheat; */
+}
+
+.mysosui {
+  height: 70rpx;
+  line-height: 70rpx;
+  display: flex;
+  background: #F2F6FE;
+  border-radius: 50rpx;
+
+}
+
+.mysosui .imagestub {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 15rpx;
+  margin-left: 25rpx;
+  margin-right: 15rpx;
+}
+
+.mysosui input {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+}
+
+.myimageder {
+  width: 35rpx;
+  height: 35rpx;
+  margin-top: 20rpx;
+  margin-left: 150rpx;
+  margin-right: 10rpx;
+}
+
+.mysx {
+  font-size: 25rpx;
+  color: #6396FC;
+}
+.myuiend{
+  width: 100%;
+  border-radius: 30rpx;
+  margin-top: 30rpx;
+  background: #fff;
+}
+.myyzhg {
+  width: 100%;
+  border-radius: 30rpx;
+  margin-top: 40rpx;
+  background: #fff;
+}
+
+.myywpj {
+  width: 92%;
+  margin-left: 4%;
+  display: flex;
+  padding-top: 30rpx;
+  padding-bottom: 20rpx;
+}
+.myyentub{
+  width: 92%;
+  margin-left: 4%;
+  display: flex;
+  padding-bottom: 30rpx;
+}
+
+.myjms {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.myenedb {
+  width: 500rpx;
+  margin-left: 20rpx;
+}
+
+.mycolor {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.myzhg {
+  font-size: 28rpx;
+  color: #BCBCBC;
+}
+
+.myzhg title {
+  color: #6396FC;
+}
+
+.myienub {
+  width: 9rpx;
+  height: 40rpx;
+  margin-top: 10rpx;
+}
+
+.myretosper {
+  width: 100%;
+  height: 320rpx;
+}
+
+.myneir {
+  position: absolute;
+  font-size: 30rpx;
+  color: #909CBE;
+  margin-top: 14rpx;
+  margin-left: 40rpx;
+}
+
+.myneir view {
+  margin-top: 17rpx;
+}
+.mytobr {
+  position: absolute;
+  right: 0;
+  font-family: PingFangSC-Regular;
+  color: #1F3172;
+  letter-spacing: 0;
+  text-align: right;
+}
+.myrequent {
+  width: 100%;
+  height: 380rpx;
+}
+.mycdqnp {
+  position: absolute;
+  font-size: 30rpx;
+  color: #909CBE;
+  margin-top: 11rpx;
+  margin-left: 40rpx;
+}
+
+.mycdqnp view {
+  margin-top: 20rpx;
+}
+.mione{
+  width: 550rpx;
+}
+.minibech{
+  z-index: 999;
+  position: absolute;
+  width: 180rpx;
+  height: 260rpx;
+  left: 500rpx;
+  margin-top: 90rpx;
+  background: #63657C;
+  color: #C8C9D0;
+  border-radius: 10rpx;
+}
+.minibech view{
+    /* height: 86.6rpx; */
+    text-align: center;
+    width: 80%;
+    font-size: 30rpx;
+    border-bottom: 1px solid #7D7F92;
+    line-height: 86.6rpx;
+    margin-left: 10%;
+}

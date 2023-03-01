@@ -1,0 +1,26 @@
+<!--pages/headlineDetail/headlineDetail.wxml-->
+<!-- <text>pages/headlineDetail/headlineDetail.wxml</text> -->
+<view class="bannerDetailBox">
+    <image src="{{preffixUrl}}bannerDetail.png" mode="widthFix" class="detailImg"></image>
+</view>
+<view class="detailBox">
+    <view class="bannerDetail_countBox">
+        <view class="count_bigTitle">
+        <rich-text nodes="{{info.WM_TITLE}}"></rich-text>
+        </view>
+            <view class="count_smallTitle">
+                <image src="{{preffixUrl}}time.png" mode="widthFix" class="smallTitle_img"></image>
+                <text class="smallTitle_time">{{info.CREATE_TIME}}</text>
+            </view>
+    </view>
+    <view class="count_content">
+        <image src="{{url+info.WM_IMAGES}}" class="contextImg" mode="widthFix" wx:if="{{info.WM_IMAGES}}"></image>
+        <view class="contextText">
+        
+          <!-- <rich-text nodes="{{info.WM_TEXT}}"></rich-text> -->
+
+          <mp-html content="{{info.WM_TEXT}}"></mp-html>
+
+        </view>
+    </view>
+</view>

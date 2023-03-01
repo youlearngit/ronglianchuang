@@ -1,0 +1,291 @@
+.meinibb{
+  width: 100%;
+  background: #F5F7FF;
+}
+.lineBox,.notLineBox{
+    /* 选中及未选中底线共同样式 */
+    width: 72rpx;
+    height: 8rpx;
+}
+.lineBox {
+    /* 选中底线样式 */
+    background: #4181FC;
+    margin-top: 25rpx;
+}
+.notLineBox {
+    /* 未选中底线样式 */
+    background: transparent;
+}
+.mybutent{
+    position: absolute;
+    top: 58rpx;
+    left: 90rpx;
+}
+.myonet{
+    position: absolute;
+    top: 58rpx;
+    left: 335rpx;
+}
+.mylauit{
+    position: absolute;
+    top: 58rpx;
+    left: 595rpx;
+}
+.mybouod{
+  width: 100%;
+}
+.tab {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom-right-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+}
+.tab view{
+  text-align: center;
+  width: 20%;
+}
+.entbod{
+  width: 94%;
+  margin:20rpx 0rpx 0rpx 20rpx;
+  border-radius: 10px;
+  background: #F6F7FF;
+}
+textarea{
+  padding-left: 25rpx;
+  padding-top: 35rpx;
+  height: 65rpx;
+}
+.tabStyle {
+  height: 77rpx;
+  color: #4181FC;
+  border-bottom: 5rpx solid #4181FC;
+}
+.title{
+  padding-left: 25rpx;
+  font-size: 30rpx;
+  color: #454762;
+}
+.myinput{
+  width: 200rpx;
+  font-size: 28rpx;
+  position: absolute;
+  right: 25rpx;
+  text-align: right;
+}
+.myinyyds{
+  width: 200rpx;
+  font-size: 28rpx;
+  position: absolute;
+  right: 66rpx;
+  text-align: right;
+}
+.myinyy{
+  padding-right: 33rpx;
+  font-size: 28rpx;
+  color: #77788B;
+}
+.entubn{
+  color: red;
+}
+.entubinpu{
+  width: 143rpx;
+  font-size: 28rpx;
+  text-align: right;
+}
+.mypml{
+  width: 143rpx;
+  font-size: 28rpx;
+  text-align: right;
+  margin-left: 310rpx;
+}
+.enunb{
+  margin-left: 365rpx;
+}
+.entubinpuy{
+  width: 143rpx;
+  font-size: 28rpx;
+  text-align: right;
+  margin-left: 25rpx;
+}
+.mytit{
+  color: #747689;
+  padding-right: 30rpx;
+  font-size: 28rpx;
+}
+.mytuen{
+  color: #747689;
+  font-size: 28rpx;
+}
+.cueemini{
+  border-radius: 15rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 50rpx;
+  background: #fff;
+  color: #818395;
+}
+.myopton{
+  font-size: 28rpx;
+  color: #939393;
+}
+.myoptoneg{
+  font-size: 28rpx;
+  color: #747689;
+}
+.filed {
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25rpx 0;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.filedss {
+  width: 100%;
+  height: 160rpx;
+	padding: 25rpx 0;
+	border-bottom: 1rpx solid #eeeeee;
+}
+.clear{
+  margin-top: -50rpx;
+}
+.myincrease{
+  width: 168rpx;
+  height: 168rpx;
+  background: #F6F7FF;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.myrentub{
+  width: 100%;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.myqrfb{
+  width: 70%;
+  border-radius: 55rpx;
+  color: #fff;
+  background: #4181FC;
+  margin-top: 50rpx;
+}
+.valig{
+  width: 18rpx; 
+  height: 25rpx;
+  margin-top: 13rpx;
+  margin-left: 9rpx;
+}
+.valuedb{
+  width: 18rpx; 
+  height: 25rpx;
+  margin-top: 9rpx;
+  margin-left: 9rpx;
+  margin-right: 25rpx;
+}
+.mydist{
+  display: flex;
+}
+.arrow{
+  padding-right:30rpx;
+  font-size: 29rpx;
+  text-align: right; 
+  display: flex;
+}
+/* --------------------------- */
+.fileeds {
+  width: 100%;
+	padding: 25rpx 0;
+	border-bottom: 1rpx solid #eeeeee;
+}
+
+.myaddfile {
+  width: 100rpx;
+  height: 100rpx;
+  background: #F6F7FF;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
+.myfile {
+  width: 51.2rpx;
+  height: 51.2rpx;
+  opacity: 0.5;
+  margin-left: 28rpx;
+}
+
+.fileedsText {
+  opacity: 0.38;
+  font-family: SourceHanSansSC-Regular;
+  font-size: 22rpx;
+  color: #23364E;
+  letter-spacing: 0;
+  margin-left: 16rpx;
+}
+
+.imgbox{
+  min-height: 70rpx;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.imgbox .entubedg{
+  width: 168rpx;
+  height: 168rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.add{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20rpx;
+}
+.delete{
+  position: absolute;
+  font-size: 24rpx;
+  color: #E60000;
+  margin-left: 178rpx;
+  margin-top: 15rpx;
+}
+.mytoon{
+  margin-left: 34%;
+  margin-top: 33%;
+  width: 51.2rpx;
+  height: 51.2rpx;
+}
+.mydetail{
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  background: #FF6262;
+  color: #fff;
+  border-radius: 30rpx;
+}
+/* 以上是信用债代码 */
+/* 新增时间控件代码 */
+.valentudb{
+    position: absolute;
+    top: 36rpx;
+    right: 30rpx;
+    width: 18rpx; 
+    height: 25rpx;
+}
+.e-entubntub{
+    width: 232rpx;
+    font-size: 27rpx;
+    margin-right: 55rpx;
+}
+.ceholder{
+    text-align: right;
+    padding-right: 30rpx;
+}
+.wentube{
+  font-size: 30rpx;
+  margin-right: 51rpx;
+}

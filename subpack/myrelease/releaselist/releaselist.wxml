@@ -1,0 +1,451 @@
+<!--pages/headLine/headLine.wxml-->
+<!-- <text>pages/headLine/headLine.wxml</text> -->
+<view class="headlinebgBox">
+  <image src="{{preffixUrl}}headlinebg.png" mode="widthFix"></image>
+</view>
+<view class="headline_inputBox">
+  <view type="text" placeholder="" class="input" bindconfirm="goSearch" bindinput="inputChange" value="{{keywords}}" bindtap="screen"/>
+  <!-- <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image> -->
+  <view class="sx" bindtap="screen">
+    <image src="{{preffixUrl}}filtrate.png" mode="widthFix" class="filtrate"></image>
+    筛选
+  </view>
+</view>
+<view class="headline_countBox">
+
+
+<block wx:for="{{billBusiness}}" wx:key="index">
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='票据'}}">
+    <view class="count_left">
+      <image src="{{preffixUrl}}bill_icon.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">{{item.BB_BUSINESS_TYPE}}</view>
+      <view class="count_tttBox">
+        剩余期限 {{item.BB_RESIDUAL_MATURITY}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{billclass}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.BB_TRANSACTION}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.BB_BILL_TYPE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.BB_CREDIT_SUBJECT}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.BB_INTEREST_RATE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.BB_AMOUNT}}万元</view>
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='债券-信用债'}}">
+    <view class="count_left">
+      <image src="/static/images/bond_icon.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">债券-信用债</view>
+      <view class="count_tttBox">
+        发行期限 {{item.PUBLISH_DEADLINE}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{bondclassXY}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.PUBLISHER_NATURE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.BOND_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.PUBLISH_SCALE}}亿</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.FORECAST_RATE_RANGE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.MAIN_GRADE}}</view>
+
+        <!-- <view class="tm_right" wx:if="{{myitems.id == 6}}">{{item.BOND_PROJECT_GRADE}}</view> -->
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='债券-利率债'}}">
+    <view class="count_left">
+      <image src="/static/images/bond_icon.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">债券-利率债</view>
+      <view class="count_tttBox">
+        发行期限 {{item.PUBLISH_DEADLINE}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{bondclassLV}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.BOND_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.PUBLISH_SCALE}}亿</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.FORECAST_RANGE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.PAR_RATE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.LISTED_MARKET}}</view>
+        <!-- <view class="tm_right" wx:if="{{myitems.id == 6}}">{{item.BOND_PROJECT_GRADE}}</view> -->
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='债券-金融债'}}">
+    <view class="count_left">
+      <image src="/static/images/bond_icon.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">债券-金融债</view>
+      <view class="count_tttBox">
+        债券期限 {{item.BOND_TERM}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{bondclassJR}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.PUBLISHER_TYPE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.BOND_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.INSUE_SCALE}}亿</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.INTEREST_RATE_RANGE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.MAIN_GRADE}}</view>
+
+        <!-- <view class="tm_right" wx:if="{{myitems.id == 6}}">{{item.BOND_PROJECT_GRADE}}</view> -->
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='理财'}}">
+    <view class="count_left">
+      <image src="/static/images/tylc.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">理财</view>
+      <view class="count_tttBox">
+        期限 {{item.TF_PUBLISH_DEADLINE}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{wealth}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.TF_TRANSACTION}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.TF_PRODUCT_NATURE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.TF_HAVE_NON_STANDARD}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.TF_INTEREST_RATE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.TF_AMOUNT}}亿</view>
+
+        <!-- <view class="tm_right" wx:if="{{myitems.id == 6}}">{{item.BOND_PROJECT_GRADE}}</view> -->
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='基金'}}">
+    <view class="count_left">
+      <image src="/static/images/gmjj.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">基金</view>
+      <view class="count_tttBox">
+        成立日期 {{item.PF_SET_UP_DATE}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{foundation}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.PF_PRODUCT_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.PF_ADMINISTRATOR}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.PF_CUSTODIAN}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.PF_SCALE}}亿</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.PF_OPERATION_MODE}}</view>
+
+        <!-- <view class="tm_right" wx:if="{{myitems.id == 6}}">{{item.BOND_PROJECT_GRADE}}</view> -->
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='abs'}}">
+    <view class="count_left">
+      <image src="/static/images/zczjh.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">资产证券化</view>
+      <view class="count_tttBox">
+        项目期限 {{item.PROJECT_TERM}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{ABS}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.PRODUCT_TYPE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.ISSUING_SCALE}}亿</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.INCOME_RANGE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.LISTING_ORGANIZATION}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.BASIC_TYPE}}</view>
+
+        <!-- <view class="tm_right" wx:if="{{myitems.id == 6}}">{{item.BOND_PROJECT_GRADE}}</view> -->
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='同业借款'}}">
+    <view class="count_left">
+      <image src="/static/images/tyjk.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">同业借款</view>
+      <!-- <view class="count_tttBox">
+        期限 {{item.DEADLINE}} <text class="day"></text>
+      </view> -->
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{tradeBorrow}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.DIRECTION}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.DEADLINE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.INTEREST_RATE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.AMOUNT}}万</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.CURRENCY}}</view>
+
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='同业存款'}}">
+    <view class="count_left">
+      <image src="/static/images/tyck.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">同业存款</view>
+      <!-- <view class="count_tttBox">
+        期限 {{item.DEADLINE}} <text class="day"></text>
+      </view> -->
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{tradeBorrow}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.DIRECTION}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.DEADLINE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.INTEREST_RATE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.AMOUNT}}万</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.CURRENCY}}</view>
+
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='银团贷款'}}">
+    <view class="count_left">
+      <image src="/static/images/ytdk.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">银团贷款</view>
+      <view class="count_tttBox">
+        期限 {{item.TERM}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{syndicatedLoan}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.INFORMATION_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.PROJECT_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.LEADING_BANK_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.BORROWER_NAME}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.TOTAL_SYNDICATION}}亿</view>
+
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+  <view class="headline_count" bindtap="billinfo" data-value="{{item}}" wx:if="{{item.keywords=='存单'}}">
+    <view class="count_left">
+      <image src="/static/images/tycd.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">同业存单</view>
+      <view class="count_tttBox">
+        期限 {{item.DEADLINE}} <text class="day"></text>
+      </view>
+    </view>
+    <view class="count_right" catchtap="isShowMore" data-index="{{index}}">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction">
+      <image src="{{preffixUrl}}pledge_bg.png" class="svipImg"></image>
+      <view wx:for="{{tradeReceipt}}" wx:for-item="myitems" class="transac_item tr_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">{{item.MARKET}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">{{item.DIRECTION}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">{{item.PUBLISH_TYPE}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">{{item.INTEREST_RATE}}%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">{{item.MAIN_GRADE}}</view>
+
+      </view>
+    </view>
+    <view class="more" wx:if="{{chooseIndex==index && Isshow}}">
+      <view class="share" catchtap="share">
+      <button style="background: #3E415C; color: #fff;" size="mini" open-type="share">分享</button>
+      </view>
+      <view class="share">编辑</view>
+      <view class="moreall">更多</view>
+    </view>
+  </view>
+
+
+
+</block>
+
+
+
+
+  
+
+ 
+
+  
+
+
+  <view class="load">{{loadtext}}</view>
+  
+
+  <!-- <view class="headline_count_bond" bindtap="">
+    <view class="count_left">
+      <image src="{{preffixUrl}}bond_icon.png" mode="widthFix" class="count_Img"></image>
+    </view>
+    <view class="count_center">
+      <view class="count_title">超短期融资券</view>
+      <view class="count_tttBox">
+        发行期限 2022.10.01 - 2022.10.29 <text class="day">60天</text>
+      </view>
+    </view>
+    <view class="count_right">
+      <image src="{{preffixUrl}}more_operation.png" mode="widthFix" class="count_more"></image>
+    </view>
+    <view class="transaction_bond">
+      <image src="{{preffixUrl}}financing_bg.png" class="bondImg"></image>
+      <view wx:for="{{bondclass}}" wx:for-item="myitems" class="transac_item bd_{{myitems.id}}">
+        <view class="tm_left">{{myitems.name}}</view>
+        <view class="tm_right" wx:if="{{myitems.id == 1}}">金融机构</view>
+        <view class="tm_right" wx:if="{{myitems.id == 2}}">13附息国债18</view>
+        <view class="tm_right" wx:if="{{myitems.id == 3}}">500亿</view>
+        <view class="tm_right" wx:if="{{myitems.id == 4}}">5%-6%</view>
+        <view class="tm_right" wx:if="{{myitems.id == 5}}">AAA</view>
+        <view class="tm_right" wx:if="{{myitems.id == 6}}">AA+</view>
+      </view>
+    </view>
+  </view> -->
+
+
+  
+
+</view>

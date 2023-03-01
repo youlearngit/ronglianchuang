@@ -1,0 +1,96 @@
+/* pages/issue/issue.wxss */
+/* pages/category/category.wxss */
+.counten_boy{
+  width: 100%;
+  height: 100vh;
+}
+.enroll_lbcp{
+  width: 400rpx;
+  padding-left: 60rpx;
+  padding-top: 120rpx;
+}
+.enrllo_xzcp{
+  font-size: 45rpx;
+  font-weight: 600;
+  font-family: SourceHanSansSC-Medium;
+color: #333333;
+}
+.enrllo_cplb{
+  font-size: 30rpx;
+  color: #A7A7A7;
+}
+.enrllo_bottom{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 80rpx;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 600;
+  justify-content: space-between;
+}
+.enrllo_imagee{
+  width: 146rpx;
+  height: 148rpx;
+  padding-left: 20rpx;
+}
+.enroll_bill{
+  width: 166rpx;
+  height: 148rpx;
+  margin-top: 20rpx;
+}
+.enroll_minin{
+  position: absolute;
+  top: 390rpx;
+  left: 72rpx;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+.enroll_debenture{
+  left: 240rpx;
+}
+.enroll_money{
+  left: 410rpx;
+}
+.enroll_capitalfund{
+  left: 580rpx;
+}
+.enroll_deposit{
+  position: absolute;
+  top: 560rpx;
+  left: 72rpx;
+  font-size: 27rpx;
+}
+.enroll_borrowing{
+  left: 240rpx;
+}
+.enroll_banks{
+  left: 410rpx;
+}
+.enroll_securitization{
+  left: 580rpx;
+}
+.enroll_syndicated{
+  position: absolute;
+  top: 730rpx;
+  left: 72rpx;
+  font-size: 27rpx;
+}
+.enroll_cuetody{
+  left: 240rpx;
+}
+.enroll_auction{
+  left: 410rpx;
+}
+.enroll_nonstandard{
+  left: 580rpx;
+}
+.boduxyb{
+  width: 60%;
+  background: #4181FC;
+  color: #fff;
+  border-radius: 50rpx;
+  margin-top: 200rpx;
+}
+.active{
+    color: white;
+}

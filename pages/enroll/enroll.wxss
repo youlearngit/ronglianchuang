@@ -1,0 +1,112 @@
+/* pages/enroll/enroll.wxss */
+.enrollBox {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.enrollbg {
+    width: 100%;
+    height: 100%;
+}
+
+.enrollLogo {
+    width: 300rpx;
+    position: absolute;
+    left: 40rpx;
+    top: 50rpx;
+}
+
+.enroll_box {
+    position: absolute;
+    top: 220rpx;
+    padding-left: 55rpx;
+}
+
+.enrollBox_title {
+    font-size: 50rpx;
+    font-family: SourceHanSansSC-Regular;
+    color: #092C68;
+    letter-spacing: 0;
+}
+
+.title_text {
+    font-family: SourceHanSansSC-Bold;
+    font-size: 54rpx;
+    font-weight: 600;
+    color: #092C68;
+    letter-spacing: 0;
+}
+
+.enrollBox_subtitle {
+    font-size: 30rpx;
+    margin-top: 10rpx;
+    color: #8397b4;
+    /* position: relative; */
+}
+
+
+/*  */
+.enrollPhoneNumber {
+    width: 90%;
+    margin: auto;
+    /* border: 1rpx solid red; */
+    position: absolute;
+    top: 450rpx;
+    left: 35rpx;
+    /* text-align: center; */
+}
+.enrollNumber{
+    margin-top: 50rpx;
+}
+.enrollPhone {
+    width: 90%;
+    /* border: 1rpx solid green; */
+    background: #fff;
+    border-radius: 40rpx;
+    display: flex;
+    position: relative;
+    font-size: 30rpx;
+    color: #96A6CA;
+    padding: 15rpx;
+    margin-left: 25rpx;
+}
+
+.phone_img {
+    width: 35rpx;
+    position: absolute;
+    left: 45rpx;
+}
+
+.phoneInput {
+    padding-left: 30rpx;
+    border-left: 1rpx solid #96A6CA;
+    margin-left: 100rpx;
+}
+.passwordBtn[plain]{
+    width: 300rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    border-radius: 40rpx;
+    /* background: #4181FC; */
+    color: #4181FC;
+    font-size: 25rpx;
+    border: 0;
+}
+
+/*  */
+.enroll_xyb {
+    position: absolute;
+    bottom: 150rpx;
+    left: 15%;
+    background: #4181FC;
+    box-shadow: 0 3px 13px 0 rgba(85, 148, 255, 0.50);
+    border-radius: 45rpx;
+    color: #FFFFFF;
+    font-size: 34rpx;
+    font-weight: 500;
+    width: 500rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+}

@@ -1,0 +1,16 @@
+<!--pages/login/login.wxml登录-->
+<view class="login_box">
+  <image src="{{preffixUrl}}bg.png" class="loginbg"></image>
+  <view class="loginLogo">
+    <image src="{{preffixUrl}}logo.png" class="loginLogo_bg" mode="widthFix"></image>
+    <text class="loginLogo_text">文字副标题文字副标题文字副标题文字副标</text>
+  </view>
+  <view class="loginDl">
+    <button class="loginDl_btn" bindtap="onWXClick">微信授权登录</button>
+    <view class="loginDl_count">
+      <checkbox bindtap="user_agreement_checkbox"></checkbox>
+      未注册手机号登录后将自动生成账号，且代表您已阅读并同意<text class="loginDl_counttext" bindtap="toFwxy">《用户服务协议》</text><text class="loginDl_counttext" bindtap="toYszc">《隐私政策》</text>
+    </view>
+  </view>
+  <view class="loginZc">完善个人信息？<text class="loginZc_zc" bindtap="toEnroll" style="color: #6296fc; border-bottom: #6296fc 1rpx solid;text-align: center;">去完善></text></view>
+</view>

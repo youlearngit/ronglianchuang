@@ -1,0 +1,2 @@
+<!--component/button/button.wxml-->
+<view class="button">{{btnname}}</view>

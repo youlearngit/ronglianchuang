@@ -1,0 +1,261 @@
+/* pages/search/search.wxss */
+.imageBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.searchImg {
+    width: 100%;
+}
+
+/*  */
+.searchBox {
+    position: absolute;
+    top: 31rpx;
+    width: 100%;
+}
+
+.inputBox {
+    width: 614rpx;
+    height: 60rpx;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.90);
+    border-radius: 30rpx;
+    padding-left: 76rpx;
+
+    opacity: 0.7;
+    font-family: SourceHanSansCN-Regular;
+    font-size: 24rpx;
+    letter-spacing: 0;
+    text-align: left;
+    position: relative;
+}
+
+.search {
+    width: 30rpx;
+    position: absolute;
+    left: 62.4rpx;
+    top: 16.5rpx;
+}
+
+/* 搜索历史 */
+.searchHistoryBox {
+    width: 90%;
+    margin: auto;
+    margin-top: 48rpx;
+   
+}
+
+.searchHistory_titlebox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchHistory_title {
+    font-family: SourceHanSansSC-Medium;
+    font-size: 26rpx;
+    color: #333333;
+    font-weight: 600;
+}
+
+.clearHistoryimg {
+    width: 30rpx;
+}
+
+.searchHistory_countBox {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: -6rpx;
+    /* border: goldenrod 1rpx solid; */
+}
+
+.searchHistory_countBox::after {
+    content: "";
+    width: 210rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.searchHistory_count {
+    width: 210rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-family: SourceHanSansSC-Regular;
+    font-size: 28rpx;
+    color: #5D6F9F;
+    background: #F0F7FF;
+    border-radius: 40rpx;
+    text-align: center;
+    margin-top: 24rpx;
+}
+
+.searchHistory_countitem {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 170rpx;
+    margin: auto;
+}
+
+/* 大家都在搜 */
+.HotBox {
+    width: 90%;
+    margin: auto;
+    margin-top: 40rpx;
+}
+
+/* 搜索内容 */
+.searchCountBox {
+    width: 100%;
+    margin: auto;
+    /* margin-top: 32rpx; */
+}
+
+/* tab切换 方法二 */
+.nav_tab {
+    width: 90%;
+    margin: auto;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2rpx solid #EDEDED;
+    /* background: rgba(255, 255, 255, 0.185); */
+}
+
+.show {
+    line-height: 80rpx;
+    text-align: center;
+    flex: 1;
+    color: #000;
+    font-size: 32rpx;
+    opacity: 0.5;
+}
+
+.hidden {
+    line-height: 80rpx;
+    flex: 1;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 32rpx;
+    color: #4181FC;
+    text-align: center;
+}
+
+.nav_underline {
+    background: #4181FC;
+    width: 68rpx;
+    height: 6rpx;
+    /* margin-top: -4rpx; */
+    margin-left: 35rpx;
+    border-radius: 8rpx;
+
+}
+
+.nav_tabCountBox {
+    width: 100%;
+    height: 100%;
+    background: #f2f6ff;
+}
+
+.tab_viewBox {
+    /* border-bottom: 1rpx solid #EDEDED; */
+    padding-top: 30rpx;
+    background-color: #fff;
+    /* padding-bottom: 30rpx; */
+}
+
+.tab_count {
+    margin-top: 20rpx;
+    /* padding-bottom: 34rpx; */
+    background-color: #fff;
+}
+
+.tab_viewTitle {
+    width: 95%;
+    margin: auto;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 26rpx;
+    color: #666666;
+    display: flex;
+    align-items: center;
+}
+
+.relatedImg {
+    width: 30rpx;
+}
+
+.related {
+    margin-left: 11rpx;
+}
+
+.tab_viewCount {
+    width: 95%;
+    display: flex;
+    margin-top: 40rpx;
+    margin-left: 30rpx;
+    /* margin-bottom: 3rpx; */
+    padding-bottom: 50rpx;
+}
+
+.Images {
+    width: 80rpx;
+}
+
+.tab_view_count {
+    margin-left: 30rpx;
+    /* height: 120rpx; */
+}
+
+.tab_relatedDealBox {
+    width: 90%;
+    margin: auto;
+    padding: 30rpx 20rpx;
+    /* display: flex; */
+    margin-top: 40rpx;
+    margin-left: 30rpx;
+    margin-bottom: 3rpx;
+    background-image: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+    box-shadow: 0 2rpx 24rpx 0 rgba(156, 187, 255, 0.28);
+    border-radius: 16rpx;
+    margin-top: 30rpx;
+}
+
+.xgjy {
+    display: flex;
+    margin-bottom: 50rpx;
+}
+
+.tab_view_countTitle {
+    font-family: SourceHanSansSC-Medium;
+    font-size: 30rpx;
+    color: #333333;
+    font-weight: 600;
+}
+
+.tab_view_countCount {
+    font-family: SourceHanSansCN-Regular;
+    font-size: 24rpx;
+    color: #999999;
+    margin-top: 4rpx;
+}
+
+.tab_bottomCountBox {
+    width: 95%;
+    height: 199rpx;
+    margin: auto;
+    background: #f6f8fe;
+    border-radius: 10rpx;
+    margin-top: 18rpx;
+    padding: 20rpx 10rpx;
+    color: #93a0bf;
+    font-size: 30rpx;
+}
+
+.cardContentImg {
+    width: 200rpx;
+    height: 200rpx;
+}
+.li{
+  margin-top: 15rpx;margin-right:10rpx;display: flex;justify-content: space-between;
+}

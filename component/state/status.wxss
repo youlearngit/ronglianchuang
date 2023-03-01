@@ -1,0 +1,37 @@
+/* subpack/success/success.wxss */
+body{
+  font-family: SourceHanSansSC-Regular;
+}
+.body_success{
+  width: 100%;
+  height: 207rpx;
+  float: left;
+  text-align: center;
+  margin-top: 120rpx;
+}
+.sucesImg{
+  width: 240rpx;
+  height: 207rpx;
+  margin: 0 auto;
+
+}
+.title{
+  width: 100%;
+  height: 60rpx;
+  float: left;
+  margin-top: 50rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-family: SourceHanSansSC-Medium;
+  color: #333;
+}
+.detail{
+  width: 100%;
+  line-height: 50rpx;
+  height: auto;
+  float: left;
+  text-align: center;
+  font-size: 28rpx;
+  color: #9398AB;
+  margin-top: 20rpx;
+}

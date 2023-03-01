@@ -1,0 +1,955 @@
+<!--pages/search/search.wxml-->
+<!-- <text>pages/search/search.wxml</text> -->
+<view class="imageBox">
+  <image src="{{preffixUrl}}searchBg.png" mode="widthFix" class="searchImg"></image>
+</view>
+<view class="searchBox">
+  <!-- 搜索框 -->
+  <view class="search_input">
+    <input type="text" placeholder="大家都在搜 江苏银行" confirm-type="search" bindconfirm="search" class="inputBox" value="{{keywords}}" bindinput="getkeywords"/>
+    <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image>
+  </view>
+
+
+  <!-- 搜索内容 -->
+  <view class="searchCountBox">
+    <view class="nav_title">
+      <view class="nav_tab">
+        <view wx:for="{{list}}" wx:key="index" class="{{selected==index?'hidden':'show'}}" data-index='{{index}}' bindtap="selected">{{item}}
+          <view class="{{selected==index?'nav_underline':''}}"></view>
+        </view>
+      </view>
+      <!-- tab框显示内容 -->
+      <view class="nav_tabCountBox">
+        <!-- 综合 -->
+        <view class="tab_view" wx:if="{{selected == 0}}">
+          <!-- 机构 -->
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedInstitution.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关机构</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_ORG}}" catchtap="getdetail" data-id="{{item.OM_ID}}">
+                <image src="{{url+item.OM_IMAGES}}" mode="widthFix" class="Images"></image>
+                <view class="tab_view_count">
+                  <view class="tab_view_countTitle">{{item.OM_FULL_NAME}}</view>
+                  <view class="tab_view_countCount">{{item.OM_TEXT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 用户 -->
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedUser.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关用户</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_USER}}" bindtap="goUserDetail" data-item="{{item}}">
+                <image src="{{preffixUrl}}jiangXiaosu.png" mode="widthFix" class="Images"></image>
+                <view class="tab_view_count">
+                  <view class="tab_view_countTitle">{{item.RLC_USER_NAME}}</view>
+                  <view class="tab_view_countCount">{{item.ORG_NAME}}丨{{item.FIRST_DEPT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 交易 -->
+          <view class="tab_count">
+            <view class="tab_viewBox" >
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedDeal.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关交易</text>
+              </view>
+              <!-- 首页相关交易start -->
+              <view class="tab_relatedDealBox" wx:for="{{LIST_TRANSACTION}}" bindtap="billinfo" data-value="{{item}}">
+                <!-- 头部信息start -->
+                <view class="xgjy">
+                  <!-- 1-票据业务 -->
+                  <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==1}}"></image>
+                  <!-- 2-债券-金融债业务 -->
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==2}}"></image>
+                  <!-- 3-债券-信用债业务 -->
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==3}}"></image>
+                  <!-- 4-债券-利率债业务 -->
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==4}}"></image>
+                  <!-- 5-同业理财业务 -->
+                  <image src="/static/images/tylc.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==5}}"></image>
+                  <!-- 6-公募基金业务 -->
+                  <image src="/static/images/gmjj.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==6}}"></image>
+                  <!-- 7-同业存单业务 -->
+                  <image src="/static/images/tycd.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==7}}"></image>
+                  <!-- 8-同业借款业务 -->
+                  <image src="/static/images/tyjk.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==8}}"></image>
+                  <!-- 9-同业存款业务 -->
+                  <image src="/static/images/tyck.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==9}}"></image>
+                  <!-- 10-ABS资产证券化业务 -->
+                  <image src="/static/images/zczjh.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==10}}"></image>
+                  <!-- 11-银团贷款业务 -->
+                  <image src="/static/images/ytdk.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==11}}"></image>
+                  <view class="tab_view_count" style="margin-left: 18rpx;">
+                    <!-- 正标题 start -->
+		    <!-- old start -->
+		    <!--<view class="tab_view_countTitle" style="font-size: 28rpx;">{{item.fdBondType}}</view>-->
+		    <!-- old end -->
+                    <!-- 1-票据业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==1}}">票据</view>
+                    <!-- 2-债券-金融债业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==2}}">债券-信用债</view>
+                    <!-- 3-债券-信用债业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==3}}">债券-金融债</view>
+                    <!-- 4-债券-利率债业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==4}}">债券-利率债</view>
+                    <!-- 5-同业理财业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==5}}">同业理财</view>
+                    <!-- 6-公募基金业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==6}}">公募基金</view>
+                    <!-- 7-同业存单业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==7}}">同业存单</view>
+                    <!-- 8-同业借款业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==8}}">同业借款</view>
+                    <!-- 9-同业存款业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==9}}">同业存款</view>
+                    <!-- 10-ABS资产证券化业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==10}}">ABS资产证券化</view>
+                    <!-- 11-银团贷款业务 -->
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==11}}">银团贷款</view>
+                    <!-- 正标题 end -->
+                    <!-- 1-票据业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==1}}">剩余期限 {{item.fdRerm}} 
+                    </view>
+                    <!-- 3-债券-信用债业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==3}}">债券期限 {{item.fdBondTime}} 
+                    </view>
+                    <!-- 2-债券-金融债业务 --><!-- 4-债券-利率债业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==2||item.fdCategory==4}}">发行期限 {{item.fdRerm}} 
+                    </view>
+                    <!-- 5-同业理财业务 --><!-- 6-公募基金业务 --><!-- 7-同业存单业务 --><!-- 8-同业借款业务 --><!-- 9-同业存款业务 --><!-- 11-银团贷款业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==5||item.fdCategory==6||item.fdCategory==7||item.fdCategory==8||item.fdCategory==9||item.fdCategory==11}}">期限 {{item.fdRerm}} 
+                    </view>
+                     <!-- 10-ABS资产证券化业务 -->
+                     <view class="tab_view_countCount" wx:if="{{item.fdCategory==10}}">项目期限 {{item.fdRerm}} 
+                    </view>
+                  </view>
+                </view>
+                <!-- 头部信息end -->
+              <!-- 1-票据业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==1}}">
+              <view class="li">
+                <text> · 交易方向</text>
+                <text style="color: #333333;padding-left: 430rpx;">{{item.fdTransaction}}</text>
+              </view>
+              <view class="li" style="margin-top: 15rpx;">
+                <text>· 首期利率</text>
+                <text style="color: #333333;padding-left: 430rpx;"> {{item.fdRate}}%</text>
+              </view>
+              <view class="li" style="margin-top: 15rpx;">
+                <text> · 金额</text>
+                <text style="color: #333333;padding-left: 450rpx;">{{item.fdMoney}}万元</text>
+              </view>
+              </view>
+              <!-- 2-债券-金融债业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==2}}">
+                <view class="li">
+                  <text> · 债券类型</text>
+                  <text style="color: #333333;padding-left: 230rpx;">信用债</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 债劵名称</text>
+                  <text style="color: #333333;padding-left: 230rpx;"> {{item.fdName}}</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;padding-left: 250rpx;">{{item.fdMoney}}亿</text>
+                </view>
+                <!-- <view class="li" style="margin-top: 15rpx;">
+                  <text> · 主体评级</text>
+                  <text style="color: #333333;padding-left: 250rpx;">{{item.fdMainGrade}}</text>
+                </view> -->
+              </view>    
+              <!-- 3-债券-信用债业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==3}}">
+                <view class="li">
+                  <text> · 债券类型</text>
+                  <text style="color: #333333;">金融债</text>
+                </view>
+                <view class="li">
+                  <text> · 债劵名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <view class="li">
+                  <text> · 主体评级</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>  
+              <!-- 4-债券-利率债业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==4}}">
+                <view class="li">
+                  <text> · 债券类型</text>
+                  <text style="color: #333333;padding-left: 230rpx;">利率债</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 债劵名称</text>
+                  <text style="color: #333333;padding-left: 230rpx;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 预测区间</text>
+                  <text style="color: #333333;">{{item.fdRate}}%</text>
+                </view>
+              </view>    
+              <!-- 5-同业理财业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==5}}">
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;"> {{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 产品性质</text>
+                  <text style="color: #333333;">{{item.fdBondType}}</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+              </view>       
+              <!-- 6-公募基金业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==6}}">
+                <view class="li">
+                  <view> · 产品名称</view>
+                  <view style="color: #333333;"> {{item.fdName}}</view>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 投资类型</text>
+                  <text style="color: #333333;">{{item.fdBondType}}</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 起购金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+              </view>     
+              <!-- 7-同业存单业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==7}}">
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 市场</text>
+                  <text style="color: #333333;"> {{item.fdBondType}}</text>
+                </view>
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;">{{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 利率</text>
+                  <text style="color: #333333;">{{item.fdRate}}%</text>
+                </view>
+              </view>     
+              <!-- 8-同业借款业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==8}}">
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;"> {{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}万</text>
+                </view>
+                <view class="li">
+                  <text> · 币种</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>  
+              <!-- 9-同业存款业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==9}}">
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;"> {{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}万</text>
+                </view>
+                <view class="li">
+                  <text> · 币种</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>  
+              <!-- 10-ABS资产证券化业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==10}}">
+                <view class="li">
+                  <text> · 产品类型</text>
+                  <text style="color: #333333;padding-left: 230rpx;"> {{item.fdBondType}}</text>
+                </view>
+                <view class="li">
+                  <text> · 挂牌机构</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+              </view>  
+              <!-- 11-银团贷款业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==11}}">
+                <view class="li">
+                  <text> · 项目名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 银团总额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <view class="li">
+                  <text> · 预计收益率</text>
+                  <text style="color: #333333;">{{item.fdRate}}%</text>
+                </view>
+              </view>  
+              </view>
+              <!-- 首页相关交易end -->
+            </view>
+          </view>
+          <!-- 资讯 -->
+          <!-- <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关资讯</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='机构风采'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view> -->
+
+
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="/static/images/xianyanban.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关研修班</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='研究专栏'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/yanxiubanmoreng.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关头条</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='头条资讯'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="/static/images/jcsj.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">精彩瞬间</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='精彩瞬间'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+
+
+        </view>
+        <!-- 机构 -->
+        <view class="tab_view" wx:if="{{selected == 1}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedInstitution.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关机构</text>
+            </view>
+            <!-- <view class="tab_viewCount">
+              <image src="{{preffixUrl}}BankofJiangsu.png" mode="widthFix" class="Images"></image>
+              <view class="tab_view_count">
+                <view class="tab_view_countTitle">江苏银行股份有限公司</view>
+                <view class="tab_view_countCount">文字介绍文字介绍文字介绍文字介绍</view>
+              </view>
+            </view> -->
+            <view class="tab_viewCount" wx:for="{{LIST_ORG}}" catchtap="getdetail" data-id="{{item.OM_ID}}">
+                <image src="{{url+item.OM_IMAGES}}" mode="widthFix" class="Images"></image>
+                <view class="tab_view_count">
+                  <view class="tab_view_countTitle">{{item.OM_FULL_NAME}}</view>
+                  <view class="tab_view_countCount">{{item.OM_TEXT}}</view>
+                </view>
+              </view>
+          </view>
+        </view>
+        <!-- 用户 -->
+        <view class="tab_view" wx:if="{{selected == 2}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedUser.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关用户</text>
+            </view>
+            <!-- <view class="tab_viewCount">
+              <image src="{{preffixUrl}}jiangXiaosu.png" mode="widthFix" class="Images"></image>
+              <view class="tab_view_count">
+                <view class="tab_view_countTitle">江小苏</view>
+                <view class="tab_view_countCount">江苏银行总行丨信息科技部</view>
+              </view>
+            </view> -->
+            <view class="tab_viewCount" wx:for="{{LIST_USER}}" bindtap="goUserDetail" data-item="{{item}}">
+                <image src="{{preffixUrl}}jiangXiaosu.png" mode="widthFix" class="Images"></image>
+                <view class="tab_view_count">
+                  <view class="tab_view_countTitle">{{item.RLC_USER_NAME}}</view>
+                  <view class="tab_view_countCount">{{item.ORG_NAME}}丨{{item.FIRST_DEPT}}</view>
+                </view>
+              </view>
+          </view>
+        </view>
+        <!-- 交易 -->
+        <!-- <view class="tab_view" wx:if="{{selected == 3}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedDeal.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关交易</text>
+            </view> -->
+            <!-- <view class="tab_relatedDealBox">
+              <view class="xgjy">
+                <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="Images" style="width: 70rpx;"></image>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle">转帖线</view>
+                  <view class="tab_view_countCount">剩余期限 2022年10月29日 <text style="color: #6499fc;">60天</text></view>
+                </view>
+              </view>
+
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;">
+                <view class="li">
+                  <text> · 交易方向</text>
+                  <text style="color: #333333;padding-left: 430rpx;"> 卖出</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text>· 首期利率</text>
+                  <text style="color: #333333;padding-left: 430rpx;"> 5.0%</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 金额</text>
+                  <text style="color: #333333;padding-left: 450rpx;"> 200万元</text>
+                </view>
+              </view>
+
+
+            </view> -->
+
+            <!-- <view class="tab_relatedDealBox" wx:for="{{LIST_TRANSACTION}}" bindtap="billinfo" data-value="{{item}}">
+                <view class="xgjy">
+                  <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==1}}"></image>
+
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==2}}"></image>
+
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==3}}"></image>
+
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==4}}"></image>
+
+
+                  <view class="tab_view_count" style="margin-left: 18rpx;">
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;">{{item.fdBondType}}</view>
+                    <view class="tab_view_countCount">剩余期限 {{item.fdRerm}}  -->
+                    <!-- <text style="color: #6499fc;">60天</text> -->
+                    
+                    <!-- </view>
+                  </view>
+                </view> -->
+
+                
+                <!-- <view class="tab_bottomCountBox">
+                  <image src="{{preffixUrl}}cardContent.png" class="cardContentImg"></image>
+                </view> -->
+
+                <!-- <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==1}}">
+                <view class="li">
+                  <text> · 交易方向</text>
+                  <text style="color: #333333;padding-left: 430rpx;">{{item.fdTransaction}}</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text>· 首期利率</text>
+                  <text style="color: #333333;padding-left: 430rpx;"> {{item.fdRate}}%</text>
+                </view>
+
+
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 金额</text>
+                  <text style="color: #333333;padding-left: 450rpx;">{{item.fdMoney}}万元</text>
+                </view>
+
+              </view>
+
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:else>
+                <view class="li">
+                  <text> · 发行期限</text>
+                  <text style="color: #333333;padding-left: 230rpx;">{{item.fdRerm}}</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text>· 债劵名称</text>
+                  <text style="color: #333333;padding-left: 230rpx;"> {{item.fdName}}</text>
+                </view>
+
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;padding-left: 250rpx;">{{item.fdMoney}}万元</text>
+                </view>
+
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 主体评级</text>
+                  <text style="color: #333333;padding-left: 250rpx;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>
+
+
+
+                
+              </view>
+
+
+
+          </view>
+        </view> -->
+        <view class="tab_view" wx:if="{{selected == 3}}">
+            <view class="tab_viewBox" >
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedDeal.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关交易</text>
+              </view>
+              <!-- 交易详情页面 start -->
+              <view class="tab_relatedDealBox" wx:for="{{LIST_TRANSACTION}}" bindtap="billinfo" data-value="{{item}}">
+                <!-- 头部信息start -->
+                <view class="xgjy">
+                  <!-- 1-票据业务 -->
+                  <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==1}}"></image>
+                  <!-- 2-债券-金融债业务 -->
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==2}}"></image>
+                  <!-- 3-债券-信用债业务 -->
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==3}}"></image>
+                  <!-- 4-债券-利率债业务 -->
+                  <image src="/static/images/bond_icon.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==4}}"></image>
+                  <!-- 5-同业理财业务 -->
+                  <image src="/static/images/tylc.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==5}}"></image>
+                  <!-- 6-公募基金业务 -->
+                  <image src="/static/images/gmjj.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==6}}"></image>
+                  <!-- 7-同业存单业务 -->
+                  <image src="/static/images/tycd.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==7}}"></image>
+                  <!-- 8-同业借款业务 -->
+                  <image src="/static/images/tyjk.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==8}}"></image>
+                  <!-- 9-同业存款业务 -->
+                  <image src="/static/images/tyck.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==9}}"></image>
+                  <!-- 10-ABS资产证券化业务 -->
+                  <image src="/static/images/zczjh.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==10}}"></image>
+                  <!-- 11-银团贷款业务 -->
+                  <image src="/static/images/ytdk.png" mode="widthFix" class="Images" style="width: 62rpx;" wx:if="{{item.fdCategory==11}}"></image>
+                  <view class="tab_view_count" style="margin-left: 18rpx;">
+                  <!-- 正标题 start -->
+		  <!-- old start -->
+		  <!--<view class="tab_view_countTitle" style="font-size: 28rpx;">{{item.fdBondType}}</view>-->
+		  <!-- old end -->
+		  <!-- 1-票据业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==1}}">票据</view>
+                  <!-- 2-债券-金融债业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==2}}">债券-金融债</view>
+                  <!-- 3-债券-信用债业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==3}}">债券-信用债</view>
+                  <!-- 4-债券-利率债业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==4}}">债券-利率债</view>
+                  <!-- 5-同业理财业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==5}}">同业理财</view>
+                  <!-- 6-公募基金业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==6}}">公募基金</view>
+                  <!-- 7-同业存单业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==7}}">同业存单</view>
+                  <!-- 8-同业借款业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==8}}">同业借款</view>
+                  <!-- 9-同业存款业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==9}}">同业存款</view>
+                  <!-- 10-ABS资产证券化业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==10}}">ABS资产证券化</view>
+                  <!-- 11-银团贷款业务 -->
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;" wx:if="{{item.fdCategory==11}}">银团贷款</view>
+                  <!-- 正标题 end -->
+                    <!-- 1-票据业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==1}}">剩余期限 {{item.fdRerm}} 
+                    </view>
+                    <!-- 3-债券-信用债业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==3}}">债券期限 {{item.fdBondTime}} 
+                    </view>
+                    <!-- 2-债券-金融债业务 --><!-- 4-债券-利率债业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==2||item.fdCategory==4}}">发行期限 {{item.fdRerm}} 
+                    </view>
+                    <!-- 5-同业理财业务 --><!-- 6-公募基金业务 --><!-- 7-同业存单业务 --><!-- 8-同业借款业务 --><!-- 9-同业存款业务 --><!-- 11-银团贷款业务 -->
+                    <view class="tab_view_countCount" wx:if="{{item.fdCategory==5||item.fdCategory==6||item.fdCategory==7||item.fdCategory==8||item.fdCategory==9||item.fdCategory==11}}">期限 {{item.fdRerm}} 
+                    </view>
+                     <!-- 10-ABS资产证券化业务 -->
+                     <view class="tab_view_countCount" wx:if="{{item.fdCategory==10}}">项目期限 {{item.fdRerm}} 
+                    </view>
+                  </view>
+                </view>
+                <!-- 头部信息end -->
+              <!-- 1-票据业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==1}}">
+              <view class="li">
+                <text> · 交易方向</text>
+                <text style="color: #333333;">{{item.fdTransaction}}</text>
+              </view>
+              <view class="li">
+                <text>· 首期利率</text>
+                <text style="color: #333333;"> {{item.fdRate}}%</text>
+              </view>
+              <view class="li">
+                <text> · 金额</text>
+                <text style="color: #333333;">{{item.fdMoney}}万元</text>
+              </view>
+              </view>
+              <!-- 2-债券-金融债业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==2}}">
+                <view class="li">
+                  <text> · 债券类型</text>
+                  <text style="color: #333333;">信用债</text>
+                </view>
+                <view class="li">
+                  <text> · 债劵名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <!-- <view class="li">
+                  <text> · 主体评级</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view> -->
+              </view>    
+              <!-- 3-债券-信用债业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==3}}">
+                <view class="li">
+                  <text> · 债券类型</text>
+                  <text style="color: #333333;">金融债</text>
+                </view>
+                <view class="li">
+                  <text> · 债劵名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <view class="li">
+                  <text> · 主体评级</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>  
+              <!-- 4-债券-利率债业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==4}}">
+                <view class="li">
+                  <text> · 债券类型</text>
+                  <text style="color: #333333;">利率债</text>
+                </view>
+                <view class="li">
+                  <text> · 债劵名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <view class="li">
+                  <text> · 预测区间</text>
+                  <text style="color: #333333;">{{item.fdRate}}%</text>
+                </view>
+              </view>    
+              <!-- 5-同业理财业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==5}}">
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;"> {{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 产品性质</text>
+                  <text style="color: #333333;">{{item.fdBondType}}</text>
+                </view>
+                <view class="li">
+                  <text> · 金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+              </view>       
+              <!-- 6-公募基金业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==6}}">
+                <view class="li">
+                  <text> · 产品名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li">
+                  <text> · 投资类型</text>
+                  <text style="color: #333333;">{{item.fdBondType}}</text>
+                </view>
+                <view class="li">
+                  <text> · 起购金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+              </view>     
+              <!-- 7-同业存单业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==7}}">
+                <view class="li">
+                  <text> · 市场</text>
+                  <text style="color: #333333;"> {{item.fdBondType}}</text>
+                </view>
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;">{{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 利率</text>
+                  <text style="color: #333333;">{{item.fdRate}}%</text>
+                </view>
+              </view>     
+              <!-- 8-同业借款业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==8}}">
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;"> {{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}万</text>
+                </view>
+                <view class="li">
+                  <text> · 币种</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>  
+              <!-- 9-同业存款业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==9}}">
+                <view class="li">
+                  <text> · 方向</text>
+                  <text style="color: #333333;"> {{item.fdTransaction}}</text>
+                </view>
+                <view class="li">
+                  <text> · 金额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}万</text>
+                </view>
+                <view class="li">
+                  <text> · 币种</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+              </view>  
+              <!-- 10-ABS资产证券化业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==10}}">
+                <view class="li">
+                  <text> · 产品类型</text>
+                  <text style="color: #333333;"> {{item.fdBondType}}</text>
+                </view>
+                <view class="li">
+                  <text> · 挂牌机构</text>
+                  <text style="color: #333333;">{{item.fdMainGrade}}</text>
+                </view>
+                <view class="li">
+                  <text> · 发行规模</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+              </view>  
+              <!-- 11-银团贷款业务 -->
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;" wx:if="{{item.fdCategory==11}}">
+                <view class="li">
+                  <text> · 项目名称</text>
+                  <text style="color: #333333;"> {{item.fdName}}</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 银团总额</text>
+                  <text style="color: #333333;">{{item.fdMoney}}亿</text>
+                </view>
+                <view class="li">
+                  <text> · 预计收益率</text>
+                  <text style="color: #333333;">{{item.fdRate}}%</text>
+                </view>
+              </view>  
+              </view>
+              <!-- 交易详情页面 end -->
+            </view>
+          </view>
+        <!-- 资讯 -->
+        <view class="tab_view" wx:if="{{selected == 4}}">
+          <!-- <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关资讯</text>
+            </view>
+           
+            <view class="tab_viewCount" wx:for="{{LIST_NEWS}}"
+            bindtap="headlineDetail" data-value="{{item}}">
+
+            <view style="width: 130rpx;">
+              <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+<image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+            </view>
+           
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;">
+               
+                  <rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+          </view> -->
+
+          <!-- <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关资讯</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='机构风采'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view> -->
+
+
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="/static/images/xianyanban.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关研修班</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='研究专栏'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/yanxiubanmoreng.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关头条</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='头条资讯'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="/static/images/jcsj.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">精彩瞬间</text>
+              </view>
+              <view class="tab_viewCount" wx:for="{{LIST_NEWS}}" bindtap="headlineDetail" data-value="{{item}}" wx:if="{{item.fdCategory=='精彩瞬间'}}">
+
+              <view style="width: 130rpx;">
+                <image src="{{url+item.HN_IMAGES}}" mode="widthFix" class="Images" style="width: 130rpx;border-radius: 20rpx 0;" wx:if="{{item.HN_IMAGES}}"></image>
+
+                <image src="/static/images/toutiao.png" mode="widthFix" class="Images" style="width: 130rpx;" wx:else></image>
+              </view>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;"><rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                  </view>
+                  <view class="tab_view_countCount" style="color: #333333;">{{item.HN_TEXT}}</view>
+                  <view class="tab_view_countCount">{{item.HN_DEPARTMENT}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

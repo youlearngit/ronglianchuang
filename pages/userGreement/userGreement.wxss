@@ -1,0 +1,84 @@
+/* pages/headlineDetail/headlineDetail.wxss */
+/* pages/bannerDetail/bannerDetail.wxss */
+.detailBox {
+    width: 100%;
+    position: relative;
+}
+
+.detailImg {
+    width: 100%;
+}
+.detailBox{
+    position: absolute;
+    top: 54rpx;
+    /* border: 1rpx solid red; */
+}
+/* 标题 */
+.bannerDetail_countBox {
+    width: 90%;
+    margin-left: 35rpx;
+}
+
+.count_bigTitle {
+    width: 95%;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 36rpx;
+    color: #092C68;
+    letter-spacing: 0;
+    text-align: justify;
+    font-weight: 600;
+}
+.count_imgBox{
+    display: flex;
+    margin-left: -20rpx;
+    margin-top: 6rpx;
+}
+.count_smallTitle {
+    margin-top: 20rpx;
+    opacity: 0.5;
+    font-family: SourceHanSansSC-Regular;
+    font-size: 24rpx;
+    color: #23364E;
+    letter-spacing: 0;
+    text-align: justify;
+    margin-left: 20rpx;
+    display: flex;
+    align-items: center;
+
+}
+
+.smallTitle_img {
+    width: 22rpx;
+}
+
+.smallTitle_time {
+    margin-left: 6rpx;
+}
+/* 内容 */
+.count_content {
+    border-top: 1rpx solid #97979721;
+    width: 90%;
+    margin: auto;
+    margin-top: 26rpx;
+}
+
+.contextImg {
+    width: 100%;
+    height: 390rpx;
+    border-radius: 30rpx;
+    margin-top: 40rpx;
+}
+
+.contextText {
+    text-indent: 60rpx;
+    opacity: 0.7;
+    font-family: SourceHanSansSC-Regular;
+    color: #282828;
+    letter-spacing: 0;
+    text-align: justify;
+
+
+font-size: 28rpx;
+line-height: 48rpx;
+margin-top: 32rpx;
+}

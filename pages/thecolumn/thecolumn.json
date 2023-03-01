@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-head": "/component/detailhead/detailhead"
+  }
+}

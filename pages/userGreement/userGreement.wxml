@@ -1,0 +1,13 @@
+
+<view class="bannerDetailBox">
+    <image src="{{preffixUrl}}bannerDetail.png" mode="widthFix" class="detailImg"></image>
+</view>
+<view class="detailBox">
+
+    <view>
+    
+        <view class="contextText">
+          <rich-text nodes="{{info[0].AGREEMENT_TEXT}}"></rich-text>
+        </view>
+    </view>
+</view>

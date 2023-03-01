@@ -1,0 +1,32 @@
+<view class="box-entb">
+  <!-- 顶部 -->
+  <i-head img="{{preffixUrl}}syxj.png" title="高级研修班" titledetail="研究专题栏目研究专题栏目研究专题栏目研究专题栏目研究专题栏目研究专题栏目"></i-head>
+  
+  <view class='warp'>
+    <!-- 左侧 -->
+    <view class='list'>
+      <view style="display: flex; text-align: center;" class='style {{item.RC_TYPE==num?"active":""}}' catchtap='clickList' wx:for="{{instlist}}" wx:key="" data-id="{{item.RC_TYPE}}">
+        <view hidden="{{item.RC_TYPE==num? false: true}}" class="activetwo {{item.RC_TYPE == num? true : false}} ">
+          <view class="leftbok"></view>
+        </view>
+        <view class="entuben">{{item.RC_TITLE}}</view>
+      </view>
+    </view>
+    <!-- 右侧 -->
+    <scroll-view class='listqbsf' scroll-y="true" show-scrollbar="true">
+      <view class='content' wx:for="{{member}}" wx:key="index" catchtap="getdetail" data-reflag="{{item.RE_FLAG}}" data-id="{{item.RSC_ID}}" data-url="{{item.RSC_TEXT}}" data-item="{{item}}">
+        <!-- <view>
+          <image src="{{preffixUrl}}myyjzl.png" class="bglogo"></image>
+        </view> -->
+        <view class="mumini">
+          <view class="itemetbe"><rich-text  nodes="{{item.RSC_ARTICLE_NAME}}"></rich-text>
+          <!-- {{item.RSC_ARTICLE_NAME}} -->
+          </view>
+          <view class="myjsyhgs">{{item.RSC_INTRODUCTION}}</view>
+          <view class="mysyx">{{item.RSC_ORG_NAME}}</view>
+        </view>
+
+      </view>
+    </scroll-view>
+  </view>
+</view>

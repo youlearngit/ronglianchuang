@@ -1,0 +1,49 @@
+<!--pages/headLine/headLine.wxml-->
+<!-- <text>pages/headLine/headLine.wxml</text> -->
+<view class="headlinebgBox">
+    <image src="{{preffixUrl}}headlinebg.png" mode="widthFix"></image>
+</view>
+
+<!-- <view class="headline_inputBox">
+    <input type="text" placeholder="请输入关键字" class="input" />
+    <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image>
+    <view class="sx">
+        <image src="{{preffixUrl}}filtrate.png" mode="widthFix" class="filtrate"></image>
+        筛选
+    </view>
+</view> -->
+
+
+<view class="headline_countBox">
+
+
+    <view class="headline_count" wx:for="{{headLine}}" wx:key="index"  data-value="{{item}}" bindtap="headlineDetail">
+        <view class="count_title">
+        <image src="{{preffixUrl}}stickImg.png" mode="widthFix" class="stickImg" wx:if="{{item.HN_SORT==0}}"></image>
+        
+          <view style="width: 200rpx;">
+          <rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+          </view></view>
+        <view class="count_imgBox">
+            <view class="count_img">
+                <image src="{{preffixUrl}}user.png" mode="widthFix" class="headlineImg"></image>
+                <!-- {{item.HN_RELEASE}}｜{{item.HN_DEPARTMENT}} -->
+                融联创平台
+            </view>
+            <view class="count_img">
+                <image src="{{preffixUrl}}preview.png" style="width: 25rpx;" mode="widthFix" class="headlineImg"></image>{{item.HN_CUMULATIVE}}
+            </view>
+            <view class="count_img" wx:if="{{item.CREATE_TIME}}">
+                <image src="{{preffixUrl}}time.png"  style="width: 20rpx;height: 20rpx;" class="headlineImg"></image>{{item.CREATE_TIME}}
+            </view>
+        </view>
+        <view class="count_text">
+           {{item.HN_SOURCE}}
+        </view>
+    </view>
+
+    <view class="load">{{loadtext}}</view>
+
+
+    
+</view>

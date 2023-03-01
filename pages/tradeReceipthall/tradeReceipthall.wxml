@@ -1,0 +1,234 @@
+<!--pages/tradinghall/tradinghall.wxml-->
+<view class="box-entb">
+
+  <!-- 顶部 -->
+  <i-head img="{{preffixUrl}}trading_bg.png" title="存单" titledetail="{{detail}}"></i-head>
+
+
+
+
+
+
+
+
+
+  <view class="headline_inputBox">
+    <input type="text" placeholder="请输入关键字" class="input" bindconfirm="goSearch" bindinput="inputChange" value="{{keywords}}" disabled="false" bindtap="goSearch" />
+    <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image>
+    <view class="sx" bindtap="screen">
+      <image src="{{preffixUrl}}filtrate.png" mode="widthFix" class="filtrate"></image>
+      筛选
+    </view>
+  </view>
+
+
+
+
+  <view class="table">
+    <view class="th_head">
+      <view class="th_first">
+
+        <view class="head_title" catchtap="get_org_name_sort">来源<image class="soreImg" wx:if="{{org_name_sort=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+          <image wx:if="{{!org_name_sort || org_name_sort=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+        </view>
+
+
+        <view class="tb_title">
+          <view class="t1" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+
+
+            <view wx:if="{{item.ORG_SHORT_NAME}}">{{item.ORG_SHORT_NAME}}</view>
+            <view wx:else>{{item.ORG_NAME}}</view>
+
+            <view style="font-size: 25rpx;margin-right: 8rpx;color: #999;">{{item.USER_NAME}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class="th_secord">
+        <view class="thead_jr">
+
+          <View class="th" catchtap="sortfbrq">发布日期<image class="soreImg" wx:if="{{fbrq=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!fbrq || fbrq=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortbtype">市场<image class="soreImg" wx:if="{{btype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image class="soreImg" src="{{preffixUrl}}asc.png" wx:if="{{!btype || btype=='asc'}}"></image>
+          </View>
+
+
+          <View class="th" catchtap="sorttraded">方向<image class="soreImg" wx:if="{{traded =='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!traded || traded=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="sortptype">发行方式<image class="soreImg" wx:if="{{ptype=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!ptype || ptype=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getBOND_PROJECT_GRADE_SORT">利率<image class="soreImg" wx:if="{{BOND_PROJECT_GRADE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!BOND_PROJECT_GRADE_SORT || BOND_PROJECT_GRADE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+         
+
+          <View class="th" catchtap="getINTEREST_RATE_RANGE_SORT">期限<image class="soreImg" wx:if="{{INTEREST_RATE_RANGE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!INTEREST_RATE_RANGE_SORT || INTEREST_RATE_RANGE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+          <View class="th" catchtap="getBOND_NAME_SORT">主体评级<image class="soreImg" wx:if="{{BOND_NAME_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!BOND_NAME_SORT || BOND_NAME_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+
+
+          <View class="th" catchtap="getISSUE_MODE_SORT">发行日<image class="soreImg" wx:if="{{ISSUE_MODE_SORT=='desc'}}" src="{{preffixUrl}}sore.png"></image>
+            <image wx:if="{{!ISSUE_MODE_SORT || ISSUE_MODE_SORT=='asc'}}" class="soreImg" src="{{preffixUrl}}asc.png"></image>
+          </View>
+
+         
+
+         
+
+
+
+
+        </view>
+        <view class="tbody" wx:for="{{billBusiness}}" wx:key="index" bindtap="billinfo" data-value="{{item}}">
+          <View class="tb">{{item.CREATE_TIME}}</View>
+
+          <View class="tb">{{item.MARKET}}</View>
+
+          <View class="tb">{{item.DIRECTION}}</View>
+
+          <View class="tb">{{item.PUBLISH_TYPE}}</View>
+
+          <View class="tb">{{item.INTEREST_RATE}}%</View>
+
+       
+
+          <View class="tb">{{item.DEADLINE}}</View>
+
+          <View class="tb">{{item.MAIN_GRADE}}</View>
+
+          <View class="tb">{{item.ISSUE_DATE}}</View>
+
+        
+
+        </view>
+      </view>
+      <view style="text-align: center;font-size: 25rpx;color: #999;">{{loadtext}}</view>
+
+    </view>
+  </view>
+
+
+
+
+
+
+</view>
+<view class="{{show ? 'container page' : ''}}" data-weui-theme="{{theme}}">
+  <view class="mobile {{show ? 'active' : ''}}">
+    <view class="{{theme === 'dark' ? 'left dark-bg' : 'left'}}">
+      <view class="condition">
+        <image src="{{preffixUrl}}screen_bg.png" class="log_condit"></image>
+        <view class="condit_title">筛选条件</view>
+      </view>
+      <view class="source">
+        <view class="source_title">来源</view>
+        <image src="{{preffixUrl}}down.png" class="downImg"></image>
+      </view>
+      <!-- 搜索框 -->
+      <view class="search_input">
+        <input type="text" placeholder="请输入关键字" confirm-type="search" bindconfirm="search" value="{{keywords}}" bindinput="searchvalue" class="inputBox" />
+        <image src="{{preffixUrl}}search.png" mode="widthFix" class="sourcesearch"></image>
+
+        <!-- <view class="associ" wx:if="{{Isshow}}">
+    <view class="myitem">
+    <view class="item_list">超短期<text class="key">融资</text>券</view>
+    <view class="item_list">长期<text class="key">融资</text></view>
+    <view class="item_list">长期<text class="key">融资</text>券</view>
+    <view class="item_list">内部短期<text class="key">融资</text>券</view>
+    </view>
+    </view> -->
+
+
+      </view>
+      <view class="release">
+        <view class="source_title">发布时间</view>
+        <view class="datetime">
+          <view class="minibbsj">
+            <picker mode="date" class="timestyle" bindchange="bindStartDate">
+              <view class="weui-input">{{startTime}}</view>
+            </picker>
+          </view>
+          <view class="between">
+            <view class="betline"></view>
+          </view>
+          <view class="minibbsj">
+            <picker mode="date" class="timestyle" bindchange="bindEndDate">
+              <view class="weui-input">{{endTime}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="release">
+  <view class="source_title">业务类型</view>
+  <view class="items">
+  <view wx:for="{{busitype}}" class="busieess {{isSelect == item.id ? 'busactive' : ''}}" data-id="{{item.id}}" bindtap="Fbundselect" wx:key="index">{{item.name}}</view>
+  </view>
+  </view> -->
+      <!-- <view class="release">
+  <view class="source_title">交易方向</view>
+  <view class="items">
+  <view wx:for="{{direction}}" class="busieess direc {{disSelect == item.id ? 'busactive' : ''}}" data-id="{{item.id}}" bindtap="directionselect" wx:key="index">{{item.name}}</view>
+  </view>
+  </view> -->
+
+      <!-- <view class="release">
+  <view class="source_title">剩余期限</view>
+  <view class="items">
+  <view wx:for="{{datelist}}" class="busieess days {{daySelect == item.id ? 'busactive' : ''}}" data-id="{{item.id}}" bindtap="dateselect" wx:key="index">{{item.name}}</view>
+  </view>
+  </view> -->
+
+      <view class="release">
+        <view class="source_title">利率区间</view>
+        <view class="datetime">
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最低" value="{{mini_rate}}" bindinput="get_min_rate" />
+          </view>
+          <view class="between">
+            <view class="betline"></view>
+          </view>
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最高" value="{{high_rate}}" bindinput="get_high_rate" />
+          </view>
+        </view>
+      </view>
+
+      <!-- <view class="release">
+        <view class="source_title">金额区间</view>
+        <view class="datetime">
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最低" value="{{mini_amount}}" bindinput="get_min_amount" />
+          </view>
+          <view class="between">
+            <view class="betline"></view>
+          </view>
+          <view class="minibbsj">
+            <input type="digit" class="weui-input" placeholder="最高" value="{{high_amount}}" bindinput="get_high_amount" />
+          </view>
+        </view>
+      </view> -->
+
+
+      <view class="btnview">
+        <view class="reset" bindtap="reset">重置</view>
+        <view class="determine" bindtap="confirm">确定</view>
+      </view>
+    </view>
+    <view class="right" bindtap="searchhide"></view>
+  </view>
+</view>

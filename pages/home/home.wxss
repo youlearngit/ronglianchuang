@@ -1,0 +1,501 @@
+/* pages/home/home.wxss */
+page{
+  width: 100%;
+  height: 100vh;
+}
+.home-scroll{
+    width: 100%;
+    height: 100vh;
+}
+.home_swiper {
+    width: 100%;
+    height: 485rpx;
+    position: relative;
+}
+
+/* 默认指示点的样式 */
+.swiper .wx-swiper-dot {
+    width: 10rpx;
+    height: 10rpx;
+    background: white;
+    border-radius: 20rpx;
+}
+
+/* 选中指示点的样式 */
+.swiper .wx-swiper-dot.wx-swiper-dot-active {
+    width: 30rpx;
+    height: 10rpx;
+    background: #fff;
+    border-radius: 20rpx;
+}
+
+.swiperitem image {
+    width: 100%;
+    height: 485rpx;
+}
+.loginLogo_bg{
+    width: 344rpx;
+	  height: 51rpx;
+    position: absolute;
+    top: 130rpx;
+    left: 25rpx;
+}
+.home-searchbox{
+    position: absolute;
+    /* top: -390rpx; */
+    /* top: 48px; */
+    left: 5%;
+    
+   
+}
+.home-input{
+    width: 240rpx;
+    height: 59rpx;
+    line-height: 59rpx;
+    border-radius: 30rpx;
+    background: rgba(255,255,255,0.60);
+  
+    padding:0 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchimg{
+    width: 25rpx;
+  	height: 25rpx;
+    /* position: absolute; */
+   
+    
+}
+.home_countBox {
+    /* position: absolute;
+    border-radius: 25rpx 25rpx 0 0;
+    margin-top: -50rpx;
+    top: 520rpx; */
+    width: 100%;
+    background: #fff;
+}
+
+/* 机构风采 */
+.organshowTitle_box {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30rpx;
+    margin-top: 20rpx;
+    font-family: SourceHanSansSC-Medium;
+    font-size: 26rpx;
+    color: #0056b2ce;
+    font-weight: 600;
+}
+
+.organshow_more {
+    display: flex;
+    align-items: center;
+    margin-right: 40rpx;
+    opacity: 0.8;
+    font-family: SourceHanSansCN-Regular;
+    font-size: 22rpx;
+    font-weight: 500;
+    color: #3E415C;
+    letter-spacing: 0;
+}
+
+.moreimg {
+    width: 12rpx;
+    margin-left: 10rpx;
+}
+
+.organshow-countBox {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25rpx;
+}
+
+.meltunitecreate {
+    width: 106rpx;
+}
+
+.countBox-count {
+    text-align: center;
+}
+
+.counttext {
+    font-family: SourceHanSansSC-Regular;
+    font-size: 24rpx;
+    color: #3E415C;
+    letter-spacing: 0;
+    text-align: center;
+    margin-top: -30rpx;
+}
+
+
+/*  */
+.organshow_titles {
+    font-family: SourceHanSansSC-Medium;
+    font-size: 28rpx;
+    color: #3E415C;
+    margin-bottom: 0.6%;
+}
+
+/* 头条 */
+.headline_Box {
+    width: 690rpx;
+    height: 60rpx;
+    margin: auto;
+    margin-top: 20rpx;
+    position: relative;
+}
+.gengduo{
+    /* border: 1rpx solid red; */
+    position: absolute;
+    top: 15rpx;
+    right: 0rpx;
+}
+.lineBox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -0rpx;
+    display: flex;
+    align-items: center;
+}
+
+.headline_img {
+    width: 100%;
+    height: 100%;
+}
+
+.headline_title {
+    width: 442rpx;
+    height: 38rpx;
+    margin-left: 148rpx;
+    line-height: 38rpx;
+}
+
+.headline_text {
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-family: SourceHanSansSC-Medium;
+    font-size: 26rpx;
+    color: #3E415C;
+}
+
+.headline_image {
+    width: 10rpx;
+    position: absolute;
+    top: 8rpx;
+    right: 12rpx;
+}
+
+/* 金融交易大厅 */
+/* 图标模块 */
+.second-module-allicon {
+    background: #ffffff;
+    height: 335rpx;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+scroll-view {
+    white-space: nowrap;
+}
+
+/* 去除滚动条 */
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.nav-bar-wrap {
+    display: flex;
+    flex-flow: column wrap;
+    /* 金刚区排序方式*/
+    height: 330rpx;
+    margin-left: 30rpx;
+}
+.nav-bar{
+    margin-top: -18rpx;
+}
+.nav-bar-item {
+    width: 136rpx;
+    height: 128rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 28rpx;
+    margin-left: 1.7%;
+}
+
+.nav-bar-item image {
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.nav-bar-item text {
+    margin-top: -55rpx;
+    line-height: 34rpx;
+    font-size: 24rpx;
+    font-weight: 600;
+    font-family: SourceHanSansSC-Medium;
+    color: #3E415C;
+}
+
+.slider {
+    position: absolute;
+    bottom: 20rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40rpx;
+    height: 8rpx;
+    border-radius: 3.5rpx;
+    background: #eee;
+}
+
+.slider-inside {
+    transform: translateX(-100%);
+    width: 24rpx;
+    height: 100%;
+    border-radius: 3.5rpx;
+    background-color: #1677FF;
+}
+
+/* 滑块滑动模拟 */
+.slider-inside-location {
+    position: absolute;
+    left: 65.625%;
+}
+
+/* 最新报价 */
+.offerBox{
+    margin-top: -30rpx;
+    padding-bottom: 200rpx;
+}
+.offerCountBox{
+    display: flex;
+    white-space: nowrap;
+    animation: notice 10s 0s linear infinite both;
+    font-size: 24rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #757575;
+   
+}
+@keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.offer_countBox {
+    margin-top:8rpx;
+}
+
+.offer_count {
+    width: 560rpx;
+    height: 133rpx;
+    background: #F2F9FF;
+    border-radius: 20rpx;
+    position: relative;
+    margin-left: 28rpx;
+    padding-bottom: 15rpx;
+}
+
+.offerCount_top {
+    display: flex;
+    padding: 15rpx 20rpx;
+}
+
+.countTop_img {
+    width: 60rpx;
+}
+
+.countTop_text {
+    margin-left: 10rpx;
+}
+
+.topText-title {
+    font-size: 26rpx;
+    font-family: SourceHanSansSC-Medium;
+    color: #3E415C;
+    font-weight: 600;
+}
+
+.topText-text {
+    width: 260rpx;
+    justify-content: space-between;
+    opacity: 0.38;
+    font-family: SourceHanSansSC-Regular;
+    font-size: 22rpx;
+    color: #3E415C;
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+}
+
+.topText-text_finance {
+  width: 260rpx;
+  opacity: 0.38;
+  font-family: SourceHanSansSC-Regular;
+  font-size: 22rpx;
+  color: #3E415C;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+}
+
+.managerBox {
+    display: flex;
+    align-items: center;
+}
+
+.managerImg {
+    width: 24rpx;
+    margin-left: -8rpx;
+    vertical-align: text-bottom;
+}
+
+.managerText {
+    margin-left: 8rpx;
+}
+
+.offerCount_bottom {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15rpx 0;
+    margin-top: -22rpx;
+
+}
+
+.offerCount_bottom_finance {
+  width: 90%;
+  /* margin: auto; */
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  margin-top: 35rpx;
+  padding-left: 60rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.offerCount_bottom_abs{
+  width: 90%;
+  /* margin: auto; */
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  margin-top: 10rpx;
+  padding-left: 60rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+ 
+}
+
+.countBottom_text {
+    font-family: STHeitiSC-Medium;
+    font-size: 34rpx;
+    color: #FA6400;
+    overflow: hidden;
+    white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  width: 160rpx;
+}
+.fangxiang{
+border: 1rpx solid #4181FC;
+border-radius: 4rpx;
+border-radius: 4rpx;
+width: 52rpx;
+height: 32rpx;
+line-height: 32rpx;
+text-align: center;
+color: #4181FC;
+margin-left: 8rpx;
+font-size: 22rpx;
+}
+
+.fangxiang_cundan{
+  border: 1rpx solid #FF7F5B;
+  border-radius: 4rpx;
+  border-radius: 4rpx;
+  min-width: 52rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  color: #FF7F5B;
+  margin-left: 8rpx;
+  font-size: 22rpx;
+  }
+
+.countBottom_littletext {
+    font-family: SourceHanSansSC-Regular;
+    font-size: 22rpx;
+    color: #3E415C;
+}
+
+.bugBox {
+    width: 157rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    background: #4181FC;
+    border-radius: 0rpx 12rpx 0 16rpx;
+    text-align: center;
+    font-family: SourceHanSansSC-Regular;
+    font-size: 22rpx;
+    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* 市场研究 */
+.studyBox{
+    margin-top: 0.7%;
+    padding-bottom: 30rpx;
+}
+.studycountBox {
+    width: 90%;
+    height: 100rpx;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.study_count {
+    width: 94rpx;
+    height: 81rpx;
+    line-height: 81rpx;
+    font-weight: 600;
+
+    font-family: SourceHanSansSC-Medium;
+    font-size: 26rpx;
+    text-align: center;
+}
+.title {
+  width: 100%;
+  padding: 0 20rpx;
+  height: 46rpx;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  bottom: 30rpx;
+  left: 0rpx;
+  line-height: 46rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

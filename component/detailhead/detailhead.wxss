@@ -1,0 +1,58 @@
+/* component/detailhead/detailhead.wxss */
+
+.box-entb{
+  width: 100%;
+  height: 100vh;
+}
+.leftbok{
+  width: 8rpx;
+  height: 35rpx;
+  background: #578FFC;
+  margin-top: 35rpx;
+}
+.imagesed{
+  width: 100%; 
+ 
+  height: 100%;
+  display: block;
+}
+.bg-inst{
+  width: 100%;
+  height: 325rpx;
+  position: relative;
+  overflow: hidden;
+}
+.bg-tit{
+  position: absolute;
+  top: 20rpx;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+}
+.bg-jgfc{
+  font-family: SourceHanSansSC-Medium;
+  font-size: 35rpx;
+  color: #092C68;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-align: justify;
+}
+.bg-xx{
+  width: 430rpx;
+  line-height: 40rpx;
+  height: 80rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  line-clamp: 2;
+  margin-top: 10rpx;
+  opacity: 0.5;
+  font-family: SourceHanSansSC-Regular;
+  font-size: 25rpx;
+  color: #0B2F5E;
+  text-align: justify;
+}
+.bg-inst .enenen{
+  width: 100%;
+}

@@ -1,0 +1,9 @@
+<!--component/search/search.wxml-->
+<view class="headline_inputBox">
+    <input type="text" placeholder="请输入关键字" class="input" />
+    <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image>
+    <view class="sx" bind:click="Onclick" >
+        <image src="{{preffixUrl}}filtrate.png" mode="widthFix" class="filtrate"></image>
+        筛选
+    </view>
+</view>

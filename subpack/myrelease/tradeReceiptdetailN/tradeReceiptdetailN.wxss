@@ -1,0 +1,286 @@
+/* subpack/myrelease/reldetail/releasedetail.wxss */
+body{
+  font-family: SourceHanSansSC-Regular;
+}
+
+.detailImg {
+  width: 100%;
+}
+
+.relpage{
+  width: 100%;
+  height: 325rpx;
+  display: block;
+  position: relative;
+}
+
+.brief{
+  width: 690rpx;
+  height: 226rpx;
+  display: flex;
+  position: absolute;
+  left: 30rpx;
+  top: 50rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+.cardImg{
+  width: 690rpx;
+  height: 226rpx;
+  border-radius: 10rpx;
+  float: left;
+  position: relative;
+}
+.portrait{
+  width: 110rpx;
+  height: 143rpx;
+  display: flex;
+  position: absolute;
+  left: 50rpx;
+  top: 45rpx;
+}
+.photo{
+  width: 110rpx;
+  height: 143rpx;
+  float: left;
+}
+.porImg{
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 55rpx;
+  display: block;
+}
+.tactImg{
+  width: 101rpx;
+  height: 36rpx;
+  margin-left: 4rpx;
+  float: left;
+}
+.name{
+  width: 464rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  display: flex;
+  position: absolute;
+  left: 180rpx;
+  top: 40rpx;
+}
+.jianjie{
+  width: 464rpx;
+  height: 95rpx;
+  /* line-height: 95rpx; */
+  background: #F0F7FF;
+  display: flex;
+  position: absolute;
+  font-size: 24rpx;
+  color: #5D6F9F;
+  left: 180rpx;
+  top: 130rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.xingming{
+  font-size: 30rpx;
+  color: #3E415C;
+  margin-top: 30rpx;
+
+}
+.post{
+  font-size: 24rpx;
+  color: #5D6F9F;
+  padding-left: 16rpx;
+  box-sizing: border-box;
+}
+
+.lianxi{
+  width: 101rpx;
+  height: 36rpx;
+  float: left;
+  margin-left: 4rpx;
+  margin-top: 2rpx;
+}
+.title{
+  width: 100%;
+  height: 42rpx;
+  float: left;
+  position: relative;
+}
+.icon{
+  width: 10rpx;
+  height: 40rpx;
+  float: left;
+  background: #4181FC;
+}
+.title_name{
+  width: 200rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  float: left;
+  text-align: left;
+  font-family: PingFangSC-Medium;
+  font-size: 30rpx;
+  color: #333;
+  margin-left: 20rpx;
+}
+.content{
+  width: 100%;
+  height: auto;
+  float: left;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  margin-top: 30rpx;
+  box-sizing: border-box;
+}
+.items{
+  width: 100%;
+  height: 62rpx;
+  float: left;
+  border-bottom: 1px solid #E7E7EF;
+  margin-top: 17rpx;
+}
+.items_max{
+  width: 100%;
+  height: 181rpx;
+  float: left;
+  border-bottom: 1px solid #E7E7EF;
+  margin-top: 17rpx;
+}
+.ileft{
+  width: 250rpx;
+  height: 41rpx;
+  line-height: 42rpx;
+  font-size: 28rpx;
+  color: #3E415C;
+  float: left;
+}
+.iright{
+  width: auto;
+  height: 41rpx;
+  float: right;
+  line-height: 42rpx;
+  font-size: 28rpx;
+  color: #000;
+}
+.marks{
+  width: 100%;
+  height: 41rpx;
+  float: left;
+  line-height: 42rpx;
+  font-size: 28rpx;
+  color: #3E415C;
+}
+.remarks{
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  float: left;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #3E415C;
+  background: #F6F7FF;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+  margin-top: 29rpx;
+}
+
+.butt{
+  width: 100%;
+  height: auto;
+  margin-top: 80rpx;
+}
+.del{
+  width: 192rpx;
+  height: 90rpx;
+  float: left;
+  line-height: 90rpx;
+  text-align: center;
+  border: 1px solid #FF6262;
+  color: #FF6262;
+  font-size: 32rpx;
+  border-radius: 45rpx;
+  margin-top: 80rpx;
+  margin-bottom: 130rpx;
+}
+
+.edit{
+  width: 431rpx;
+  height: 90rpx;
+  float: left;
+  line-height: 90rpx;
+  text-align: center;
+  background: #4181FC;
+  color: #FFF;
+  font-size: 32rpx;
+  border-radius: 45rpx;
+  margin-left: 50rpx;
+  margin-top: 80rpx;
+  margin-bottom: 130rpx;
+}
+
+/* 删除弹框 */
+.deldialog_hd{
+  width: 100%;
+  height: 195rpx;
+  display: flex;
+  position: fixed;
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+  box-sizing: border-box;
+  bottom: 175rpx;
+  left: 0;
+  z-index: 9999;
+}
+.body_dialog{
+  width: 100%;
+  height: 195rpx;
+  float: left;
+  border-radius: 26rpx;
+  background: #F5F5F5;
+  display: block;
+}
+.ISshow{
+  display: none;
+}
+.dialog_title{
+  width: 100%;
+  height: 85rpx;
+  line-height: 85rpx;
+  text-align: center;
+  border-bottom: 1px solid #BEBFC1;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #868787;
+}
+.dialog_button{
+  width: 100%;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  border-bottom: 1px solid #BEBFC1;
+  box-sizing: border-box;
+  font-family: PingFangSC-Medium;
+  font-size: 34rpx;
+  color: #FF6262;
+}
+
+.dialog_cancel{
+  width: calc( 100% - 28rpx );
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  border-radius: 26rpx;
+  background: #FFFFFF;
+  position: fixed;
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium;
+  color: #1677FF;
+  z-index: 9999;
+  bottom: 50rpx;
+  left: 14rpx;
+}

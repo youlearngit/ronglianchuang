@@ -1,0 +1,192 @@
+<!--pages/home/home.wxml首页-->
+<view class="home_swiper">
+    <!-- 顶部轮播 -->
+    <swiper style="height: 100%;" indicator-dots="true" circular="true" autoplay interval="5000" duration="500" class="swiper" indicator-color="rgba(0, 0, 0, .3)">
+        <swiper-item wx:for="{{banner}}" wx:key="index" >
+            <!-- <navigator url="/pages/bannerDetail/bannerDetail?id={{item.WM_ID}}" class="swiperitem">
+                <image src="{{url+item.WM_IMAGES}}" mode="widthFix"></image>
+            </navigator> -->
+            <view data-state="{{item.RE_FLAG}}" data-mywww="{{item.WM_TEXT}}" data-value="{{item.WM_ID}}" bindtap="bannerDetail" class="swiperitem">
+                <image src="{{url+item.WM_IMAGES}}" mode="widthFix"></image>
+            </view>
+        </swiper-item>
+        <!-- <swiper-item>
+            <navigator url="/pages/bannerDetail/bannerDetail" class="swiperitem">
+                <image src="{{preffixUrl}}banner.png" mode="widthFix"></image>
+            </navigator>
+        </swiper-item> -->
+    </swiper>
+    <!-- logo -->
+    <image src="{{preffixUrl}}logo.png" class="loginLogo_bg" mode="widthFix"></image>
+    <!-- 搜索框 -->
+
+    <!-- <view class="home-searchbox" bindtap="toSearch">
+        <input type="text" placeholder="请输入关键词搜索" class="home-input" />
+       
+    </view> -->
+
+    <image src="{{preffixUrl}}searchimg.png" class="searchimg" mode="widthFix" bindtap="toSearch"></image>
+</view>
+<view class="home_countBox">
+    <!-- 机构风采 -->
+    <view class="organshowBox">
+        <!-- 标题 -->
+        <view class="organshowTitle_box">
+            <view class="organshow_title"> 融联创金融平台 · 机构风采</view>
+            <view class="organshow_more" bindtap="toinstItutional">更多 <image src="{{preffixUrl}}more.png" mode="widthFix" class="moreimg"></image>
+            </view>
+        </view>
+        <!-- 内容 -->
+        <view class="organshow-countBox">
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}meltunitecreate.png" mode="widthFix" class="meltunitecreate" data-to="融联创" bindtap="to"></image>
+                <view class="counttext">融联创</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}bank.png" mode="widthFix" data-to="银行" bindtap="to" class="meltunitecreate"></image>
+                <view class="counttext">银行</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}security.png" data-to="证券" bindtap="to" mode="widthFix" class="meltunitecreate"></image>
+                <view class="counttext">证券</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}fund.png" data-to="基金" bindtap="to" mode="widthFix" class="meltunitecreate"></image>
+                <view class="counttext">基金</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}trust.png" data-to="信托" bindtap="to" mode="widthFix" class="meltunitecreate"></image>
+                <view class="counttext">信托</view>
+            </view>
+        </view>
+    </view>
+    <!-- 头条 -->
+    <view class="headline_Box">
+        <image src="{{preffixUrl}}headline.png" class="headline_img"></image>
+        <view class="lineBox">
+            <swiper class="headline_title" vertical="true" style="height: 40rpx;" indicator-dots="{{false}}" circular="true" autoplay="{{true}}" interval="3000" duration="500" indicator-color="#8799a3" indicator-active-color="#0081ff">
+                <swiper-item class="headline_text" wx:for="{{headLine}}" wx:key="index" bindtap="headlineDetail" data-value="{{item}}">
+                    {{item.HN_TITLE}}
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="gengduo" bindtap="toheadLine">
+            <text class="organshow_more" style="margin-right: 30rpx;">更多</text>
+            <image src="{{preffixUrl}}more.png" mode="widthFix" class="headline_image"></image>
+        </view>
+    </view>
+    <!-- 金融交易大厅 -->
+    <view class="transactionBox">
+        <!-- 标题 -->
+        <view class="organshowTitle_box">
+            <view class="organshow_titles" bindtap="totrading">金融交易大厅</view>
+        </view>
+        <view class="second-module-allicon">
+            <scroll-view class="nav-bar" scroll-x="true" bindscroll="scroll" show-scrollbar="true" enhanced="true">
+                <view class="nav-bar-wrap">
+                    <block wx:for="{{transactionOne}}" wx:key='key'>
+                        <view class="nav-bar-item" bindtap="transa" data-id="{{item.id}}">
+                            <image src="{{preffixUrl}}{{item.img}}" class="transactionImg" />
+                            <text>{{item.title}}</text>
+                        </view>
+                    </block>
+                </view>
+            </scroll-view>
+            <!-- 模拟进度条 -->
+            <view class="slider">
+                <view class="slider-inside .slider-inside-location" style="left:{{left}}"></view>
+            </view>
+        </view>
+    </view>
+    <!-- 最新报价 -->
+    <view class="offerBox">
+        <!-- 标题 -->
+        <view class="organshowTitle_box">
+            <view class="organshow_titles" style="margin-top: 0.5%;">最新报价</view>
+        </view>
+        <!-- 内容 -->
+        <scroll-view scroll-x="true">
+       
+            <view class="offerCountBox">
+                <!-- 1 -->
+                <view class="offer_countBox">
+                    <view class="offer_count">
+                        <!-- 上 -->
+                        <view class="offerCount_top">
+                            <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="countTop_img"></image>
+                            <view class="countTop_text">
+                                <view class="topText-title">江苏银行</view>
+                                <view class="topText-text">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">王建国</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}time.png" mode="widthFix" class="managerImg"></image>
+                                        <text class="managerText">2022.08.26</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 下 -->
+                        <view class="offerCount_bottom">
+                            <view class="countBottom_text">2,000,000<text style="font-size: 22rpx;">元</text></view>
+                            <text class="countBottom_littletext">剩余60天 | 首期利率5.0%</text>
+                        </view>
+                        <!-- 买入 -->
+                        <view class="bugBox">买入</view>
+                    </view>
+                </view>
+                <!-- 2 -->
+                <view class="offer_countBox">
+                    <block>
+                        <view class="offer_count">
+                            <!-- 上 -->
+                            <view class="offerCount_top">
+                                <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="countTop_img"></image>
+                                <view class="countTop_text">
+                                    <view class="topText-title">江苏银行</view>
+                                    <view class="topText-text">
+                                        <!-- 客户经理 -->
+                                        <view class="managerBox">
+                                            <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                            <text class="managerText">王建国</text>
+                                        </view>
+                                        <!-- 时间 -->
+                                        <view class="managerBox">
+                                            <image src="{{preffixUrl}}time.png" mode="widthFix" class="managerImg"></image>
+                                            <text class="managerText">2022.08.26</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                            <!-- 下 -->
+                            <view class="offerCount_bottom">
+                                <view class="countBottom_text">2,000,000<text style="font-size: 22rpx;">元</text></view>
+                                <text class="countBottom_littletext">剩余60天 | 首期利率5.0%</text>
+                            </view>
+                            <!-- 买入 -->
+                            <view class="bugBox">买入</view>
+                        </view>
+                    </block>
+                </view>
+           
+          </view>
+        </scroll-view>
+    </view>
+    <!-- 市场研究 -->
+    <view class="studyBox">
+        <view class="organshowTitle_box">
+            <view class="organshow_titles" style="margin-top: 0.7%;">市场研究</view>
+            <view class="organshow_more" bindtap="toThecolumn">更多 <image src="{{preffixUrl}}more.png" mode="widthFix" class="moreimg" style="width: 11rpx;"></image>
+            </view>
+        </view>
+        <view class="studycountBox">
+            <view class="countBox" wx:for="{{marketStudy}}" wx:key="index">
+                <view class="study_count" style="color:{{item.color}};background: {{item.bgcolor}};">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

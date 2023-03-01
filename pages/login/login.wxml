@@ -1,0 +1,21 @@
+<!--pages/login/login.wxml登录-->
+<view class="login_box" wx:if="{{showLogin}}">
+  <image src="{{preffixUrl}}bg.png" class="loginbg"></image>
+  <view class="loginLogo">
+    <image src="{{preffixUrl}}logo.png" class="loginLogo_bg" mode="widthFix"></image>
+    <!-- <text class="loginLogo_text">文字副标题文字副标题文字副标题文字副标</text> -->
+  </view>
+  <view class="loginDl">
+    <button class="loginDl_btn" bindtap="onWXClick">微信授权登录</button>
+    <view class="loginDl_count">
+      <checkbox bindtap="user_agreement_checkbox" checked="{{checked}}"></checkbox>
+      我已阅读并同意
+      <!-- <text class="loginDl_counttext" bindtap="toFwxy">《用户服务协议》</text> -->
+      <text class="loginDl_counttext" bindtap="toYszc">《小程序用户隐私保护指引》</text>
+    </view>
+  </view>
+
+
+  <!-- <view class="loginZc">完善个人信息？<text class="loginZc_zc" bindtap="toEnroll" style="color: #6296fc; border-bottom: #6296fc 1rpx solid;text-align: center;">去完善></text></view>
+   -->
+</view>

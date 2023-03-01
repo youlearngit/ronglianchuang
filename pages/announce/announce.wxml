@@ -1,0 +1,57 @@
+<!--pages/announce/announce.wxml我的发布-->
+<view class="mytielub">
+  <view class="myentubel">
+    <view style="height: 40rpx;"></view>
+    <!-- 搜索 -->
+    <view class="mysosui">
+      <image class="imagestub" src="{{preffixUrl}}search.png"></image>
+      <input type="text" placeholder="请输入人关键字"/>
+      <image class="myimageder" src="{{preffixUrl}}screen.png"></image>
+      <view class="mysx">筛选</view>
+    </view>
+        <!-- 质押式回购 -->
+    <view class="myyzhg">
+      <view class="myywpj">
+          <image class="myjms" src="/assets/image/mypjyw.png"></image>
+          <view class="myenedb">
+            <view class="mycolor">质押式回购</view>
+            <view class="myzhg">剩余期限2022.10.29 <title>60天</title></view>
+          </view>
+          <image  class="myienub" src="{{preffixUrl}}evenMore.png"></image>
+      </view>
+      <view class="myyentub">
+        <image class="myretosper" src="{{preffixUrl}}retrospective.png"></image>
+        <view class="myneir">
+          <view class="mione"><title>交易方向</title><title class="mytobr">1111</title></view>
+          <view><title>票据类型</title><title class="mytobr">1111</title></view>
+          <view><title>信用主题</title><title class="mytobr">1111</title></view>
+          <view><title>首期利率</title><title class="mytobr">5%</title></view>
+          <view><title>金额</title><title class="mytobr">200万元</title></view>
+        </view>
+      </view>
+    </view>
+    <!-- 超短期融资券 -->
+    <view class="myuiend">
+      <view class="myywpj">
+          <image class="myjms" src="{{preffixUrl}}debenture3x.png"></image>
+          <view class="myenedb">
+            <view class="mycolor">超短期融资券</view>
+            <view class="myzhg">发行期限2022.10.29-2023.08.29 <title>360天</title></view>
+          </view>
+          <image  class="myienub" src="{{preffixUrl}}evenMore.png"></image>
+      </view>
+      <view  class="myyentub">
+        <image class="myrequent" src="{{preffixUrl}}financing.png"></image>
+        <view class="mycdqnp">
+          <view class="mione"><title>发行人性质</title><title class="mytobr">金融机构</title></view>
+          <view><title>债券名称</title><title class="mytobr">13附息国债18</title></view>
+          <view><title>发行规模</title><title class="mytobr">500亿元</title></view>
+          <view><title>预测利率区间</title><title class="mytobr">5.0%-6.0%</title></view>
+          <view><title>主体评级</title><title class="mytobr">AAA</title></view>
+          <view><title>债项评级</title><title class="mytobr">AA+</title></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

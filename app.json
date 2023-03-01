@@ -1,0 +1,159 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/enroll/enroll",
+    "pages/perfect/perfect",
+    "pages/issue/issue",
+    "pages/my/my",
+    "pages/bannerDetail/bannerDetail",
+    "pages/headLine/headLine",
+    "pages/headlineDetail/headlineDetail",
+    "pages/instItutional/instItutional",
+    "pages/category/category",
+    "pages/releasedeal/releasedeal",
+    "pages/registration/registration",
+    "pages/bill/bill",
+    "pages/note/note",
+    "pages/bond/bond",
+    "pages/search/search",
+    "pages/searchResult/searchResult",
+    "pages/thecolumn/thecolumn",
+    "pages/announce/announce",
+    "pages/screenwed/screenwed",
+    "component/button/button",
+    "pages/tradinghall/tradinghall",
+    "pages/instldetail/instdetail",
+    "pages/userGreement/userGreement",
+    "pages/debenture/debenture",
+    "pages/thedetail/thedetail",
+    "pages/card/card",
+    "pages/securitize/securitize",
+    "pages/securitizehall/securitizehall",
+    "pages/tradeFinance/tradeFinance",
+    "pages/tradeFinancehall/tradeFinancehall",
+    "pages/publicFund/publicFund",
+    "pages/publicFundhall/publicFundhall",
+    "pages/syndicatedLoan/syndicatedLoan",
+    "pages/syndicatedLoanhall/syndicatedLoanhall",
+    "pages/tradeBorrow/tradeBorrow",
+    "pages/tradeBorrowhall/tradeBorrowhall",
+    "pages/tradeReceipt/tradeReceipt",
+    "pages/tradeReceipthall/tradeReceipthall",
+    "pages/tradeDeposit/tradeDeposit",
+    "pages/tradeDeposithall/tradeDeposithall",
+    "pages/custodyhall/custodyhall",
+    "pages/custodydetail/custodydetail",
+    "pages/wonderfulMoments/wonderfulMoments"
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  ],
+  "subpackages": [
+    {
+      "root": "subpack",
+      "pages": [
+        "myrelease/releaselist/releaselist",
+        "myrelease/reldetail/releasedetail",
+        "myrelease/scbdetail/scbdetail",
+        "myrelease/qfbdetail/qfbdetail",
+        "myrelease/srbdetail/srbdetail",
+
+        "myrelease/reldetailN/releasedetail",
+        "myrelease/scbdetailN/scbdetail",
+        "myrelease/qfbdetailN/qfbdetail",
+        "myrelease/srbdetailN/srbdetail",
+
+        "myrelease/tradeFinancedetailN/tradeFinancedetail",      
+        "myrelease/tradeFinancedetail/tradeFinancedetail",
+        "myrelease/publicFunddetail/publicFunddetail",
+        "myrelease/securitizedetail/securitizedetail",
+        "myrelease/publicFunddetailN/publicFunddetail",
+        "myrelease/securitizedetailN/securitizedetail",
+
+        "myrelease/syndicatedLoandetail/syndicatedLoandetail",
+        "myrelease/syndicatedLoandetailN/syndicatedLoandetailN",
+        "myrelease/tradeBorrowdetail/tradeBorrowdetail",
+        "myrelease/tradeBorrowdetailN/tradeBorrowdetailN",
+        "myrelease/tradeReceiptdetail/tradeReceiptdetail",
+        "myrelease/tradeReceiptdetailN/tradeReceiptdetailN",
+        "myrelease/tradeDepositdetail/tradeDepositdetail",
+        "myrelease/tradeDepositdetailN/tradeDepositdetailN",
+        
+
+
+      
+        "webhtml/web",
+        "success/success",
+        "error/error",
+        "securitize/securitize",
+        "securitizehall/securitizehall"
+      ]
+    },
+   {
+    "root": "secondPhase",
+    "pages": [
+      "securitize/securitize",
+      "securitizehall/securitizehall"
+    ]
+   }
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "融联创金融",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "navigationStyle": "default",
+    "pageOrientation": "auto"
+  },
+  "tabBar": {
+    "color": "#9299A7",
+    "selectedColor": "#4586E6",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "/assets/tabBar/home.png",
+        "selectedIconPath": "/assets/tabBar/home_active.png",
+        "text": "首页"
+      },
+      {
+        "iconPath": "/assets/tabBar/issue3x.png",
+        "selectedIconPath": "/assets/tabBar/issue3x.png",
+        "pagePath": "pages/issue/issue",
+        "text": "交易发布"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "/assets/tabBar/my.png",
+        "selectedIconPath": "/assets/tabBar/my_active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  
+  "navigateToMiniProgramAppIdList": [
+    "wxcd618295301aa719"
+  ],
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

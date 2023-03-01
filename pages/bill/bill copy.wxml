@@ -1,0 +1,154 @@
+<view class="meinibb">
+    <view class="meinImg">
+        <image src="{{preffixUrl}}correlationDeal.png" mode="widthFix" class="correlationDealImg"></image>
+        <text class="imgBox_text">新建票据业务</text>
+    </view>
+
+    <!-- 信用债 -->
+    <view class="cueemini">
+        <!-- 业务票据 -->
+        <view class="filed">
+            <view class="title">业务类型<text class="entubn">*</text></view>
+            <view class="action arrow">
+                <picker class="" mode="selector" range="{{arr}}" value="" bindchange="choose" data-item="1">
+                    <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr[selectedItems.item1]}}" placeholder-class="placeholder" />
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valig" mode="widthFix" />
+            </view>
+        </view>
+        <!-- 交易方向 -->
+        <view class="filed">
+            <view class="title">交易方向<text class="entubn">*</text></view>
+            <view class="action arrow">
+                <picker class="" mode="selector" range="{{arr2}}" value="" bindchange="choose" data-item="2">
+                    <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr2[selectedItems.item2]}}" placeholder-class="placeholder" />
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valig" mode="widthFix" />
+            </view>
+        </view>
+        <!-- 票据类型 -->
+        <view class="filed">
+            <view class="title">票据类型<text class="entubn">*</text></view>
+            <view class="action arrow">
+                <picker class="" mode="selector" range="{{arr3}}" value="" bindchange="choose" data-item="3">
+                    <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr3[selectedItems.item3]}}" placeholder-class="placeholder" />
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valig" mode="widthFix" />
+            </view>
+        </view>
+        <!-- 剩余期限 -->
+        <view class="filed">
+            <view class="title">剩余期限<text class="entubn">*</text></view>
+            <view class="mydist">
+                <picker mode="date" value="{{fbundDate}}" bindchange="FbundDateFund">
+                    <view bindtap="Fbundselect" class="myopton" wx:if="{{!fbundentub}}">请选择</view>
+                    <view wx:else="{{fbundentub}}" class="myoptoneg"> {{fbundDate}}</view>
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+            </view>
+        </view>
+        <!-- 回购期限 -->
+        <view class="filed">
+            <view class="title">回购期限</view>
+            <view class="mydist">
+                <picker mode="date" value="{{currentDate}}" bindchange="bindDateChange">
+                    <view bindtap="optionselect" class="myopton" wx:if="{{!entub}}">请选择</view>
+                    <view wx:else="{{entub}}" class="myoptoneg"> {{currentDate}}</view>
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+            </view>
+        </view>
+        <!-- 信用主体 -->
+        <view class="filed">
+            <view class="title">信用主体<text class="entubn">*</text></view>
+            <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+                <picker class="" mode="selector" range="{{arr4}}" value="" bindchange="choose" data-item="4">
+                    <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr4[selectedItems.item4]}}" placeholder-class="placeholder" />
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valig" mode="widthFix" />
+            </view>
+        </view>
+        <!-- 首期利率 -->
+        <view class="filed">
+            <view class="title">首期利率<text class="entubn">*</text></view>
+            <input class="myinyyds" type="number" bindinput="getshouqinum" placeholder="请输入数字" />
+            <text class="myinyy" style="color:#3E415C;">%</text>
+        </view>
+        <!-- 到期利率 -->
+        <view class="filed">
+            <view class="title">到期利率</view>
+            <input class="myinyyds" type="number" placeholder="请输入数字" bindinput="getdaoqinum"/>
+            <text class="myinyy" style="color:#3E415C;">%</text>
+        </view>
+        <!-- 金额 -->
+        <view class="filed">
+            <view class="title">金额<text class="entubn">*</text></view>
+            <input class="myinyyds" bindinput="getmoney" type="number" placeholder="请输入准确金额或区间金额" style="padding-right: 30rpx;width:350rpx ;"/>
+            <text class="myinyy" style="color:#3E415C;">万元</text>
+        </view>
+        <!-- 备注 -->
+        <view class="filedss">
+            <view class="title">备注</view>
+            <view class="entbod">
+                <textarea placeholder-class="place-holder" placeholder="请输入备注 " name="introduction" maxlength='20' bindinput='limit' value="{{text}}" style="font-size: 14px;" />
+                <!-- 显示字数 -->
+                <view class="clear"><text style="color: #ccc; font-size: 14px; float: right; margin-right: 2%;">{{current}} / {{max}}</text></view>
+            </view>
+        </view>
+        <!-- 发布对象 -->
+        <view class="filed">
+            <view class="title">发布对象</view>
+            <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+                <picker class="" mode="selector" range="{{arr5}}" value="" bindchange="choose" data-item="5">
+                    <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr5[selectedItems.item5]}}" placeholder-class="placeholder" />
+                    <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+                </picker>
+                <image src="{{preffixUrl}}toright.png" class="valig" mode="widthFix" />
+            </view>
+        </view>
+        <!-- 上传附件 -->
+        <view class="fileeds">
+            <view class="title">上传附件<text class="fileedsText">可上传文档、图片等</text></view>
+            <view class="myrentub">
+                <!-- 上传图片 -->
+                <view class="imgbox">
+                    <!-- 存放上传的图片的盒子 -->
+                    <block wx:for="{{images}}" wx:key="this">
+                        <view class="add">
+                            <!-- 移除图片的按钮  -->
+                            <view class="delete" data-idx="{{index}}" bindtap="removeImage">
+                                <view class="mydetail">-</view>
+                            </view>
+                            <!-- 图片缩略图  -->
+                            <image src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview" class="aspectFill"></image>
+                            <!-- 文档缩略图 -->
+                            <text class="attachment" bindtap="handleImagePreview">{{attachment}}</text>
+
+                        </view>
+                    </block>
+                    <!-- 点击上传图片 -->
+                    <view class="myincrease" bindtap="uploadFile">
+                        <image src="{{preffixUrl}}toradd.png" class="mytoon"></image>
+                    </view>
+                </view>
+
+                <view hidden="{{!(tabIndex===0)}}" class="padding">
+    <lsj-upload class="vue-ref" vue-id="8dd740cc-1" childId="upload1" width="{{width}}" height="{{height}}" option="{{option}}" size="{{size}}" formats="{{formats}}" debug="{{debug}}" instantly="{{instantly}}" data-ref="lsjUpload0" data-event-opts="{{[['^change',[['onChange']]],['^progress',[['onprogress']]],['^uploadEnd',[['onuploadEnd']]]]}}" bind:change="__e" bind:progress="__e" bind:uploadEnd="__e" bind:__l="__l" vue-slots="{{['default']}}">
+      <view class="btn" style="{{'width:'+(width)+';'+('height:'+(height)+';')}}">选择附件</view>
+    </lsj-upload>
+    <view style="margin-top:20rpx;">
+      <view data-event-opts="{{[['tap',[['upload',['$event']]]]]}}" class="btn" style="width:100px;height:100rpx;" bindtap="__e">手动上传</view>
+    </view>
+  </view>
+  
+            </view>
+        </view>
+        <!-- <view class="tcBox">
+            <button class="sctp">上传图片</button>
+            <button class="sctp">上传文档</button>
+        </view> -->
+    </view>
+    <!--  disabled="{{disabled}}" -->
+    <button class="myqrfb" bindtap="creditdebt" data-="" data-fbundDate="{{fbundDate}}">确认发布</button>
+    <view style="height: 50rpx;"></view>
+</view>

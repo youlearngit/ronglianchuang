@@ -1,0 +1,212 @@
+<!--pages/search/search.wxml-->
+<!-- <text>pages/search/search.wxml</text> -->
+<view class="imageBox">
+  <image src="{{preffixUrl}}searchBg.png" mode="widthFix" class="searchImg"></image>
+</view>
+<view class="searchBox">
+  <!-- 搜索框 -->
+  <view class="search_input">
+    <input type="text" placeholder="大家都在搜 江苏银行" confirm-type="search" bindconfirm="search" class="inputBox" bindinput="getkeywords" value="{{keywords}}" />
+    <image src="{{preffixUrl}}search.png" mode="widthFix" class="search"></image>
+  </view>
+  <!-- 搜索历史、热门搜索 -->
+  <view class="searchCountBox">
+    <!-- 搜索历史 -->
+    <view class="searchHistoryBox">
+      <view class="searchHistory_titlebox">
+        <view class="searchHistory_title">搜索历史</view>
+        <image src="{{preffixUrl}}clearHistory.png" class="clearHistoryimg" mode="widthFix" bindtap="onClearEvent"></image>
+      </view>
+      <view class="searchHistory_countBox" wx:if="{{history_list.length != 0}}">
+        <view class="searchHistory_count" wx:for="{{history_list}}" wx:key="index" data-id="{{item}}" catchtap="goToSearch">
+          <view class="searchHistory_countitem">{{item}}</view>
+        </view>
+      </view>
+
+      <view wx:else>
+        <view style="text-align: center;color: #999;font-size: 24rpx;">暂无历史记录</view>
+      </view>
+
+    </view>
+
+    <!-- 大家都在搜 -->
+    <view class="HotBox">
+      <view class="searchHistory_titlebox">
+        <view class="searchHistory_title">大家都在搜</view>
+      </view>
+      <view class="searchHistory_countBox">
+        <view class="searchHistory_count" wx:for="{{hotList}}" wx:key="index" data-id="{{item.fdKeyWord}}" bindtap="goToSearch">
+          <view class="searchHistory_countitem">{{item.fdKeyWord}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 搜索内容 -->
+  <view class="searchCountBox" hidden>
+    <view class="nav_title">
+      <view class="nav_tab">
+        <view wx:for="{{list}}" wx:key="index" class="{{selected==index?'hidden':'show'}}" data-index='{{index}}' bindtap="selected">{{item}}
+          <view class="{{selected==index?'nav_underline':''}}"></view>
+        </view>
+      </view>
+      <!-- tab框显示内容 -->
+      <view class="nav_tabCountBox">
+        <!-- 综合 -->
+        <view class="tab_view" wx:if="{{selected == 0}}">
+          <!-- 机构 -->
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedInstitution.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关机构</text>
+              </view>
+              <view class="tab_viewCount">
+                <image src="{{preffixUrl}}BankofJiangsu.png" mode="widthFix" class="Images"></image>
+                <view class="tab_view_count">
+                  <view class="tab_view_countTitle">江苏银行股份有限公司</view>
+                  <view class="tab_view_countCount">文字介绍文字介绍文字介绍文字介绍</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 用户 -->
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedUser.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关用户</text>
+              </view>
+              <view class="tab_viewCount">
+                <image src="{{preffixUrl}}jiangXiaosu.png" mode="widthFix" class="Images"></image>
+                <view class="tab_view_count">
+                  <view class="tab_view_countTitle">江小苏</view>
+                  <view class="tab_view_countCount">江苏银行总行丨信息科技部</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 交易 -->
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedDeal.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关交易</text>
+              </view>
+              <view class="tab_relatedDealBox">
+                <view class="xgjy">
+                  <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="Images" style="width: 62rpx;"></image>
+                  <view class="tab_view_count" style="margin-left: 18rpx;">
+                    <view class="tab_view_countTitle" style="font-size: 28rpx;">转帖线</view>
+                    <view class="tab_view_countCount">剩余期限 2022年10月29日 <text style="color: #6499fc;">60天</text></view>
+                  </view>
+                </view>
+                <view class="tab_bottomCountBox">
+                  <image src="{{preffixUrl}}cardContent.png" class="cardContentImg"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 资讯 -->
+          <view class="tab_count">
+            <view class="tab_viewBox">
+              <view class="tab_viewTitle">
+                <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+                <text class="related">相关资讯</text>
+              </view>
+              <view class="tab_viewCount">
+                <image src="{{preffixUrl}}goldElimination.png" mode="widthFix" class="Images" style="width: 130rpx;"></image>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle" style="font-size: 28rpx;">苏银消金</view>
+                  <view class="tab_view_countCount" style="color: #333333;">苏银消金是苏银凯基消费金融有限公司推出的互联网信贷渠道。为您量身定…</view>
+                  <view class="tab_view_countCount">江苏银行股份有限公司</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 机构 -->
+        <view class="tab_view" wx:if="{{selected == 1}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedInstitution.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关机构</text>
+            </view>
+            <view class="tab_viewCount">
+              <image src="{{preffixUrl}}BankofJiangsu.png" mode="widthFix" class="Images"></image>
+              <view class="tab_view_count">
+                <view class="tab_view_countTitle">江苏银行股份有限公司</view>
+                <view class="tab_view_countCount">文字介绍文字介绍文字介绍文字介绍</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 用户 -->
+        <view class="tab_view" wx:if="{{selected == 2}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedUser.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关用户</text>
+            </view>
+            <view class="tab_viewCount">
+              <image src="{{preffixUrl}}jiangXiaosu.png" mode="widthFix" class="Images"></image>
+              <view class="tab_view_count">
+                <view class="tab_view_countTitle">江小苏</view>
+                <view class="tab_view_countCount">江苏银行总行丨信息科技部</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 交易 -->
+        <view class="tab_view" wx:if="{{selected == 3}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedDeal.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关交易</text>
+            </view>
+            <view class="tab_relatedDealBox">
+              <view class="xgjy">
+                <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="Images" style="width: 70rpx;"></image>
+                <view class="tab_view_count" style="margin-left: 20rpx;">
+                  <view class="tab_view_countTitle">转帖线</view>
+                  <view class="tab_view_countCount">剩余期限 2022年10月29日 <text style="color: #6499fc;">60天</text></view>
+                </view>
+              </view>
+
+              <view class="tab_bottomCountBox" style="width: 98%;margin: auto;background: #f6f8fe;border-radius: 10rpx;margin-top: -20rpx;padding: 20rpx 10rpx;color: #93a0bf;font-size: 30rpx;">
+                <view class="li">
+                  <text> · 交易方向</text>
+                  <text style="color: #333333;padding-left: 430rpx;"> 卖出</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text>· 首期利率</text>
+                  <text style="color: #333333;padding-left: 430rpx;"> 5.0%</text>
+                </view>
+                <view class="li" style="margin-top: 15rpx;">
+                  <text> · 金额</text>
+                  <text style="color: #333333;padding-left: 450rpx;"> 200万元</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 资讯 -->
+        <view class="tab_view" wx:if="{{selected == 4}}">
+          <view class="tab_viewBox">
+            <view class="tab_viewTitle">
+              <image src="{{preffixUrl}}relatedMessage.png" class="relatedImg" mode="widthFix"></image>
+              <text class="related">相关资讯</text>
+            </view>
+            <view class="tab_viewCount">
+              <image src="{{preffixUrl}}goldElimination.png" mode="widthFix" class="Images" style="width: 130rpx;"></image>
+              <view class="tab_view_count" style="margin-left: 20rpx;">
+                <view class="tab_view_countTitle">苏银消金</view>
+                <view class="tab_view_countCount" style="color: #333333;">苏银消金是苏银凯基消费金融有限公司推出的互联网信贷渠道。为您量身定…</view>
+                <view class="tab_view_countCount">江苏银行总行丨信息科技部</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

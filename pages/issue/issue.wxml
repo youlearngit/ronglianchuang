@@ -1,0 +1,77 @@
+<view class="counten_boy">
+  <view class="enroll_lbcp">
+    <view class="enrllo_xzcp">选择产品类别</view>
+    <view class="enrllo_cplb">请选择发布的产品类别</view>
+  </view>
+  <view class="enrllo_bottom">
+    <view class="enroll_bill">
+      <image bindtap="firstcheckT" hidden="{{first}}" data-name="票据" data-index="{{index}}" data-id="0" src="{{preffixUrl}}bills.png" class="enrllo_imagee"></image>
+      <image hidden="{{!first}}" bindtap="firstcheckT" data-name="票据" data-index="{{index}}" data-id="0" src="{{preffixUrl}}billto.png" class="enrllo_imagee"></image>
+      <view class="enroll_minin" style="color: {{clackfirstcolor}};" bindtap="firstcheckT" data-name="票据" data-index="{{index}}" data-id="0">票据</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="secondcheckT" hidden="{{second}}" data-name="债券" data-id="1" src="{{preffixUrl}}debentureto.png" class="enrllo_imagee"></image>
+      <image bindtap="secondcheckT" hidden="{{!second}}" src="{{preffixUrl}}debenture.png" class="enrllo_imagee" data-name="债券" data-id="1" ></image>
+      <view class="enroll_minin enroll_debenture" style="color: {{clacksecondcolor}};" bindtap="secondcheckT" data-name="债券" data-id="1" >债券</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="thirdlycheckT" hidden="{{thirdly}}" data-name="理财" data-id="2" src="{{preffixUrl}}money.png" class="enrllo_imagee"></image>
+      <image bindtap="thirdlycheckT" hidden="{{!thirdly}}" src="{{preffixUrl}}moneyto.png" class="enrllo_imagee" data-name="理财" data-id="2"></image>
+      <view bindtap="thirdlycheckT" class="enroll_minin enroll_money" style="color: {{clackthirdlycolor}};" data-name="理财" data-id="2">理财</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="fourthlycheckT" hidden="{{fourthly}}" data-name="基金" data-id="3" src="{{preffixUrl}}capitalfunds.png" class="enrllo_imagee"></image>
+      <image bindtap="fourthlycheckT" hidden="{{!fourthly}}" src="{{preffixUrl}}capitalfundto.png" class="enrllo_imagee" data-name="基金" data-id="3"></image>
+      <view bindtap="fourthlycheckT" class="enroll_minin enroll_capitalfund" style="color: {{clackfourthlycolor}};" data-name="基金" data-id="3">基金</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="fifthcheckT" hidden="{{fifth}}" data-name="存单" data-id="4" src="{{preffixUrl}}deposits.png" class="enrllo_imagee"></image>
+      <image bindtap="fifthcheckT" hidden="{{!fifth}}" src="{{preffixUrl}}depositto.png" class="enrllo_imagee" data-name="存单" data-id="4"></image>
+      <view bindtap="fifthcheckT" class="enroll_deposit" style="color: {{clackfifthcolor}};" data-name="存单" data-id="4">存单</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="sixthcheckT" hidden="{{sixth}}" data-name="同业借款" data-id="5" src="{{preffixUrl}}borrowing.png" class="enrllo_imagee"></image>
+      <image bindtap="sixthcheckT" hidden="{{!sixth}}" src="{{preffixUrl}}borrowingto.png" class="enrllo_imagee" data-name="同业借款" data-id="5"></image>
+      <view bindtap="sixthcheckT" class="enroll_deposit enroll_borrowing" style="color: {{clacksixthcolor}};" data-name="同业借款" data-id="5">同业借款</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="seventhcheckT" hidden="{{seventh}}" data-name="同业存款" data-id="6" src="{{preffixUrl}}banks.png" class="enrllo_imagee"></image>
+      <image bindtap="seventhcheckT" hidden="{{!seventh}}" src="{{preffixUrl}}banksto.png" class="enrllo_imagee" data-name="同业存款" data-id="6"></image>
+      <view bindtap="seventhcheckT" class="enroll_deposit enroll_banks" style="color: {{clackqwecolor}};" data-name="同业存款" data-id="6">同业存款</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="eighthcheckT" hidden="{{eighth}}" data-name="资产证券化" data-id="7" src="{{preffixUrl}}securitization.png" class="enrllo_imagee"></image>
+      <image bindtap="eighthcheckT" hidden="{{!eighth}}" src="{{preffixUrl}}securitizationto.png" class="enrllo_imagee" data-name="资产证券化" data-id="7"></image>
+      <view class="enroll_deposit enroll_securitization" style="color: {{clackrtycolor}};" bindtap="eighthcheckT" data-name="资产证券化" data-id="7">资产证券化</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="ninthcheckT" hidden="{{ninth}}" data-name="银团贷款" data-id="8" src="{{preffixUrl}}syndicated.png" class="enrllo_imagee"></image>
+      <image bindtap="ninthcheckT" hidden="{{!ninth}}" src="{{preffixUrl}}syndicatedto.png" class="enrllo_imagee" data-name="银团贷款" data-id="8"></image>
+      <view bindtap="ninthcheckT" class="enroll_syndicated" style="color: {{clackuiocolor}};" data-name="银团贷款" data-id="8">银团贷款</view>
+    </view>
+
+    <!-- <view class="enroll_bill">
+      <image bindtap="tenthcheckT" hidden="{{tenth}}" data-name="资产托管" data-id="9" src="{{preffixUrl}}cuetody.png" class="enrllo_imagee"></image>
+      <image bindtap="tenthcheckT" hidden="{{!tenth}}" src="{{preffixUrl}}cuetodyto.png" class="enrllo_imagee"  data-name="资产托管" data-id="9"></image>
+      <view bindtap="tenthcheckT" class="enroll_syndicated enroll_cuetody" style="color: {{clackfvvbccolor}};"  data-name="资产托管" data-id="9">资产托管</view>
+    </view> -->
+    
+    
+
+    <view class="enroll_bill">
+      <image bindtap="eleventhcheckT" hidden="{{eleventh}}" data-name="信托标债" data-id="10" src="{{preffixUrl}}auction.png" class="enrllo_imagee"></image>
+      <image bindtap="eleventhcheckT" hidden="{{!eleventh}}" src="{{preffixUrl}}auctionto.png" class="enrllo_imagee" data-name="信托标债" data-id="10"></image>
+      <view bindtap="eleventhcheckT" class="enroll_syndicated enroll_cuetody" style="color: {{clackhjkcolor}};" data-name="信托标债" data-id="10">信托标债</view>
+    </view>
+    <view class="enroll_bill">
+      <image bindtap="twelfthcheckT" hidden="{{twelfth}}" data-name="信托非标" data-id="11" src="{{preffixUrl}}nonstandard.png" class="enrllo_imagee"></image>
+      <image bindtap="twelfthcheckT" hidden="{{!twelfth}}" src="{{preffixUrl}}nonstandardto.png" class="enrllo_imagee" data-name="信托非标" data-id="11"></image>
+      <view bindtap="twelfthcheckT" class="enroll_syndicated enroll_auction" style="color: {{clackkjhcolor}};" data-name="信托非标" data-id="11">信托非标</view>
+    </view>
+
+    <view class="enroll_bill">
+    </view>
+
+  </view>
+  <button class="boduxyb" bindtap="nextstep">下一步</button>
+</view>

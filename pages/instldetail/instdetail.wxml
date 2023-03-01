@@ -1,0 +1,20 @@
+<!--pages/headlineDetail/headlineDetail.wxml-->
+<!-- <text>pages/headlineDetail/headlineDetail.wxml</text> -->
+<view class="bannerDetailBox">
+    <image src="{{preffixUrl}}bannerDetail.png" mode="widthFix" class="detailImg"></image>
+</view>
+<view class="detailBox">
+    <view class="bannerDetail_countBox">
+        <view class="count_bigTitle">{{info.OM_FULL_NAME}}</view>
+            <view class="count_smallTitle">
+                <image src="{{preffixUrl}}time.png" mode="widthFix" class="smallTitle_img"></image>
+                <text class="smallTitle_time">{{info.CREATE_TIME}}</text>
+            </view>
+    </view>
+    <view class="count_content">
+        <image src="{{url+info.OM_IMAGES}}" class="contextImg" wx:if="{{info.OM_IMAGES}}"></image>
+        <view>
+          <rich-text nodes="{{info.OM_TEXT}}"></rich-text>
+        </view>
+    </view>
+</view>

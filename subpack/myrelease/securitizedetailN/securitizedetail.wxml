@@ -1,0 +1,158 @@
+<!--票据业务详情-->
+<view class="relpage">
+  <image src="{{preffixUrl}}bannerDetail.png" mode="widthFix" class="detailImg"></image>
+<view class="brief">
+  <image src="{{preffixUrl}}card_bg.png" mode="widthFix" class="cardImg"></image>
+<view class="portrait" catchtap="callphone">
+<view class="photo">
+  <image src="{{preffixUrl}}photo.png" mode="widthFix" class="porImg"></image>
+  <image src="{{preffixUrl}}to_contact.png" mode="widthFix" class="tactImg"></image>
+</view>
+</view>
+
+<view class="name"><view class="xingming"> {{userInfo.RLC_USER_NAME}}</view><view class="post"> {{userInfo.ORG_NAME}}<view><text wx:if="{{userInfo.SECOND_DEPT!==''}}">{{userInfo.SECOND_DEPT}}/</text>{{userInfo.THIRD_DEPT}}</view></view></view>
+
+
+<view class="jianjie"><text wx:if="{{userInfo.POSITION!==''}}">职位:{{userInfo.POSITION}}</text><text wx:if="{{userInfo.EMAIL!==''}}">邮箱:{{userInfo.EMAIL}}</text><text wx:if="{{userInfo.ORG_ADDR!==''}}">地址:{{userInfo.ORG_ADDR}}</text></view>
+
+
+</view>
+</view>
+<view class="title">
+<view class="icon"></view>
+<view class="title_name">交易详情</view>
+</view>
+<view class="content">
+<view class="items">
+<view class="ileft">产品类型</view>
+<view class="iright">{{info.PRODUCT_TYPE}}</view>
+</view>
+<view class="items">
+<view class="ileft">项目名称</view>
+<view class="iright">{{info.PROJECT_NAME}}</view>
+</view>
+<view class="items">
+<view class="ileft">挂牌机构</view>
+<view class="iright">{{info.LISTING_ORGANIZATION}}</view>
+</view>
+<view class="items">
+<view class="ileft">项目期限</view>
+<view class="iright">{{info.PROJECT_TERM}}</view>
+</view>
+<view class="items">
+<view class="ileft">发行规模</view>
+<view class="iright">{{info.ISSUING_SCALE}}亿</view>
+</view>
+<view class="items">
+<view class="ileft">收益区间</view>
+<view class="iright">{{info.INCOME_RANGE}}%</view>
+</view>
+
+<view class="items">
+<view class="ileft">预计发行日期</view>
+<view class="iright">{{info.ISSUE_DATE}}</view>
+</view>
+
+<view class="items">
+<view class="ileft">预计到期日期</view>
+<view class="iright">{{info.DUE_DATE}}</view>
+</view>
+
+<view class="items">
+<view class="ileft">认购截止日期</view>
+<view class="iright">{{info.CLOSING_DATE}}</view>
+</view>
+
+<view class="items">
+<view class="ileft">基础资产类型</view>
+<view class="iright">{{info.BASIC_TYPE}}</view>
+</view>
+
+<view class="itemsfc" style="margin-top: 20rpx;">
+<view class="ileft">产品分层情况</view>
+</view>
+
+<block wx:for="{{info.ABS_LIST}}" >
+<view class="fc">
+<view class="itemsfc">
+<view class="ileft">分层</view>
+<view class="iright">{{item.PRODUCT_LAYERING}}</view>
+</view>
+
+<view class="itemsfc">
+<view class="ileft">金额</view>
+<view class="iright">{{item.AMOUNT}}亿</view>
+</view>
+
+<view class="itemsfc">
+<view class="ileft">评级情况</view>
+<view class="iright">{{item.RATING}}</view>
+</view>
+</view>
+</block>
+
+
+<view class="items_max">
+<view class="marks">备注</view>
+<view class="remarks">{{info.REMARKS}}</view>
+</view>
+
+
+
+<view wx:if="{{info.PICTURE.length}}">
+    <view class="title" style="font-size: 28rpx;color: #3E415C;margin: 10rpx 0;">图片</view>
+    <view>
+      <!-- 上传图片 -->
+      <view class="imgbox">
+        <!-- 存放上传的图片的盒子 -->
+        <block wx:for="{{info.PICTURE}}" wx:key="{{index}}">
+          <view>
+            <!-- 图片缩略图  -->
+            <image src="{{url+item.URL}}" mode="aspectFill" data-idx="{{index}}" class="" style="width: 150rpx;height: 150rpx;" bindtap="handleImagePreview"></image>
+            <!-- 文档缩略图 -->
+          </view>
+          <view style="width: 10rpx;"></view>
+        </block> 
+        <!-- 点击上传图片 -->
+      </view>
+    </view>
+  </view>
+
+<view class="items" style="border: none;" bindtap="getBB_ENCLOSUR" wx:if="{{info.FILE.length}}">
+<view class="ileft">附件</view>
+<view class="iright">查看</view>
+</view>
+
+<!-- <view class="butt">
+<view class="del" bindtap="delbillfuc">删除</view>
+<view class="edit" bindtap="editfuc">编辑</view>
+</view> -->
+</view>
+
+<view aria-role="dialog" aria-modal="true">
+</view>
+
+<!-- 附件弹框 -->
+<view aria-role="dialog" aria-modal="true">
+        <view class="weui-mask weui-transition {{dialog ? 'weui-transition_show' : ''}}" bindtap="close" aria-role="button" aria-label="关闭"></view>
+        <view class="weui-half-screen-dialog screendialog weui-transition {{dialog ? 'weui-transition_show' : ''}} weui-half-screen-dialog_btn-wrap">
+            <view class="weui-half-screen-dialog__hd">
+                <view id="js_line" class="weui-half-screen-dialog__slide-icon" style="height: 4px; border-radius: 2px;">
+                </view>
+            </view>
+            <view class="weui-half-screen-dialog__bd" >
+            </view>
+        </view>
+    </view>
+
+    <!-- 删除弹框 -->
+    <view aria-role="deldialog" aria-modal="true">
+        <view class="weui-mask weui-transition {{deldialog ? 'weui-transition_show' : ''}}" bindtap="close" aria-role="button" aria-label="关闭"></view>
+        <view class="deldialog_hd {{deldialog? '' : 'ISshow'}}" >
+        <view class="body_dialog">
+        <view class="dialog_title">您要删除此交易吗？</view>
+        <view class="dialog_button" bindtap="delete">删除</view>
+        </view>
+        </view>
+        <view class="dialog_cancel {{deldialog? '' : 'ISshow'}}" bindtap="close">取消</view>
+    </view>

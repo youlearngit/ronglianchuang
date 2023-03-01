@@ -1,0 +1,10 @@
+<!--component/detailhead/detailhead.wxml-->
+<view class="bg-inst">
+    <image src="{{img}}" class="imagesed" mode="widthFix"></image>
+    <view class="bg-tit">
+      <view class="bg-jgfc">{{title}}</view>
+      <!-- <view class="bg-xx">
+        {{titledetail}}
+      </view> -->
+    </view>
+  </view>

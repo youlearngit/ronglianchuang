@@ -1,0 +1,2 @@
+<!--subpack/webhtml/web.wxml-->
+<web-view src="{{www}}"></web-view>

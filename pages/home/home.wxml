@@ -1,0 +1,505 @@
+<!--pages/home/home.wxml首页-->
+<view class="home_swiper">
+    <!-- 顶部轮播 -->
+    <swiper style="height: 100%;" indicator-dots="true" circular="true" autoplay interval="2500" duration="500" class="swiper" indicator-color="#fff">
+        <swiper-item wx:for="{{banner}}" wx:key="index" >
+        
+            <view data-state="{{item.RE_FLAG}}" data-mywww="{{item.WM_TEXT}}" data-value="{{item.WM_ID}}" bindtap="bannerDetail" class="swiperitem">
+                <image src="{{url+item.WM_IMAGES}}" mode="" ></image>
+
+                <view class="title">
+                <view style="overflow: hidden;text-overflow:ellipsis;white-space:nowrap;width: 80%;">
+                  <rich-text nodes="{{item.WM_TITLE}}"></rich-text>
+                </view>
+
+                <view style="padding-right: 30rpx;" catchtap="moreWonderfull">
+                more>>
+                </view>
+                </view>
+            </view>
+        </swiper-item>
+        <!-- <swiper-item>
+            <navigator url="/pages/bannerDetail/bannerDetail" class="swiperitem">
+                <image src="{{preffixUrl}}banner.png" mode="widthFix"></image>
+            </navigator>
+        </swiper-item> -->
+    </swiper>
+    <!-- logo -->
+    <!-- <image src="{{preffixUrl}}logo.png" class="loginLogo_bg" mode="widthFix"></image> -->
+    <!-- 搜索框 -->
+
+    <view class="home-searchbox" bindtap="toSearch" style="top: {{searchTop+'px'}};">
+      <view class="home-input">
+        <view style="margin-top: 10rpx;"> <image src="{{preffixUrl}}searchimg.png"  mode="widthFix" bindtap="toSearch" class="searchimg"></image></view>
+       
+      <view style="font-size: 30rpx;color: rgb(80, 64, 64);">
+        搜索
+      </view>
+
+      <view>
+      
+      </view>
+        
+      </view>
+      
+       
+    </view>
+
+    
+</view>
+<view class="home_countBox">
+    <!-- 机构风采 -->
+    <view class="organshowBox">
+        <!-- 标题 -->
+        <view class="organshowTitle_box">
+            <view class="organshow_title"> 融联创金融平台 · 机构风采</view>
+            <view class="organshow_more" bindtap="toinstItutional">更多 <image src="{{preffixUrl}}more.png" mode="widthFix" class="moreimg"></image>
+            </view>
+        </view>
+        <!-- 内容 -->
+        <view class="organshow-countBox">
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}meltunitecreate.png" mode="widthFix" class="meltunitecreate" data-to="融联创" bindtap="to" data-id="1"></image>
+                <view class="counttext">融联创</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}bank.png" mode="widthFix" data-to="银行" bindtap="to" class="meltunitecreate" data-id="2"></image>
+                <view class="counttext">银行</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}security.png" data-to="证券" bindtap="to" mode="widthFix" class="meltunitecreate" data-id="3"></image>
+                <view class="counttext">证券</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}fund.png" data-to="基金" bindtap="to" mode="widthFix" class="meltunitecreate" data-id="4"></image>
+                <view class="counttext">基金</view>
+            </view>
+            <view class="countBox-count">
+                <image src="{{preffixUrl}}trust.png" data-to="信托" bindtap="to" mode="widthFix" class="meltunitecreate" data-id="5"></image>
+                <view class="counttext">信托</view>
+            </view>
+        </view>
+    </view>
+    <!-- 头条 -->
+    <view class="headline_Box">
+        <image src="{{preffixUrl}}headline.png" class="headline_img"></image>
+        <view class="lineBox">
+            <swiper class="headline_title" vertical="true" style="height: 40rpx;" indicator-dots="{{false}}" circular="true" autoplay="{{true}}" interval="3000" duration="500" indicator-color="#8799a3" indicator-active-color="#0081ff">
+                <swiper-item class="headline_text" wx:for="{{headLine}}" wx:key="index" bindtap="headlineDetail" data-value="{{item}}">
+               
+                    <rich-text nodes="{{item.HN_TITLE}}"></rich-text>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="gengduo" bindtap="toheadLine">
+            <text class="organshow_more" style="margin-right: 30rpx;">更多</text>
+            <image src="{{preffixUrl}}more.png" mode="widthFix" class="headline_image"></image>
+        </view>
+    </view>
+    <!-- 金融交易大厅 -->
+    <view class="transactionBox">
+        <!-- 标题 -->
+        <view class="organshowTitle_box">
+            <view class="organshow_titles">金融交易大厅</view>
+        </view>
+        <view class="second-module-allicon">
+            <scroll-view class="nav-bar" scroll-x="true" bindscroll="scroll" show-scrollbar="true" enhanced="true">
+                <view class="nav-bar-wrap">
+                    <block wx:for="{{transactionOne}}" wx:key='key'>
+                        <view class="nav-bar-item" bindtap="transa" data-id="{{item.id}}">
+                            <image src="{{preffixUrl}}{{item.img}}" class="transactionImg" />
+                            <text>{{item.title}}</text>
+                        </view>
+                    </block>
+                </view>
+            </scroll-view>
+            <!-- 模拟进度条 -->
+            <view class="slider">
+                <view class="slider-inside .slider-inside-location" style="left:{{left}}"></view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 市场研究 -->
+    <view class="studyBox">
+        <view class="organshowTitle_box">
+            <view class="organshow_titles" style="margin-top: 0.7%;">高级研修班</view>
+            <view class="organshow_more" bindtap="toThecolumnMore">更多 <image src="{{preffixUrl}}more.png" mode="widthFix" class="moreimg" style="width: 11rpx;"></image>
+            </view>
+        </view>
+        <view class="studycountBox" bindtap="toThecolumn">
+            <view class="countBox" wx:for="{{marketStudy}}" wx:key="index" data-index="{{index}}">
+                <view class="study_count" style="color:{{item.color}};background: {{item.bgcolor}};" data-index="{{index}}">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 最新报价 -->
+    <view class="offerBox">
+        <!-- 标题 -->
+        <view class="organshowTitle_box">
+            <view class="organshow_titles" style="margin-top: 0.5%;">最新报价</view>
+        </view>
+        <!-- 内容 -->
+        <scroll-view scroll-x="true">
+       
+            <view class="offerCountBox">
+                <!-- 1 -->
+                <view class="offer_countBox" wx:for="{{lastestList}}" bindtap="navToDetail" data-item="{{item}}">
+
+                    <view class="offer_count" wx:if="{{item.keywords=='票据'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top">
+                            <image src="{{preffixUrl}}billBusiness.png" mode="widthFix" class="countTop_img"></image>
+                            <view class="countTop_text">
+                                <view class="topText-title">{{item.BB_BUSINESS_TYPE}}</view>
+                                <view class="topText-text">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}time.png" mode="widthFix" class="managerImg"></image>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 下 -->
+                        <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view>
+                        <!-- 买入 -->
+                        <view class="bugBox">{{item.BB_TRANSACTION}}</view>
+                    </view>
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='理财'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/tylc.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text">
+                            <view style="display: flex;align-items: center;"><view class="topText-title">{{item.TF_PRODUCT_NATURE}}</view>
+                                <view class="fangxiang">{{item.TF_TRANSACTION}}</view></view>
+                              
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_finance">
+                            <view class="countBottom_text">{{item.TF_AMOUNT}}<text style="font-size: 22rpx;">亿元</text></view>
+                            <text class="countBottom_littletext">利率{{item.TF_INTEREST_RATE}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <view class="bugBox">期限{{item.TF_PUBLISH_DEADLINE}}</view>
+                    </view>
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='基金'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/gmjj.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text">
+                                <view class="topText-title">{{item.PF_INVESTMENT_TYPE}}</view>
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                      <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_finance">
+                            <view class="countBottom_text">{{item.PF_PURCHASE_AMOUNT}}<text style="font-size: 22rpx;">亿起</text></view>
+                            <text class="countBottom_littletext">收益率{{item.PF_RETURN_RANGE}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <view class="bugBox">期限{{item.PF_PUBLISH_DEADLINE}}</view>
+                    </view>
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='abs'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/zczjh.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text">
+                                <view class="topText-title">{{item.PRODUCT_TYPE}}</view>
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                      <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_abs">
+                            <view class="countBottom_text">{{item.ISSUING_SCALE}}<text style="font-size: 22rpx;">亿元</text></view>
+                            <text class="countBottom_littletext">收益区间{{item.INCOME_RANGE}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <!-- <view class="bugBox">期限{{item.PF_PUBLISH_DEADLINE}}</view> -->
+                    </view>
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='同业借款'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/tyjk.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text">
+                            <view style="display: flex;align-items: center;"><view class="topText-title">同业借款</view>
+                                <view class="fangxiang">{{item.DIRECTION}}</view></view>
+                              
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_finance">
+                            <view class="countBottom_text">{{item.AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">利率{{item.INTEREST_RATE}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <view class="bugBox">期限{{item.DEADLINE}}</view>
+                    </view>
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='同业存款'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/tyck.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text">
+                            <view style="display: flex;align-items: center;"><view class="topText-title">同业存款</view>
+                                <view class="fangxiang">{{item.DIRECTION}}</view></view>
+                              
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_finance">
+                            <view class="countBottom_text">{{item.AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">利率{{item.INTEREST_RATE}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <view class="bugBox">期限{{item.DEADLINE}}</view>
+                    </view>
+
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='银团贷款'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/ytdk.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text">
+                            <view style="display: flex;align-items: center;"><view class="topText-title">银团贷款</view>
+                                <view class="fangxiang">存入</view></view>
+                              
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_abs">
+                            <view class="countBottom_text">{{item.TOTAL_SYNDICATION}}<text style="font-size: 22rpx;">亿元</text></view>
+                            <text class="countBottom_littletext">收益率{{item.YIELD}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <!-- <view class="bugBox">期限{{item.DEADLINE}}</view> -->
+                    </view>
+
+                    <view class="offer_count" wx:elif="{{item.keywords=='存单'}}">
+                        <!-- 上 -->
+                        <view class="offerCount_top" style="align-items: center;">
+                        <view>
+                          <image src="/static/images/tycd.png" mode="widthFix" style="width: 60rpx;height: 60rpx;"></image>
+                        </view>
+                            
+                            <view class="countTop_text" style="margin-top: 30rpx;">
+                            <view style="display: flex;align-items: center;"><view class="topText-title">同业存单</view>
+                                <view class="fangxiang_cundan">评级{{item.MAIN_GRADE}}</view></view>
+                              
+                                <view class="topText-text_finance">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <text style="margin-left: 8rpx;">|</text>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="offerCount_bottom_finance">
+                              
+                            <text class="countBottom_littletext">利率{{item.INTEREST_RATE}}%</text>
+                        </view>
+                        </view>
+                        <!-- 下 -->
+                        <!-- <view class="offerCount_bottom">
+                            <view class="countBottom_text">{{item.BB_AMOUNT}}<text style="font-size: 22rpx;">万元</text></view>
+                            <text class="countBottom_littletext">剩余{{item.BB_RESIDUAL_MATURITY}} | 首期利率{{item.BB_INTEREST_RATE}}%</text>
+                        </view> -->
+                        <!-- 买入 -->
+                        <view class="bugBox">期限{{item.DEADLINE}}</view>
+                    </view>
+
+
+                   
+                    
+
+                    <view class="offer_count" wx:else>
+                        <!-- 上 -->
+                        <view class="offerCount_top">
+                            <image src="/static/images/bond_icon.png" mode="widthFix" class="countTop_img"></image>
+                            <view class="countTop_text">
+                                <view class="topText-title">{{item.BOND_TYPE}}</view>
+                                <view class="topText-text">
+                                    <!-- 客户经理 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}manager.png" mode="widthFix" class="managerImg" style="width: 28rpx;"></image>
+                                        <text class="managerText">{{item.USER_NAME}}</text>
+                                    </view>
+                                    <!-- 时间 -->
+                                    <view class="managerBox">
+                                        <image src="{{preffixUrl}}time.png" mode="widthFix" class="managerImg"></image>
+                                        <text class="managerText">{{item.CREATE_TIME}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 下 -->
+                        <view class="offerCount_bottom">
+                            <view class="countBottom_text" wx:if="{{item.INSUE_SCALE}}">{{item.INSUE_SCALE}}<text style="font-size: 22rpx;">元</text></view>
+
+                            <view class="countBottom_text" wx:if="{{item.PUBLISH_SCALE}}">{{item.PUBLISH_SCALE}}<text style="font-size: 22rpx;">亿元</text></view>
+
+                            <text class="countBottom_littletext" wx:if="{{item.FORECAST_RATE_RANGE}}">预测利率区间{{item.FORECAST_RATE_RANGE}}%</text>
+
+                            <text class="countBottom_littletext" wx:if="{{item.INTEREST_RATE_RANGE}}">利率区间{{item.INTEREST_RATE_RANGE}}%</text>
+
+                        </view>
+
+
+                        <!-- 买入 -->
+                        <view class="bugBox" wx:if="{{item.keywords=='债券-信用债'}}">发行期限{{item.PUBLISH_DEADLINE}}</view>
+
+                        <view class="bugBox" wx:if="{{item.keywords=='债券-金融债'}}">债券期限{{item.BOND_TERM}}</view>
+
+                        <view class="bugBox" wx:if="{{item.keywords=='债券-利率债'}}">发行期限{{item.PUBLISH_DEADLINE}}</view>
+                    </view>
+
+
+                </view>
+                <!-- 2 -->
+               
+           
+          </view>
+        </scroll-view>
+    </view>
+    
+</view>
+<official-account></official-account>
+

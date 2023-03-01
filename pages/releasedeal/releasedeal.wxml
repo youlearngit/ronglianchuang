@@ -1,0 +1,950 @@
+<view class="meinibb">
+  <!-- 顶部tap -->
+  <view class="tab">
+    <view wx:for="{{ tabs }}" wx:key="item" bindtap="switchTab" data-index="{{ index }}">{{item}}</view>
+    <hr class="mybutent {{ 0 == currentIndex  ? 'lineBox' : 'notLineBox'}}" />
+    <hr class="myonet {{ 1 == currentIndex  ? 'lineBox' : 'notLineBox'}}" />
+    <hr class="mylauit {{ 2 == currentIndex  ? 'lineBox' : 'notLineBox'}}" />
+  </view>
+  <!-- 信用债 -->
+  <view class="mybouod" wx:if="{{ currentIndex == 0 }}">
+    <view class="cueemini">
+      <!-- 券种 -->
+      <view class="filed">
+        <view class="title">券种 <text class="entubn">*</text></view>
+        <view class="action arrow">
+          <picker class="" mode="selector" range="{{arr}}" value="" bindchange="choose" data-item="1">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr[selectedItems.item1]}}" placeholder-class="placeholder" />
+
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 市场 -->
+      <view class="filed">
+        <view class="title">市场 <text class="entubn">*</text></view>
+        <view class="action arrow">
+          <picker class="" mode="selector" range="{{arr2}}" value="" bindchange="choose" data-item="2">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr2[selectedItems.item2]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 发行人 -->
+      <view class="filed">
+        <view class="title">发行人 <text class="entubn">*</text></view>
+        <input class="myinput" type="text" placeholder="请输入发行人" value="{{creditBond.PUBLISHER}}" bindinput="getpublisher" />
+      </view>
+      <!-- 发行人性质 -->
+      <view class="filed">
+        <view class="title">发行人性质 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr3}}" value="" bindchange="choose" data-item="3">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr3[selectedItems.item3]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <view class="filed">
+        <view class="title">发行人性质-自定义</view>
+        <input class="myinput" type="text" placeholder="仅自定义时填写" value="{{PUBLISHER_NATURE}}" bindinput="getitem3Custom" />
+      </view>
+      <!-- 债券名称 -->
+      <view class="filed">
+        <view class="title">债券名称 <text class="entubn">*</text></view>
+        <input class="myinput" type="text" placeholder="请输入债券名称" value="{{creditBond.BOND_NAME}}" bindinput="getbondname" />
+      </view>
+      <!-- 债券代码 -->
+      <view class="filed">
+        <view class="title">债券代码</view>
+        <input class="myinput" type="text" placeholder="请输入债券代码" value="{{creditBond.BOND_CODE}}" bindinput="getbondcode" />
+      </view>
+      <!-- 发行规模 -->
+      <view class="filed">
+        <view class="title">发行规模 <text class="entubn">*</text></view>
+        <input class="myinyyds" type="text" placeholder="请输入发行规模" value="{{creditBond.PUBLISH_SCALE}}" bindinput="getpublishscale" />
+        <text class="myinyy">亿</text>
+      </view>
+      <!--发行期限 日期控件（单日期；选年、月、日） -->
+      <view class="filed">
+        <view class="title">发行期限 <text class="entubn">*</text></view>
+        <view class="mydist">
+          <!-- <picker mode="date" value="{{creditBond.PUBLISH_DEADLINE}}" bindchange="bindDeadLine">
+            <view bindtap="optionselect" class="myopton" wx:if="{{!creditBond.PUBLISH_DEADLINE}}">请选择Y/M/D</view>
+            <view wx:else="{{creditBond.PUBLISH_DEADLINE}}" class="myoptoneg"> {{creditBond.PUBLISH_DEADLINE}}</view>
+          </picker> -->
+
+         
+
+          <view style="width: 180rpx;padding-left: 10rpx;">
+            <input type="number" placeholder="请输入期限" placeholder-class="placeholder" maxlength="3" bindinput="getfxqxday" value="{{fxqxday}}" style="text-align: right;  font-size: 28rpx;" />
+          </view>
+          <picker class="" mode="selector" range="{{arr22}}" bindchange="choose" data-item="22" header-text="期限类型选择">
+                    <input type="text" placeholder="" disabled="{{true}}" value="{{arr22[selectedItems.item22]}}" placeholder-class="placeholder" style="width: 40rpx;text-align: right;" placeholder-style="font-size:28rpx"/>
+                </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+
+
+      </view>
+      <!-- 预测利率区间 -->
+      <view class="filed">
+        <view class="title">预测利率区间 <text class="entubn">*</text></view>
+        <input class="entubinpuy" placeholder="请输入数字" type="digit" value="{{creditBond.rate_start}}" bindinput="getratestart" />
+        <title class="mytuen">%-</title>
+        <input class="entubinpu" placeholder="请输入数字" type="digit" value="{{creditBond.rate_end}}" bindinput="getrateend" />
+        <title class="mytit">%</title>
+      </view>
+      <!-- 担保 -->
+      <view class="filed">
+        <view class="title">担保</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr4}}" value="" bindchange="choose" data-item="4">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr4[selectedItems.item4]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 主体评级 -->
+      <view class="filed">
+        <view class="title">主体评级 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr5}}" value="" bindchange="choose" data-item="5">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr5[selectedItems.item5]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 债项评级 -->
+      <view class="filed">
+        <view class="title">债项评级 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr6}}" value="" bindchange="choose" data-item="6">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr6[selectedItems.item6]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 评级公司 -->
+      <view class="filed">
+        <view class="title">评级公司</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr7}}" value="" bindchange="choose" data-item="7">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr7[selectedItems.item7]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 发行日 日期控件（单日期；选年、月、日） -->
+      <view class="filed">
+        <view class="title">发行日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{creditBond.PUBLISHER_DATE}}" bindchange="bindPublisher">
+            <view bindtap="bindselect" class="myopton" wx:if="{{!creditBond.PUBLISHER_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.PUBLISHER_DAT}}" class="myoptoneg"> {{creditBond.PUBLISHER_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+      </view>
+      <!-- 缴款日 日期控件（单日期；选年、月、日） -->
+      <view class="filed">
+        <view class="title">缴款日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{fcreditBond.PAY_DATE}}" bindchange="getPayDate">
+            <view bindtap="Fbundselect" class="myopton" wx:if="{{!creditBond.PAY_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.PAY_DATE}}" class="myoptoneg"> {{creditBond.PAY_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb" />
+
+        </view>
+
+      </view>
+      <!-- 上市日  日期控件（单日期；选年、月、日）-->
+      <view class="filed">
+        <view class="title">上市日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{creditBond.LISTED_DATE}}" bindchange="getListedDate">
+            <view bindtap="dateselect" class="myopton" wx:if="{{!creditBond.LISTED_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.LISTED_DATE}}" class="myoptoneg"> {{creditBond.LISTED_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb" />
+        </view>
+
+      </view>
+      <!-- 备注 -->
+      <view class="filedss">
+        <view class="title">备注</view>
+        <view class="entbod">
+          <textarea placeholder-class="place-holder" placeholder="请输入备注 " name="introduction" maxlength='20' bindinput='getremarks' value="{{creditBond.REMARKS}}" style="font-size: 14px;" />
+          <!-- 显示字数 -->
+          <view class="clear"><text style="color: #ccc; font-size: 14px; float: right; margin-right: 2%;">{{current}} / {{max}}</text></view>
+        </view>
+
+      </view>
+      <!-- 发布对象 -->
+      <view class="filed">
+        <view class="title">发布对象 </view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr8}}" value="" bindchange="choose" data-item="8">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr8[selectedItems.item8]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+
+      <view class="filed" wx:if="{{selectedItems.item8==1}}">
+        <view class="title">请选择机构<text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;" bindtap="openDialog">
+          <view wx:if="{{choose_obj_name==''}}">请选择</view>
+          <view wx:for="{{choose_obj_name}}" wx:if="{{choose_obj_name!==''}}">{{item}}</view>
+
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+
+      <view class="filed" wx:if="{{selectedItems.item8==2}}">
+        <view class="title">请选择定向个人<text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;" bindtap="openPersonalDialog">
+          <view wx:if="{{choose_obj_name==''}}">请选择</view>
+          <view wx:for="{{choose_obj_name}}" wx:if="{{choose_obj_name!==''}}" style="margin-left: 5rpx;">{{item}}</view>
+
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 上传附件 -->
+      <view class="fileeds">
+        <view class="title">上传图片</view>
+        <view class="myrentub">
+          <!-- 上传图片 -->
+          <view class="imgbox">
+            <!-- 存放上传的图片的盒子 -->
+            <block wx:for="{{BB_ENCLOSURE}}" wx:key="this">
+              <view class="add">
+                <!-- 移除图片的按钮  -->
+                <view class="delete" data-idx="{{index}}" bindtap="removeImage">
+                  <view class="mydetail">-</view>
+                </view>
+                <!-- 图片缩略图  -->
+                <image src="{{url+item}}" class="entubedg" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              </view>
+
+            </block>
+            <!-- 点击上传图片 -->
+            <view class="myincrease" bindtap="chooseImage">
+              <image src="{{preffixUrl}}toradd.png" class="mytoon"></image>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+
+      <view class="fileeds">
+            <view class="title">上传附件<text class="fileedsText">可上传文档</text></view>
+            <view class="myrentub">
+                <!-- 上传图片 -->
+                <view class="imgbox">
+                    <!-- 存放上传的图片的盒子 -->
+                   
+                        <view class="add" wx:if="{{fileName!==''}}" bindtap="uploadFile">{{fileName}}</view>
+                   
+                    <!-- 点击上传附件 -->
+                    <view class="myaddfile" bindtap="uploadFile" wx:else>
+                        <image src="{{preffixUrl}}toradd.png" class="myfile"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <!-- bindtap="creditdebt" -->
+    <button class="myqrfb" bindtap="confirmCreditBond">确认发布</button>
+    <view style="height: 50rpx;"></view>
+  </view>
+  <!-- 金融债 -->
+  <view wx:if="{{ currentIndex == 1 }}">
+    <view class="cueemini">
+      <!-- 发行人类型 -->
+      <view class="filed">
+        <view class="title">发行人类型 <text class="entubn">*</text></view>
+        <view class="action arrow">
+          <picker class="" mode="selector" range="{{arr9}}" value="" bindchange="choose" data-item="9">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr9[selectedItems.item9]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 市场 -->
+      <view class="filed">
+        <view class="title">市场 <text class="entubn">*</text></view>
+        <view class="action arrow">
+          <picker class="" mode="selector" range="{{arr10}}" value="" bindchange="choose" data-item="10">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr10[selectedItems.item10]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 券种 -->
+      <view class="filed">
+        <view class="title">券种 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr11}}" value="" bindchange="choose" data-item="11">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr11[selectedItems.item11]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 券种-自定义 -->
+      <view class="filed">
+        <view class="title">券种-自定义</view>
+        <input class="myinput" type="text" placeholder="仅自定义时填写" value="{{ticketCustom}}" bindinput="getitem11Custom" />
+      </view>
+      <!-- 发行人 -->
+      <view class="filed">
+        <view class="title">发行人 <text class="entubn">*</text></view>
+        <input class="myinput" type="text" placeholder="请输入发行人" value="{{creditBond.PUBLISHER}}" bindinput="getPUBLISHER" />
+      </view>
+      <!-- 主体评级 -->
+      <view class="filed">
+        <view class="title">主体评级 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr12}}" value="" bindchange="choose" data-item="12">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr12[selectedItems.item12]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 债项评级-->
+      <view class="filed">
+        <view class="title">债项评级 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr13}}" value="" bindchange="choose" data-item="13">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr13[selectedItems.item13]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 债券期限 -->
+      <view class="filed">
+        <view class="title">债券期限 <text class="entubn">*</text></view>
+        <view class="mydist">
+          <!-- <picker mode="date" value="{{futitDate}}" bindchange="DenubFund">
+            <view bindtap="denubelect" class="myopton" wx:if="{{!entittub}}">请输入D/M/Y</view>
+            <view wx:else="{{entittub}}" class="myoptoneg"> {{futitDate}}</view>
+          </picker> -->
+
+          
+
+          <view style="width: 180rpx;padding-left: 10rpx;">
+            <input type="number" placeholder="请输入期限" placeholder-class="placeholder" maxlength="3" bindinput="getzjqxday" value="{{zjqxday}}" style="text-align: right;  font-size: 28rpx;" />
+          </view>
+          <picker class="" mode="selector" range="{{arr22}}" bindchange="choose" data-item="22" header-text="期限类型选择">
+                    <input type="text" placeholder="D" disabled="{{true}}" value="{{arr22[selectedItems.item22]}}" placeholder-class="" style="width: 40rpx;text-align: right;;" placeholder-style="font-size:28rpx"/>
+                </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+      </view>
+      <!-- 利率区间 -->
+      <view class="filed">
+        <view class="title">利率区间 <text class="entubn">*</text></view>
+        <input class="entubinpuy" placeholder="请输入数字" type="digit" value="{{mini_rate}}" bindinput="get_min_rate" />
+        <title class="mytuen">%-</title>
+        <input class="entubinpu" placeholder="请输入数字" type="digit" value="{{high_rate}}" bindinput="get_high_rate" />
+        <title class="mytit">%</title>
+      </view>
+      <!-- 债券名称 -->
+      <view class="filed">
+        <view class="title">债券名称 <text class="entubn">*</text></view>
+        <input class="myinput" type="text" placeholder="请输入债券名称" value="{{creditBond.BOND_NAME}}" bindinput="getbondname" />
+      </view>
+      <!-- 债券代码 -->
+      <view class="filed">
+        <view class="title">债券代码</view>
+        <input class="myinput" type="text" placeholder="请输入债券代码" value="{{creditBond.BOND_CODE}}" bindinput="getbondcode" />
+      </view>
+      <!-- 发行方式 -->
+      <view class="filed">
+        <view class="title">发行方式</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr14}}" value="" bindchange="choose" data-item="14">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr14[selectedItems.item14]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 接收投标时间  日期控件（单日期；选年、月、日）（00：00-23:59）发行方式选择公开招标时必填 -->
+      <view class="filed">
+        <view class="title">接收投标时间 <text class="entubn" hidden="hidden">*</text></view>
+        <view style="height: 50rpx;">
+          <view style="float: left;margin-left: 48rpx;">
+            <view class="wentube" bindtap="wentubent" wx:if="{{!wentube}}">请选择</view>
+            <picker wx:else="{{wentube}}" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" name="visitTime">
+              <input class="e-input" placeholder-class="ceholder" class="e-entubntub" value='{{time}}' placeholder='请选择' />
+            </picker>
+            <image src="{{preffixUrl}}toright.png" class="valentudb"></image>
+          </view>
+        </view>
+      </view>
+      <!-- 缴款日 日期控件（单日期；选年、月、日） -->
+      <view class="filed">
+        <view class="title">缴款日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{fcreditBond.PAY_DATE}}" bindchange="getPayDate">
+            <view bindtap="Fbundselect" class="myopton" wx:if="{{!creditBond.PAY_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.PAY_DATE}}" class="myoptoneg"> {{creditBond.PAY_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb" />
+
+        </view>
+
+      </view>
+      <!-- 起息日  日期控件（单日期；选年、月、日）-->
+      <view class="filed">
+        <view class="title">起息日 <text class="entubn">*</text></view>
+        <view class="mydist">
+          <picker mode="date" value="{{creditBond.START_RATE_DATE}}" bindchange="bindStartRateDate">
+            <view bindtap="optionselect" class="myopton" wx:if="{{!creditBond.START_RATE_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.START_RATE_DATE}}" class="myoptoneg"> {{creditBond.START_RATE_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+      </view>
+      <!-- 利率类型 -->
+      <view class="filed">
+        <view class="title">利率类型</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr15}}" value="" bindchange="choose" data-item="15">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr15[selectedItems.item15]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 付息方式 -->
+      <view class="filed">
+        <view class="title">付息方式</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr16}}" value="" bindchange="choose" data-item="16">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr16[selectedItems.item16]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!--发行交易场所  -->
+      <view class="filed">
+        <view class="title">发行交易场所</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr17}}" value="" bindchange="choose" data-item="17">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr17[selectedItems.item17]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 担保 -->
+      <view class="filed">
+        <view class="title">担保</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr4}}" value="" bindchange="choose" data-item="4">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr4[selectedItems.item4]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 发行规模 -->
+      <view class="filed">
+        <view class="title">发行规模 <text class="entubn">*</text></view>
+        <input class="myinyyds" type="digit" placeholder="请输入发行规模" value="{{creditBond.PUBLISH_SCALE}}" bindinput="getpublishscale" />
+        <text class="myinyy">亿</text>
+      </view>
+      <!-- 发行日 日期控件（单日期；选年、月、日） -->
+      <view class="filed">
+        <view class="title">发行日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{funudDate}}" bindchange="bindDateFund">
+            <view bindtap="bindselect" class="myopton" wx:if="{{!funudDate}}">请选择</view>
+            <view wx:else="{{funudDate}}" class="myoptoneg"> {{funudDate}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+
+      </view>
+      <!-- 上市日  日期控件（单日期；选年、月、日）-->
+      <view class="filed">
+        <view class="title">上市日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{creditBond.LISTED_DATE}}" bindchange="getListedDate">
+            <view bindtap="dateselect" class="myopton" wx:if="{{!creditBond.LISTED_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.LISTED_DATE}}" class="myoptoneg"> {{creditBond.LISTED_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb" />
+        </view>
+
+      </view>
+      <!-- 备注 -->
+      <view class="filedss">
+        <view class="title">备注</view>
+        <view class="entbod">
+          <textarea placeholder-class="place-holder" placeholder="请输入备注 " name="introduction" maxlength='20' bindinput='getremarks' value="{{creditBond.REMARKS}}" style="font-size: 14px;" />
+          <!-- 显示字数 -->
+          <view class="clear"><text style="color: #ccc; font-size: 14px; float: right; margin-right: 2%;">{{current}} / {{max}}</text></view>
+        </view>
+
+      </view>
+      <!-- 发布对象 -->
+      <view class="filed">
+        <view class="title">发布对象 </view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr8}}" value="" bindchange="choose" data-item="8">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr8[selectedItems.item8]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+
+      <view class="filed" wx:if="{{selectedItems.item8==1}}">
+        <view class="title">请选择机构<text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;" bindtap="openDialog">
+          <view wx:if="{{choose_obj_name==''}}">请选择</view>
+          <view wx:for="{{choose_obj_name}}" wx:if="{{choose_obj_name!==''}}">{{item}}</view>
+
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+
+      <view class="filed" wx:if="{{selectedItems.item8==2}}">
+        <view class="title">请选择定向个人<text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;" bindtap="openPersonalDialog">
+          <view wx:if="{{choose_obj_name==''}}">请选择</view>
+          <view wx:for="{{choose_obj_name}}" wx:if="{{choose_obj_name!==''}}" style="margin-left: 5rpx;">{{item}}</view>
+
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 上传附件 -->
+      <view class="fileeds">
+        <view class="title">上传图片</view>
+        <view class="myrentub">
+          <!-- 上传图片 -->
+          <view class="imgbox">
+            <!-- 存放上传的图片的盒子 -->
+            <block wx:for="{{BB_ENCLOSURE}}" wx:key="this">
+              <view class="add">
+                <!-- 移除图片的按钮  -->
+                <view class="delete" data-idx="{{index}}" bindtap="removeImage">
+                  <view class="mydetail">-</view>
+                </view>
+                <!-- 图片缩略图  -->
+                <image src="{{url+item}}" class="entubedg" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              </view>
+
+            </block>
+            <!-- 点击上传图片 -->
+            <view class="myincrease" bindtap="chooseImage">
+              <image src="{{preffixUrl}}toradd.png" class="mytoon"></image>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+
+
+
+      <view class="fileeds">
+            <view class="title">上传附件<text class="fileedsText">可上传文档</text></view>
+            <view class="myrentub">
+                <!-- 上传图片 -->
+                <view class="imgbox">
+                    <!-- 存放上传的图片的盒子 -->
+                   
+                        <view class="add" wx:if="{{fileName!==''}}" bindtap="uploadFile">{{fileName}}</view>
+                   
+                    <!-- 点击上传附件 -->
+                    <view class="myaddfile" bindtap="uploadFile" wx:else>
+                        <image src="{{preffixUrl}}toradd.png" class="myfile"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <button class="myqrfb" bindtap="confirmFinance">确认发布</button>
+    <view style="height: 50rpx;"></view>
+  </view>
+  <!-- 利率债 -->
+  <view wx:if="{{ currentIndex == 2 }}">
+    <view class="cueemini">
+      <!-- 券种 -->
+      <view class="filed">
+        <view class="title">券种 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr18}}" value="" bindchange="choose" data-item="18">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr18[selectedItems.item18]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 市场 -->
+      <view class="filed">
+        <view class="title">市场</view>
+        <view class="action arrow">
+          <picker class="" mode="selector" range="{{arr19}}" value="" bindchange="choose" data-item="19">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr19[selectedItems.item19]}}" placeholder-class="placeholder" />
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 债券名称 -->
+      <view class="filed">
+        <view class="title">债券名称 <text class="entubn">*</text></view>
+        <input class="myinput" type="text" placeholder="请输入债券名称" value="{{creditBond.BOND_NAME}}" bindinput="getbondname" />
+      </view>
+      <!-- 债券代码 -->
+      <view class="filed">
+        <view class="title">债券代码</view>
+        <input class="myinput" type="text" placeholder="请输入债券代码" value="{{creditBond.BOND_CODE}}" bindinput="getbondcode" />
+      </view>
+      <!-- 发行期限 -->
+      <view class="filed">
+        <view class="title">发行期限 <text class="entubn">*</text></view>
+        <view class="mydist">
+          <!-- <picker mode="date" value="{{creditBond.PUBLISH_DEADLINE}}" bindchange="bindDeadLine">
+            <view bindtap="optionselect" class="myopton" wx:if="{{!creditBond.PUBLISH_DEADLINE}}">请选择</view>
+            <view wx:else="{{creditBond.PUBLISH_DEADLINE}}" class="myoptoneg"> {{creditBond.PUBLISH_DEADLINE}}</view>
+          </picker> -->
+          <view style="width: 180rpx;padding-left: 10rpx">
+            <input type="number" placeholder="请输入期限" placeholder-class="placeholder" maxlength="3" bindinput="getfxqxday" value="{{fxqxday}}" style="text-align: right;  font-size: 28rpx;"/>
+          </view>
+          <picker class="" mode="selector" range="{{arr22}}" bindchange="choose" data-item="22" header-text="期限类型选择">
+                    <input type="text" placeholder="D" disabled="{{true}}" value="{{arr22[selectedItems.item22]}}" placeholder-class="placeholder" style="width: 50rpx;text-align: right;" placeholder-style="font-size:28rpx"/>
+                </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+
+
+      </view>
+      <!-- 发行规模 -->
+      <view class="filed">
+        <view class="title">发行规模 <text class="entubn">*</text></view>
+        <input class="myinyyds" type="text" placeholder="请输入发行规模" value="{{creditBond.PUBLISH_SCALE}}" bindinput="getpublishscale" />
+        <text class="myinyy">亿</text>
+      </view>
+      <!-- 招标时间 -->
+      <view class="filed">
+        <view class="title">招标时间 <text class="entubn" hidden="hidden">*</text></view>
+        <view style="height: 50rpx;">
+          <view style="float: left;margin-left: 48rpx;">
+            <view wx:if="{{!myminibolk}}" bindtap="myminiblock" class="wentube">请选择</view>
+            <picker wx:else="{{myminibolk}}" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" name="visitTime">
+              <input class="e-input" placeholder-class="ceholder" class="e-entubntub" value='{{time}}' placeholder='请选择' />
+            </picker>
+            <image src="{{preffixUrl}}toright.png" class="valentudb"></image>
+          </view>
+        </view>
+      </view>
+      <!-- 缴款日 日期控件（单日期；选年、月、日） -->
+      <view class="filed">
+        <view class="title">缴款日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{fcreditBond.PAY_DATE}}" bindchange="getPayDate">
+            <view bindtap="Fbundselect" class="myopton" wx:if="{{!creditBond.PAY_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.PAY_DATE}}" class="myoptoneg"> {{creditBond.PAY_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb" />
+
+        </view>
+
+      </view>
+      <!-- 起息日  日期控件（单日期；选年、月、日）-->
+      <view class="filed">
+        <view class="title">起息日 <text class="entubn">*</text></view>
+        <view class="mydist">
+          <picker mode="date" value="{{creditBond.START_RATE_DATE}}" bindchange="bindStartRateDate">
+            <view bindtap="optionselect" class="myopton" wx:if="{{!creditBond.START_RATE_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.START_RATE_DATE}}" class="myoptoneg"> {{creditBond.START_RATE_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb"></image>
+        </view>
+      </view>
+      <!-- 上市日  日期控件（单日期；选年、月、日）-->
+      <view class="filed">
+        <view class="title">上市日</view>
+        <view class="mydist">
+          <picker mode="date" value="{{creditBond.LISTED_DATE}}" bindchange="getListedDate">
+            <view bindtap="dateselect" class="myopton" wx:if="{{!creditBond.LISTED_DATE}}">请选择</view>
+            <view wx:else="{{creditBond.LISTED_DATE}}" class="myoptoneg"> {{creditBond.LISTED_DATE}}</view>
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valuedb" />
+        </view>
+
+      </view>
+      <!-- 票面利率 -->
+      <view class="filed">
+        <view class="title">票面利率 <text class="entubn">*</text></view>
+        <input class="mypml" placeholder="请输入数字" type="digit" value="{{creditBond.PAR_RATE}}" bindinput="getRarRate" />
+        <title class="mytit">%</title>
+      </view>
+      <!-- 手续费 -->
+      <view class="filed">
+        <view class="title">手续费</view>
+        <input class="mypml enunb" placeholder="请输入数字" type="digit" value="{{creditBond.POUNDAGE}}" bindinput="getPoundage" />
+        <title class="mytit">%</title>
+      </view>
+      <!-- 停止投标 -->
+      <view class="filed">
+        <view class="title">停止投标</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr20}}" value="" bindchange="choose" data-item="20">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr20[selectedItems.item20]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!--上市市场  -->
+      <view class="filed">
+        <view class="title">上市市场 <text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr17}}" value="" bindchange="choose" data-item="17">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr17[selectedItems.item17]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 招标方式-->
+      <view class="filed">
+        <view class="title">招标方式</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr21}}" value="" bindchange="choose" data-item="21">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr21[selectedItems.item21]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 预测区间 -->
+      <view class="filed">
+        <view class="title">预测区间 <text class="entubn">*</text></view>
+        <input class="entubinpuy" placeholder="请输入数字" type="digit" value="{{creditBond.rate_start}}" bindinput="getratestart" />
+        <title class="mytuen">%-</title>
+        <input class="entubinpu" placeholder="请输入数字" type="digit" value="{{creditBond.rate_end}}" bindinput="getrateend" />
+        <title class="mytit">%</title>
+      </view>
+      <!-- 申购建议 -->
+      <view class="filed">
+        <view class="title">申购建议</view>
+        <input class="myinyyds" type="text" placeholder="请输入申购建议" value="{{creditBond.PURCHASE_ADVICE}}" bindinput="getAdvice" />
+      </view>
+      <!-- 备注 -->
+      <view class="filedss">
+        <view class="title">备注</view>
+        <view class="entbod">
+          <textarea placeholder-class="place-holder" placeholder="请输入备注 " name="introduction" maxlength='20' bindinput='getremarks' value="{{creditBond.REMARKS}}" style="font-size: 14px;" />
+          <!-- 显示字数 -->
+          <view class="clear"><text style="color: #ccc; font-size: 14px; float: right; margin-right: 2%;">{{current}} / {{max}}</text></view>
+        </view>
+
+      </view>
+      <!-- 发布对象 -->
+      <view class="filed">
+        <view class="title">发布对象</view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;">
+          <picker class="" mode="selector" range="{{arr8}}" value="" bindchange="choose" data-item="8">
+            <input type="text" placeholder="请选择" disabled="{{true}}" value="{{arr8[selectedItems.item8]}}" placeholder-class="placeholder" />
+            <!-- <image src="{{preffixUrl}}toright.png" style="width: 20rpx; height: 20rpx;" /> -->
+          </picker>
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+
+      <view class="filed" wx:if="{{selectedItems.item8==1}}">
+        <view class="title">请选择机构<text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;" bindtap="openDialog">
+          <view wx:if="{{choose_obj_name==''}}">请选择</view>
+          <view wx:for="{{choose_obj_name}}" wx:if="{{choose_obj_name!==''}}">{{item}}</view>
+
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+
+      <view class="filed" wx:if="{{selectedItems.item8==2}}">
+        <view class="title">请选择定向个人<text class="entubn">*</text></view>
+        <view class="action arrow" style="padding-right:30rpx;font-size: 29rpx;text-align: right;" bindtap="openPersonalDialog">
+          <view wx:if="{{choose_obj_name==''}}">请选择</view>
+          <view wx:for="{{choose_obj_name}}" wx:if="{{choose_obj_name!==''}}" style="margin-left: 5rpx;">{{item}}</view>
+
+          <image src="{{preffixUrl}}toright.png" class="valig" />
+        </view>
+      </view>
+      <!-- 上传附件 -->
+      <view class="fileeds">
+        <view class="title">上传图片</view>
+        <view class="myrentub">
+          <!-- 上传图片 -->
+          <view class="imgbox">
+            <!-- 存放上传的图片的盒子 -->
+            <block wx:for="{{BB_ENCLOSURE}}" wx:key="this">
+              <view class="add">
+                <!-- 移除图片的按钮  -->
+                <view class="delete" data-idx="{{index}}" bindtap="removeImage">
+                  <view class="mydetail">-</view>
+                </view>
+                <!-- 图片缩略图  -->
+                <image src="{{url+item}}" class="entubedg" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              </view>
+
+            </block>
+            <!-- 点击上传图片 -->
+            <view class="myincrease" bindtap="chooseImage">
+              <image src="{{preffixUrl}}toradd.png" class="mytoon"></image>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+
+      <view class="fileeds">
+            <view class="title">上传附件<text class="fileedsText">可上传文档</text></view>
+            <view class="myrentub">
+                <!-- 上传图片 -->
+                <view class="imgbox">
+                    <!-- 存放上传的图片的盒子 -->
+                   
+                        <view class="add" wx:if="{{fileName!==''}}" bindtap="uploadFile">{{fileName}}</view>
+                   
+                    <!-- 点击上传附件 -->
+                    <view class="myaddfile" bindtap="uploadFile" wx:else>
+                        <image src="{{preffixUrl}}toradd.png" class="myfile"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        
+
+
+    </view>
+    <button class="myqrfb" bindtap="confirmRateBond">确认发布</button>
+    <view style="height: 50rpx;"></view>
+  </view>
+
+  
+  <view aria-role="dialog" aria-modal="true" wx:if="{{selectedItems.item8==1}}">
+    <view class="weui-mask weui-transition {{dialog ? 'weui-transition_show' : ''}}" bindtap="close" aria-role="button" aria-label="关闭"></view>
+    <view class="weui-half-screen-dialog screendialog weui-transition {{dialog ? 'weui-transition_show' : ''}} weui-half-screen-dialog_btn-wrap">
+      <view class="weui-half-screen-dialog__hd">
+        <view id="js_line" class="weui-half-screen-dialog__slide-icon" style="height: 4px; border-radius: 2px;">
+
+          <view style="display: flex;justify-content: space-between;padding-bottom: 50rpx;">
+
+            <view style="display: flex;align-items: center;" bindtap="all_choose_org">
+              <radio style="scale: 0.7;" checked="{{all_choose_org_status}}"></radio>
+              <view style="font-size: 30rpx;">全选</view>
+            </view>
+
+            <view style="background: #f9f9fa;border-radius: 30rpx;width: 300rpx;" wx:if="{{dialog}}">
+              <input type="text" placeholder="请输入机构名" placeholder-style="text-align:center;font-size:25rpx;" 	bindconfirm="go_search_org" style="text-align:center;font-size:25rpx;" confirm-type="search" bindinput="go_search_org"/>
+            </view>
+
+
+
+           <view style="display: flex;">
+            <view bindtap="close">取消</view>
+
+             <view bindtap="check_org_name" style="margin-left: 20rpx;">确定</view>
+
+            </view>
+
+
+          </view>
+
+          <view>
+            <scroll-view scroll-y="true" style="height: 300rpx;width: 660rpx;" bindscrolltolower="moreQueryWhiteOrgList">
+              <view style="display: flex;align-items: center;border-bottom: 1rpx solid #ccc;padding:30rpx 0;" wx:for="{{orgNameList}}" wx:key="index" catchtap="check_org" data-index="{{index}}">
+                <radio style="transform:scale(0.9)" checked="{{item.ischecked}}" />
+                <view style="font-size: 30rpx;">{{item.ORG_NAME}}</view>
+              </view>
+
+            </scroll-view>
+
+          </view>
+
+
+        </view>
+      </view>
+      <view class="weui-half-screen-dialog__bd">
+      </view>
+    </view>
+  </view>
+
+
+  <view aria-role="dialog" aria-modal="true" wx:if="{{selectedItems.item8==2}}">
+    <view class="weui-mask weui-transition {{personaldialog ? 'weui-transition_show' : ''}}" bindtap="personaldialogclose" aria-role="button" aria-label="关闭"></view>
+    <view class="weui-half-screen-dialog screendialog weui-transition {{personaldialog ? 'weui-transition_show' : ''}} weui-half-screen-dialog_btn-wrap">
+      <view class="weui-half-screen-dialog__hd">
+        <view id="js_line" class="weui-half-screen-dialog__slide-icon" style="height: 4px; border-radius: 2px;">
+
+          <view style="display: flex;justify-content: space-between;padding-bottom: 50rpx;">
+
+          
+            
+           
+            <view style="display: flex;align-items: center;" bindtap="all_choose_rlc">
+              <radio style="scale: 0.7;" checked="{{all_choose_rlc_status}}"></radio>
+              <view style="font-size: 30rpx;">全选</view>
+            </view>
+            
+         
+
+            <view style="background: #f9f9fa;border-radius: 30rpx;width: 300rpx;" wx:if="{{personaldialog}}">
+              <input type="text" placeholder="请输入用户名" placeholder-style="text-align:center;font-size:25rpx;" 	bindconfirm="go_search_rlc" style="text-align:center;font-size:25rpx;" confirm-type="search" bindinput="go_search_rlc"/>
+            </view>
+
+
+           <view style="display: flex;">
+
+            <view bindtap="personaldialogclose" style="font-size: 30rpx;">取消</view>
+
+            <view bindtap="check_rlc_name" style="font-size: 30rpx;margin-left: 20rpx;">确定</view>
+
+           </view>
+
+
+          </view>
+
+          <view>
+            <scroll-view scroll-y="true" style="height: 300rpx;width: 660rpx;" bindscrolltolower="moreRlcUser">
+              <view style="display: flex;align-items: center;border-bottom: 1rpx solid #ccc;padding:10rpx 0;" wx:for="{{infoList}}" wx:key="index" catchtap="choose_rlc" data-index="{{index}}">
+                <radio style="transform:scale(0.9)" checked="{{item.ischecked}}" />
+                <view style="font-size: 30rpx;">{{item.RLC_USER_NAME}}</view>
+              </view>
+
+
+
+
+            </scroll-view>
+
+          </view>
+
+
+        </view>
+      </view>
+      <view class="weui-half-screen-dialog__bd">
+      </view>
+    </view>
+  </view>
+
+</view>

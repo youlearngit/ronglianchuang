@@ -1,0 +1,35 @@
+
+<view class="bannerDetailBox">
+    <image src="{{preffixUrl}}bannerDetail.png" mode="widthFix" class="detailImg"></image>
+</view>
+<view class="detailBox">
+    <view class="bannerDetail_countBox">
+        <view class="count_bigTitle">
+        <rich-text nodes="{{info.HN_TITLE}}"></rich-text>
+        </view>
+        <view class="count_imgBox">
+            <view class="count_smallTitle">
+                <image src="{{preffixUrl}}systemNotice.png" mode="widthFix" class="smallTitle_img"></image>
+                <text class="smallTitle_time">融联创平台</text>
+            </view>
+            <!-- <view class="count_smallTitle" bindtap="copy">
+                <image src="{{preffixUrl}}noticeSource.png" mode="widthFix" class="smallTitle_img"></image>
+                <text class="smallTitle_time">{{info.HN_DEPARTMENT}}</text>
+            </view> -->
+            <view class="count_smallTitle">
+                <image src="{{preffixUrl}}preview.png" style="width: 26rpx;" mode="widthFix" class="smallTitle_img"></image>
+            <text class="smallTitle_time">{{info.HN_CUMULATIVE}}</text>
+            </view>
+            <view class="count_smallTitle">
+                <image src="{{preffixUrl}}time.png" mode="widthFix" class="smallTitle_img"></image>
+                <text class="smallTitle_time">{{info.CREATE_TIME}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="count_content">
+        <image src="{{url+info.HN_IMAGES}}" class="contextImg" wx:if="{{info.HN_IMAGES}}"></image>
+        <view class="contextText">
+          <rich-text nodes="{{info.HN_TEXT}}"></rich-text>
+        </view>
+    </view>
+</view>

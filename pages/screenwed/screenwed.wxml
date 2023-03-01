@@ -1,0 +1,47 @@
+<!--pages/screenwed/screenwed.wxml我的筛选条件-->
+<view class="mycountend">
+  <view class="mybeiht">
+    <view class="mysxtj">
+      <title class="mybesotj">筛选条件</title>
+      <title class="myhfmor" bindtap="reset">恢复默认</title>
+    </view>
+    <!-- 发布时间 -->
+    <view class="myfbsj">
+      <view class="myonews">
+        <view class="mybuentu"></view>
+        <view class="myb_dt">发布时间</view>
+
+      </view>
+      <view class="myenbus">
+        <view class="minibbsj">
+        <picker mode="date" bindchange="bindStartChange">
+          <view class="weui-input">{{startTime}}</view>
+         
+        </picker>
+      <image class="myinage" src="{{preffixUrl}}dataUnchecked.png"></image>
+        </view>
+        <view class="minicount">—</view>
+        <view class="minibbsj"><picker mode="date" bindchange="bindEndChange">
+          <view class="weui-input">{{endTime}}</view>
+         
+
+        </picker>
+        <image class="myinage2" src="{{preffixUrl}}dataSelected.png"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 产品类型 -->
+    <view class="mycplb">
+      <view class="myonews">
+        <view class="mybuentu"></view>产品类型
+      </view>
+      <view class="myziczqh">
+        <view wx:for="{{ mibel}}"  wx:key="index" id="{{index}}" class="mybueeton"
+        class="{{isSelect == item.id ? 'mybueeton active' : 'mybueeton'}}" 
+        bindtap="Fbundselect" data-id="{{item.id}}"
+        >{{item.text}}</view>
+      </view>
+    </view>
+    <button class="confirm" bindtap="confirm">确定</button>
+  </view>
+</view>

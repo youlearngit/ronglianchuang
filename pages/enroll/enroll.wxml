@@ -1,0 +1,26 @@
+<!--pages/enroll/enroll.wxml注册页-->
+
+<view class="enrollBox">
+    <image src="{{preffixUrl}}bg.png" class="enrollbg"></image>
+    <image src="{{preffixUrl}}logo.png" class="enrollLogo" mode="widthFix"></image>
+    <view class="enroll_box">
+        <view class="enrollBox_title">欢迎进入<text class="title_text">融联创</text></view>
+        <view class="enrollBox_subtitle">文字副标题文字副标题文字副标题文字副标</view>
+    </view>
+    <!-- 手机号短信验证 -->
+    <view class="enrollPhoneNumber">    
+        <!-- 手机号 -->
+        <view class="enrollPhone">
+            <image src="{{preffixUrl}}phone.png" class="phone_img" mode="widthFix"></image>
+            <input type="phone" placeholder="请输入手机号" bindinput="onRechto" class="phoneInput" />
+        </view>
+        <!-- 短信验证码 -->
+        <view class="enrollPhone enrollNumber">
+            <image src="{{preffixUrl}}password.png" class="phone_img" mode="widthFix"></image>
+            <input maxlength="11" type="text" bindinput="onRechun" placeholder="请输入短信验证码" class="phoneInput" />
+            <button class="passwordBtn" plain="true" data-id="2"  bindtap="sendCode" disabled="{{smsFlag}}">{{sendTime}}</button>
+        </view>
+    </view>
+    <!-- 下一步 -->
+    <button class="enroll_xyb" bindtap="toPerfect">下一步</button>
+</view>

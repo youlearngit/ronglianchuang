@@ -1,0 +1,163 @@
+<!--pages/perfect/perfect.wxml完善信息-->
+<view class="enrollBox">
+    <image src="{{preffixUrl}}perjectbg.png" class="perjectbg" mode="widthFix"></image>
+    <view class="enroll_box">
+      <image src="{{preffixUrl}}logo.png" class="enrollLogo"></image>
+
+        <view class="enrollBox_title">欢迎进入<text class="title_text">融联创</text>
+
+            <view class="bizreaderBox" bindtap="uploadImage">
+                <image src="{{preffixUrl}}bizreader.png" mode="widthFix" class="bizreader"></image>
+                <view class="bizreader_font">扫描名片</view>
+            </view>
+
+        </view>
+        <!-- <view class="enrollBox_subtitle">文字副标题文字副标题文字副标题文字副标</view> -->
+    </view>
+    <view class="perfectBox">
+        <!-- <view class="perfect_box"  wx:for="{{perfectList}}">
+            <view class="perfect_countbox">
+                <text class="perfect_text">{{item.redDot}}</text>
+                <view class="perfect_title" >{{item.name}}</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" placeholder="请输入{{item.name}}" />
+            </view>
+        </view> -->
+        <!-- 姓名 -->
+         <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text">*</text>
+                <view class="perfect_title">姓名</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{RLC_USER_NAME}}" bindinput="onRuend" placeholder="请输入姓名" />
+            </view>
+        </view>
+        <!-- 机构名称 -->
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text">*</text>
+                <view class="perfect_title">机构名称</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{ORG_NAME}}" bindinput="onReadcoun" placeholder="请输入机构名称" bindfocus="getbindfocus" bindkeyboardheightchange="getbindblur"/>
+            </view>
+        </view>
+
+    <view class="associ" wx:if="{{isShowOrgName && fuzzyList.length}}">
+    <view class="myitem">
+    <view class="item_list" wx:for="{{fuzzyList}}" catchtap="get_ORG_NAME" data-name="{{item.ORG_NAME}}">{{item.ORG_NAME}}</view>
+    
+    </view>
+    </view>
+        <!-- 所属部门1 -->
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text">*</text>
+                <view class="perfect_title">所属部门<text style=" opacity: 0.5;">（一级部）</text></view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{FIRST_DEPT}}" bindinput="onReacdbm" placeholder="请输入部门名称" />
+            </view>
+        </view>
+        <!-- 所属部门2 -->
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text" style="color: #fff;">*</text>
+                <view class="perfect_title">所属部门<text style=" opacity: 0.5;">（二级部/团队/科室/中心）</text></view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{SECOND_DEPT}}" placeholder="请输入部门名称" bindinput="onReacdse"/>
+            </view>
+        </view>
+        <!-- 所属部门3 -->
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text"  style="color: #fff;">*</text>
+                <view class="perfect_title">所属部门<text style=" opacity: 0.5;">（三级部/团队/科室/中心）</text></view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{THIRD_DEPT}}" placeholder="请输入部门名称" bindinput="onReacdth"/>
+            </view>
+        </view>
+        <!-- 职务 -->
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text">*</text>
+                <view class="perfect_title">职务</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{POSITION}}" bindinput="onReactzw" placeholder="请输入职务" />
+            </view>
+        </view>
+        <!-- 手机号 -->
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text">*</text>
+                <view class="perfect_title">手机号码</view>
+                <text class="code"  wx:if="{{is_show}}" >{{last_time}}s后重新获取
+                </text>
+                <text class="code" wx:if="{{is_show == false}}" bindtap="handleSendVerCode">获取验证码</text>
+            </view>
+            <view class="perfect_input">
+                <input bindinput="onReadsjhm" value="{{MOBILE}}" type="number" placeholder="请输入手机号码" maxlength="11"/>
+            </view>
+        </view>
+
+        <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text">*</text>
+                <view class="perfect_title">验证码</view>
+            </view>
+            <view class="perfect_input">
+                <input type="number" value="{{codeNo}}" placeholder="请输入验证码" bindinput="getcodeNo" maxlength="8"/>
+            </view>
+        </view>
+
+        
+         <!-- 固定电话 -->
+         <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text" style="color: #fff;">*</text>
+                <view class="perfect_title">固定电话</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{PHONE}}" placeholder="请输入固定电话" bindinput="gddh"/>
+            </view>
+        </view>
+         <!-- 邮箱 -->
+         <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text" style="color: #fff;">*</text>
+                <view class="perfect_title">邮箱</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{EMAIL}}" placeholder="请输入邮箱地址" bindinput="youxiang"/>
+            </view>
+        </view>
+         <!-- 机构地址 -->
+         <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text" style="color: #fff;">*</text>
+                <view class="perfect_title">机构地址</view>
+            </view>
+            <view class="perfect_input">
+                <input type="name" value="{{ORG_ADDR}}" placeholder="请输入机构地址" bindinput="jgdz"/>
+            </view>
+        </view>
+         <!-- 推荐人员工号 -->
+         <view class="perfect_box">
+            <view class="perfect_countbox">
+                <text class="perfect_text" style="color: #fff;">*</text>
+                <view class="perfect_title">推荐人员工号</view>
+            </view>
+            <view class="perfect_input">
+                <input type="number" value="{{REFERRER_NUM}}" placeholder="请输入推荐人员工号" bindinput="tjygh" disabled="{{REFERRER_NUM_EDIT}}"/>
+            </view>
+        </view>
+        <!-- 注册 -->
+            <button class="perfect_bottom" bindtap="onReadzc">确认</button>
+
+    </view>
+</view>

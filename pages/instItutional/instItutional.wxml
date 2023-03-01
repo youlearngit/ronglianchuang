@@ -1,0 +1,50 @@
+<view class="box-entb">
+  <!-- 顶部 -->
+  <view class="bg-inst">
+    <image src="{{preffixUrl}}instItutional.png" class="imagesed"></image>
+    <view class="bg-tit">
+      <view class="bg-jgfc">机构风采</view>
+      <!-- <view class="bg-xx">
+        提供信息资讯、交易撮合以及即时通讯功能的金融合作平台，最全面的金融行业资讯动态，借助平台优势寻找合作伙伴，还能在这里获取更多行业商机。
+      </view> -->
+    </view>
+  </view>
+  <view class='warp'>
+    <!-- 左侧 -->
+    <view class='list'>
+      <view style="display: flex; text-align: center;" class='style {{item.OC_ID==num?"active":""}}' catchtap='clickList' wx:for="{{instlist}}" wx:key="" data-id="{{item.OC_ID}}">
+        <view hidden="{{item.OC_ID==num? false: true}}" class="activetwo {{item.OC_ID == num? true : false}} ">
+          <view class="leftbok"></view>
+        </view>
+        <view class="entuben">{{item.OC_TITLE}}</view>
+      </view>
+    </view>
+    <!-- 右侧 -->
+    
+    <!-- <scroll-view class='listqbsf'  scroll-y="true"  show-scrollbar="true" >
+      <view class="liatqubh">
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" level="province">
+          <view class="picker" wx:if="{{region.length == 0}}">所有省份<image src="{{preffixUrl}}bgqbsf.png"></image></view>
+      <view class="picker" wx:if="{{region.length != 0}}">当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}<image src="{{preffixUrl}}bgqbsf.png"></image></view></picker>
+      </view>
+      <view class='content' wx:for="{{member}}" catchtap="getdetail" data-state="{{item.OM_LINK}}" data-id="{{item.OM_ID}}" data-url="{{item.OM_TEXT}}" wx:key="index">
+        {{item.OM_ABBREVIATION}}
+      </view>
+    </scroll-view> -->
+
+    <scroll-view class='listqbsf'  scroll-y="true"  show-scrollbar="true" >
+      <view class="liatqubh">
+        <picker mode="selector" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" range="{{zones_tree}}" range-key="name">
+          <view class="picker" wx:if="{{region.length == 0}}">所有省份<image src="{{preffixUrl}}bgqbsf.png"></image></view>
+      <view class="picker" wx:if="{{region.length != 0}}">当前选择：{{region}}<image src="{{preffixUrl}}bgqbsf.png"></image></view></picker>
+      </view>
+      <view class='content' wx:for="{{member}}" catchtap="getdetail" data-state="{{item.OM_LINK}}" data-id="{{item.OM_ID}}" data-url="{{item.OM_TEXT}}" wx:key="index">
+        {{item.OM_ABBREVIATION}}
+      </view>
+    </scroll-view>
+
+
+
+
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-success": "/component/state/status",
+    "i-button": "/component/button/button"
+  }
+}

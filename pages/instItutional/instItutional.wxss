@@ -1,0 +1,130 @@
+.box-entb{
+  width: 100%;
+}
+.leftbok{
+  width: 8rpx;
+  height: 35rpx;
+  background: #578FFC;
+  margin-top: 35rpx;
+}
+.imagesed{
+  width: 100%; 
+  height:420rpx
+}
+.bg-inst{
+  width: 100%;
+  height: 275rpx;
+  position: relative;
+}
+.bg-tit{
+  position: absolute;
+  top: 40rpx;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.bg-jgfc{
+  font-family: SourceHanSansSC-Medium;
+  font-size: 35rpx;
+  color: #092C68;
+  letter-spacing: 0;
+  text-align: justify;
+}
+.bg-xx{
+  width: 470rpx;
+  /* margin-top: 10rpx; */
+  
+  opacity: 0.5;
+  font-family: SourceHanSansSC-Regular;
+  font-size: 25rpx;
+  color: #0B2F5E;
+  text-align: justify;
+}
+.bg-inst .enenen{
+  width: 100%;
+}
+.warp {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 280rpx);
+  background: #fafafa;
+  display: flex;
+  border-radius: 50rpx;
+}
+.list {
+    width: 200rpx; 
+    height: 100%;
+    background-color: #F0F5FF;
+    border-top-left-radius: 50rpx;
+}
+.listqbsf {
+    /* height: 100vh; */
+    width: calc(100% - 200rpx);
+    background-color: #fff;
+    border-top-right-radius: 50rpx;
+}
+.style {
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-left: 40rpx;
+  box-sizing: border-box;
+}
+.content {
+  background-color: #fff;
+ width: 97%;
+ margin-left: 3%;
+ overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+ height: 120rpx;
+ line-height: 120rpx;
+  padding-left: 20rpx;
+  border-bottom: 1px solid #E4ECFF;
+  font-size: 33rpx;
+  box-sizing: border-box;
+  
+ 
+ }
+
+.active{
+  color: #578FFC;
+  font-weight: bold;
+  background-color: #fff;
+}
+.activetwo{
+  width: 5px;
+  height: 5px;
+  position: relative;
+  left: -37rpx;
+}
+.bglogo{
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+.liatqubh{
+  width: auto;
+  height: 50rpx;
+  /* float: left; */
+  line-height: 50rpx;
+  font-size: 25rpx;
+  color: #6B9DFD;
+  text-align: center;
+  border-radius: 50rpx;
+  border: 1px solid #6B9DFD;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.liatqubh image{
+  width: 20rpx;
+  height: 20rpx;
+}
+.entuben{
+  position: absolute;
+  font-size: 33rpx;
+}
+

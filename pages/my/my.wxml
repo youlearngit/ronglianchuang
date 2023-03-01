@@ -1,0 +1,149 @@
+<!--pages/my/my.wxml-->
+<!-- <tabbar tabbar="{{tabbar}}"></tabbar> -->
+<view class="bgBox">
+    <image src="{{preffixUrl}}bg.png" class="bgimg"></image>
+</view>
+
+<view class="countBox" wx:if="{{isShowEditSave}}">
+    <view class="visitCardBox">
+        <image src="{{preffixUrl}}svip.png" class="svipImg" mode="widthFix"></image>
+        <view class="compileBox" bindtap="isShowEdit">
+            <image src="{{preffixUrl}}edit.png" class="editImg"></image>
+            <text class="editText">编辑</text>
+        </view>
+        <view class="portraitBox" wx:if="{{userInfo.HEAD_PHOTO==''}}" bindtap="uploadImage">
+          <image src="{{wxlogininfo.userInfo.avatarUrl}}" class="protImg" mode=""></image>
+        </view>
+        <view  bindtap="uploadImage" class="portraitBox" wx:else>
+          <image src="{{url+userInfo.HEAD_PHOTO}}" class="protImg" mode=""></image>
+        </view>
+        <view class="namepostBox">
+          <view class="nameBox">
+        {{userInfo.RLC_USER_NAME}}
+          </view>
+          <view class="postBox">
+            {{userInfo.POSITION}}
+          </view>
+        </view>
+        <view class="phoneBox">
+          {{userInfo.MOBILE}}
+        </view>
+        <view class="departmentBox">
+          {{userInfo.ORG_NAME}}<text wx:if="{{userInfo.SECOND_DEPT}}">/</text>{{userInfo.SECOND_DEPT}}<text wx:if="{{userInfo.THIRD_DEPT}}">/</text>{{userInfo.THIRD_DEPT}}
+        </view>
+        <view class="lineBox"></view>
+        <view class="listBox lbx_1">
+          <view class="telbox">
+            <image src="{{preffixUrl}}telephone2x.png" class="iconImg" mode="widthFix"></image>
+            <text>电话</text>
+          </view>
+          <view class="telnumbox">{{userInfo.PHONE}}</view>
+        </view>
+        <view class="listBox lbx_2">
+          <view class="telbox">
+            <image src="{{preffixUrl}}mymailbox.png" class="iconImg" mode="widthFix"></image>
+            <text>邮箱</text>
+          </view>
+          <view class="telnumbox">{{userInfo.EMAIL}}</view>
+        </view>
+        <view class="listBox lbx_3">
+          <view class="telbox">
+            <image src="{{preffixUrl}}address.png" class="iconImg" mode="widthFix"></image>
+            <text>地址</text>
+          </view>
+          <view class="telnumbox address">{{userInfo.ORG_ADDR}}</view>
+        </view>
+    </view>
+    <view class="myReleaseBox"  bindtap="myrelease">
+    <view class="relBox">
+      <image src="{{preffixUrl}}myrelease.png" class="releImg" mode="widthFix"></image>
+    </view>
+    <view class="reltextBox">
+    <view class="titleBox">我的发布</view>
+    <view class="transactionBox">共有<text class="transcolor">{{userInfo.ALL_COUNT}}</text>个交易，立即查看</view>
+    </view>
+    <view class="nextBox">
+      <image src="{{preffixUrl}}look.png" class="nextImg" mode="widthFix"></image>
+    </view>
+    </view>
+    <button class="feedbackBox" open-type="feedback">
+      <image src="{{preffixUrl}}myfeedback.png" class="feedImg" mode="widthFix"></image>
+      <text>意见反馈</text>
+    </button>
+</view>
+
+<view class="countBox" wx:else>
+    <view class="visitCardBox">
+        <image src="{{preffixUrl}}svip.png" class="svipImg" mode="widthFix"></image>
+        <view class="compileBox" bindtap="saveUserInfo">
+            <image src="{{preffixUrl}}save.png" class="editImg"></image>
+            <text class="editText">保存</text>
+        </view>
+        <view class="portraitBox" wx:if="{{userInfo.HEAD_PHOTO==''}}" bindtap="uploadImage">
+          <image src="{{wxlogininfo.userInfo.avatarUrl}}" class="protImg" mode="widthFix"></image>
+        </view>
+        <view class="portraitBox" bindtap="uploadImage" wx:else>
+          <image src="{{url+userInfo.HEAD_PHOTO}}" class="protImg" mode="widthFix"></image>
+        </view>
+        <view class="namepostBox">
+          <view class="nameBox">
+        {{userInfo.RLC_USER_NAME}}
+          </view>
+          <view class="postBox">
+            {{userInfo.POSITION}}
+          </view>
+        </view>
+        <view class="phoneBox">
+          <input type="number" value="{{userInfo.MOBILE}}" placeholder="请输入手机号码" bindinput="getmobile" maxlength="11"/>
+        </view>
+        <view class="departmentBox">
+          {{userInfo.ORG_NAME}}/{{userInfo.SECOND_DEPT}}/{{userInfo.THIRD_DEPT}}
+        </view>
+        <view class="lineBox"></view>
+        <view class="listBox lbx_1">
+          <view class="telbox">
+            <image src="{{preffixUrl}}telephone2x.png" class="iconImg" mode="widthFix"></image>
+            <text>电话</text>
+          </view>
+          <view class="telnumbox">
+          <input type="number" value="{{userInfo.PHONE}}" placeholder="请输入电话" bindinput="getphone" maxlength="20"/>
+          </view>
+        </view>
+        <view class="listBox lbx_2">
+          <view class="telbox">
+            <image src="{{preffixUrl}}mymailbox.png" class="iconImg" mode="widthFix"></image>
+            <text>邮箱</text>
+          </view>
+          <view class="telnumbox">
+          <input type="text" value="{{userInfo.EMAIL}}" placeholder="请输入邮箱" bindinput="getemail"/>
+          </view>
+        </view>
+        <view class="listBox lbx_3">
+          <view class="telbox">
+            <image src="{{preffixUrl}}address.png" class="iconImg" mode="widthFix"></image>
+            <text>地址</text>
+          </view>
+          <view class="telnumbox">
+          <input type="text" value="{{userInfo.ORG_ADDR}}" placeholder="请输入地址" bindinput="getaddr"/>
+          </view>
+        </view>
+    </view>
+    <view class="myReleaseBox">
+    <view class="relBox">
+      <image src="{{preffixUrl}}myrelease.png" class="releImg" mode="widthFix"></image>
+    </view>
+    <view class="reltextBox" bindtap="myrelease">
+    <view class="titleBox">我的发布</view>
+    <view class="transactionBox">共有<text class="transcolor">66</text>个交易，立即查看</view>
+    </view>
+    <view class="nextBox">
+      <image src="{{preffixUrl}}look.png" class="nextImg" mode="widthFix"></image>
+    </view>
+    </view>
+    <view class="feedbackBox">
+      <image src="{{preffixUrl}}myfeedback.png" class="feedImg" mode="widthFix"></image>
+      <text>意见反馈</text>
+    </view>
+
+
+</view>
